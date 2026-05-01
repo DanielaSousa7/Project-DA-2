@@ -3,4 +3,7 @@ project(Project_DA_2)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Project_DA_2 main.cpp)
+add_executable(Project_DA_2 main.cpp
+        Parser.h
+        structs.h
+        Parser.cpp)
