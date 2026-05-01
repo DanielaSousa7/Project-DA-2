@@ -6,8 +6,13 @@
 #ifndef PROJECT_DA_2_MENU_H
 #define PROJECT_DA_2_MENU_H
 
-void showMainMenu();
+#include "structs.h"
 
+void showMainMenu();
+void printProgramPoint(ProgramPoint point);
+void printLiveRanges(InputData data);
+void printRegisterSettings(InputData data);
+void printLoadedData(InputData data);
 int mainMenu();
 
 #endif
