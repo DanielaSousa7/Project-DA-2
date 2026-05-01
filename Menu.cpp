@@ -148,7 +148,6 @@ int mainMenu() {
                 case 2:
                     cout << "\n";
                     dataMenu(data);
-                    cout << "\n";
                     break;
                 case 3: {
                     string output_filename;
