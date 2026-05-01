@@ -13,10 +13,48 @@ using namespace std;
 
 void showMainMenu() {
     cout << "=== Assignment Tool ===\n";
-    cout << "1. Read new file\n";
+    cout << "1. Read new files\n";
+    cout << "2. Browse File Data\n";
     cout << "2. Create Output file\n";
     cout << "0. Exit\n";
     cout << "Select an option: ";
+}
+
+void printProgramPoint(ProgramPoint point) {
+    cout << point.code_line;
+    if (point.isDefinition) {
+        cout << "+";
+    }
+    if (point.isLastUse) {
+        cout << "-";
+    }
+}
+
+void printLiveRanges(InputData data) {
+    cout << "--- Live Ranges ---\n";
+    for (LiveRange range : data.liveRanges) {
+        cout << range.variable << ": ";
+        for (size_t i = 0; i < range.points.size(); i++) {
+            printProgramPoint(range.points[i]);
+            if (i + 1 < range.points.size()) {
+                cout << ",";
+            }
+        }
+        cout << "\n";
+    }
+}
+
+void printRegisterSettings(InputData data) {
+    cout << "--- Register Settings ---\n";
+    cout << "Registers: " << data.settings.registers << "\n";
+    cout << "Algorithm: " << data.settings.algorithm << "\n";
+    cout << "Output file: " << data.outputFile << "\n";
+}
+
+void printLoadedData(InputData data) {
+    printLiveRanges(data);
+    cout << "\n";
+    printRegisterSettings(data);
 }
 
 int mainMenu() {
@@ -37,7 +75,8 @@ int mainMenu() {
         if (!data.hasErrors) {
             filesLoaded = true;
             cout << "Files loaded successfully.\n\n";
-        } else {
+        }
+        else {
             cout << "Invalid file(s). Please try again.\n\n";
         }
     }
@@ -59,12 +98,18 @@ int mainMenu() {
                     data = parseInputFiles(rangesFile, registersFile, data.outputFile);
                     if (!data.hasErrors) {
                         cout << "Files loaded successfully.\n";
-                    } else {
+                    }
+                    else {
                         cout << "Errors occurred. Data not updated.\n";
                     }
                     break;
                 }
-                case 2: {
+                case 2:
+                    cout << "\n";
+                    printLoadedData(data);
+                    cout << "\n";
+                    break;
+                case 3: {
                     string output_filename;
                     cout << "Enter the name of Output file: ";
                     cin >> output_filename;
@@ -79,7 +124,8 @@ int mainMenu() {
                     cout << "Invalid option!\n";
                     break;
             }
-        } else {
+        }
+        else {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Invalid option!\n";
