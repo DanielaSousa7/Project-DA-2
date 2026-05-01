@@ -1,4 +1,5 @@
 #include "Menu.h"
+#include "Batch.h"
 #include <iostream>
 #include <string>
 using namespace std;
