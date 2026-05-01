@@ -146,9 +146,9 @@ InputData parseInputFiles(string rangesFile, string registersFile, string output
     }
     if (!errors.empty()) {
         data.hasErrors = true;
-        cout << "Errors while reading input files:" << endl;
+        cerr << "Errors while reading input files:" << endl;
         for (string error : errors) {
-            cout << "- " << error << endl;
+            cerr << "- " << error << endl;
         }
     }
     return data;
