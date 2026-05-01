@@ -15,8 +15,16 @@ void showMainMenu() {
     cout << "=== Assignment Tool ===\n";
     cout << "1. Read new files\n";
     cout << "2. Browse File Data\n";
-    cout << "2. Create Output file\n";
+    cout << "3. Create Output file\n";
     cout << "0. Exit\n";
+    cout << "Select an option: ";
+}
+
+void showDataMenu() {
+    cout << "=== File Data ===\n";
+    cout << "1. Show Live Ranges\n";
+    cout << "2. Show Register Settings\n";
+    cout << "0. Back\n";
     cout << "Select an option: ";
 }
 
@@ -55,6 +63,39 @@ void printLoadedData(InputData data) {
     printLiveRanges(data);
     cout << "\n";
     printRegisterSettings(data);
+}
+
+void dataMenu(InputData data) {
+    int option = -1;
+    while (option != 0) {
+        showDataMenu();
+        if (cin >> option) {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            switch (option) {
+                case 1:
+                    cout << "\n";
+                    printLiveRanges(data);
+                    cout << "\n";
+                    break;
+                case 2:
+                    cout << "\n";
+                    printRegisterSettings(data);
+                    cout << "\n";
+                    break;
+                case 0:
+                    break;
+                default:
+                    cout << "Invalid option!\n\n";
+                    break;
+            }
+        }
+        else {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid option!\n\n";
+            option = -1;
+        }
+    }
 }
 
 int mainMenu() {
@@ -106,7 +147,7 @@ int mainMenu() {
                 }
                 case 2:
                     cout << "\n";
-                    printLoadedData(data);
+                    dataMenu(data);
                     cout << "\n";
                     break;
                 case 3: {

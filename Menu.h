@@ -9,10 +9,12 @@
 #include "structs.h"
 
 void showMainMenu();
+void showDataMenu();
 void printProgramPoint(ProgramPoint point);
 void printLiveRanges(InputData data);
 void printRegisterSettings(InputData data);
 void printLoadedData(InputData data);
+void dataMenu(InputData data);
 int mainMenu();
 
 #endif
