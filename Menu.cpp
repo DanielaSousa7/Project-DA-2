@@ -5,7 +5,7 @@
 
 #include "Menu.h"
 #include "Parser.h"
-#include "structs.h"
+#include "Structs.h"
 #include <iostream>
 #include <limits>
 #include <string>

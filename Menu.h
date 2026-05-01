@@ -6,7 +6,7 @@
 #ifndef PROJECT_DA_2_MENU_H
 #define PROJECT_DA_2_MENU_H
 
-#include "structs.h"
+#include "Structs.h"
 
 void showMainMenu();
 void showDataMenu();
