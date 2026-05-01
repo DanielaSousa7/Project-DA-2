@@ -7,13 +7,9 @@
 using namespace std;
 
 string trim(string s);
-
+ProgramPoint parseProgramPoint(string token);
+vector<LiveRange> parseLiveRangesFile(string filename);
+RegisterSettings parseRegistersFile(string filename);
 InputData parseInputFiles(string rangesFile, string registersFile, string outputFile);
-
-vector<LiveRange> parseLiveRangesFile(string filename, vector<string>& errors);
-
-RegisterSettings parseRegistersFile(string filename, vector<string>& errors);
-
-ProgramPoint parseProgramPoint(string token, vector<string>& errors);
 
 #endif

@@ -7,7 +7,7 @@
 using namespace std;
 
 struct ProgramPoint {
-    int line;
+    int code_line;
     bool isDefinition;
     bool isLastUse;
 };

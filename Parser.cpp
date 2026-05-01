@@ -20,7 +20,7 @@ string trim(string s) {
 ProgramPoint parseProgramPoint(string token) {
     ProgramPoint point;
     token = trim(token);
-    point.line = -1;
+    point.code_line = -1;
     point.isDefinition = false;
     point.isLastUse = false;
     if (token.empty()) {
@@ -37,7 +37,7 @@ ProgramPoint parseProgramPoint(string token) {
         token.pop_back();
     }
     token = trim(token);
-    point.line = stoi(token);
+    point.code_line = stoi(token);
     return point;
 }
 
@@ -65,13 +65,17 @@ vector<LiveRange> parseLiveRangesFile(string filename) {
             errors.push_back("Missing variable name in line: " + line);
             continue;
         }
+        if (pointsText.empty()) {
+            errors.push_back("Missing live range points in line: " + line);
+            continue;
+        }
         LiveRange range;
         range.variable = variable;
         stringstream ss(pointsText);
         string token;
         while (getline(ss, token, ',')) {
             ProgramPoint point = parseProgramPoint(token);
-            if (point.line != -1) {
+            if (point.code_line != -1) {
                 range.points.push_back(point);
             }
         }
@@ -106,15 +110,15 @@ RegisterSettings parseRegistersFile(string filename) {
         string key = trim(line.substr(0, colonPos));
         string value = trim(line.substr(colonPos + 1));
         if (key == "registers") {
-            try {
-                settings.registers = stoi(value);
-            }
-            catch (...) {
-                errors.push_back("Invalid registers value: " + value);
-            }
+            settings.registers = stoi(value);
         }
         else if (key == "algorithm") {
-            settings.algorithm = value;
+            if (value == "basic" || value == "splitting" || value == "spilling") {
+                settings.algorithm = value;
+            }
+            else {
+                errors.push_back("Invalid algorithm: " + value);
+            }
         }
         else {
             errors.push_back("Unknown settings key: " + key);
