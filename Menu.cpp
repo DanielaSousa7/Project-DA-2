@@ -6,6 +6,7 @@
 #include "Menu.h"
 #include "Parser.h"
 #include "GraphColoring.h"   // para allocateWithAlgorithm e writeAllocationOutput
+#include "Output.h"
 #include <iostream>
 #include <limits>
 #include <string>

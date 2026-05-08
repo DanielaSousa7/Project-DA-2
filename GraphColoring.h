@@ -12,6 +12,5 @@ AllocationResult basicRegisterAllocation(const vector<Web> &webs, int maxRegiste
 AllocationResult spillingRegisterAllocation(const vector<Web> &webs, int maxRegisters, int maxSpill);
 AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxRegisters, int maxSplits);
 AllocationResult allocateWithAlgorithm(const vector<Web> &webs, const RegisterSettings &settings);
-void writeAllocationOutput(const AllocationResult &result, const string &outputFile);
 
 #endif
