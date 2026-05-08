@@ -7,7 +7,6 @@ add_executable(Project_DA_2 main.cpp
         Parser.h Parser.cpp
         Batch.h Batch.cpp
         Menu.h Menu.cpp
-        GraphColoring.h GraphColoring.cpp
         structs.h
         WebBuilder.h
         WebBuilder.cpp
