@@ -5,7 +5,7 @@
 
 #include "Menu.h"
 #include "Parser.h"
-#include "Structs.h"
+#include "GraphColoring.h"   // para allocateWithAlgorithm e writeAllocationOutput
 #include <iostream>
 #include <limits>
 #include <string>
@@ -55,7 +55,10 @@ void printLiveRanges(InputData data) {
 void printRegisterSettings(InputData data) {
     cout << "--- Register Settings ---\n";
     cout << "Registers: " << data.settings.registers << "\n";
-    cout << "Algorithm: " << data.settings.algorithm << "\n";
+    cout << "Algorithm: " << data.settings.algorithm;
+    if (data.settings.param > 0)
+        cout << ", " << data.settings.param;
+    cout << "\n";
     cout << "Output file: " << data.outputFile << "\n";
 }
 
@@ -102,7 +105,6 @@ int mainMenu() {
     InputData data;
     bool filesLoaded = false;
 
-    // Initial loading: ask for both input files until successful
     while (!filesLoaded) {
         string rangesFile, registersFile;
         cout << "Enter live ranges file path: ";
@@ -111,7 +113,6 @@ int mainMenu() {
         cin >> registersFile;
         cout << endl;
 
-        // Parse with an empty output filename (will default to "output.txt")
         data = parseInputFiles(rangesFile, registersFile, "");
         if (!data.hasErrors) {
             filesLoaded = true;
@@ -129,13 +130,11 @@ int mainMenu() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             switch(option) {
                 case 1: {
-                    // Reload files
                     string rangesFile, registersFile;
                     cout << "Enter live ranges file path: ";
                     cin >> rangesFile;
                     cout << "Enter registers file path: ";
                     cin >> registersFile;
-                    // Keep the currently set output filename
                     data = parseInputFiles(rangesFile, registersFile, data.outputFile);
                     if (!data.hasErrors) {
                         cout << "Files loaded successfully.\n";
@@ -154,7 +153,14 @@ int mainMenu() {
                     cout << "Enter the name of Output file: ";
                     cin >> output_filename;
                     data.outputFile = output_filename;
-                    cout << "Output file set to: " << data.outputFile << "\n";
+
+                    // Perform allocation
+                    vector<Web> webs = buildWebs(data.liveRanges);
+                    AllocationResult result = allocateWithAlgorithm(webs, data.settings);
+                    writeAllocationOutput(result, data.outputFile);
+
+                    cout << "Output file set to: " << data.outputFile
+                         << " and allocation performed.\n";
                     break;
                 }
                 case 0:
