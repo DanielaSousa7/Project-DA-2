@@ -155,6 +155,9 @@ int mainMenu() {
                     string output_filename;
                     cout << "Enter the name of Output file: ";
                     cin >> output_filename;
+                    if (output_filename.size() < 4 | output_filename.substr(output_filename.size() - 4) != ".txt") {
+                        output_filename += ".txt";
+                    }
                     data.outputFile = output_filename;
 
                     // Perform allocation
