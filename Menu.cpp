@@ -16,6 +16,7 @@ void showMainMenu() {
     cout << "1. Read new files\n";
     cout << "2. Browse File Data\n";
     cout << "3. Create Output file\n";
+    cout << "4. Run Register Allocation\n";
     cout << "0. Exit\n";
     cout << "Select an option: ";
 }
@@ -161,6 +162,10 @@ int mainMenu() {
 
                     cout << "Output file set to: " << data.outputFile
                          << " and allocation performed.\n";
+                    break;
+                }
+                case 4: {
+                    // Run code
                     break;
                 }
                 case 0:
