@@ -91,6 +91,7 @@ RegisterSettings parseRegistersFile(string filename) {
     RegisterSettings settings;
     settings.registers = 0;
     settings.algorithm = "";
+    settings.param = 0;
     ifstream file(filename);
     if (!file.is_open()) {
         errors.push_back("Could not open registers file: " + filename);
@@ -113,8 +114,20 @@ RegisterSettings parseRegistersFile(string filename) {
             settings.registers = stoi(value);
         }
         else if (key == "algorithm") {
-            if (value == "basic" || value == "splitting" || value == "spilling") {
-                settings.algorithm = value;
+            // Parse algorithm and optional numeric parameter separated by comma
+            size_t commaPos = value.find(',');
+            string algoName;
+            int algoParam = 0;
+            if (commaPos == string::npos) {
+                algoName = trim(value);
+            } else {
+                algoName = trim(value.substr(0, commaPos));
+                string paramStr = trim(value.substr(commaPos + 1));
+                algoParam = stoi(paramStr);
+            }
+            if (algoName == "basic" || algoName == "splitting" || algoName == "spilling") {
+                settings.algorithm = algoName;
+                settings.param = algoParam;
             }
             else {
                 errors.push_back("Invalid algorithm: " + value);

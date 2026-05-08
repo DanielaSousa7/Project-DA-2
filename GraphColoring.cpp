@@ -1,18 +1,17 @@
 #include "GraphColoring.h"
-#include <map>
 #include <algorithm>
 #include <iostream>
 #include <fstream>
-#include <set>
-
+#include <map>
+#include <vector>
+#include <functional>
+#include <numeric>
 using namespace std;
 
 // ---------- buildWebs ----------
 vector<Web> buildWebs(const vector<LiveRange> &liveRanges) {
-    // Step 1: group all intervals per variable
-    // An interval is just [min line, max line] for each LiveRange
     map< string, vector<pair<int,int>> > varIntervals;
-    
+
     for (const auto &lr : liveRanges) {
         if (lr.points.empty()) continue;
         string var = lr.variable;
@@ -24,12 +23,10 @@ vector<Web> buildWebs(const vector<LiveRange> &liveRanges) {
         }
         varIntervals[var].push_back({minLine, maxLine});
     }
-    
-    // Step 2: merge overlapping or touching intervals for each variable
+
     vector<Web> webs;
     int id = 0;
     for (auto &[var, intervals] : varIntervals) {
-        // sort by start
         sort(intervals.begin(), intervals.end());
         vector<pair<int,int>> merged;
         for (auto &iv : intervals) {
@@ -39,7 +36,6 @@ vector<Web> buildWebs(const vector<LiveRange> &liveRanges) {
                 merged.back().second = max(merged.back().second, iv.second);
             }
         }
-        // create webs
         for (auto &iv : merged) {
             Web w;
             w.variable = var;
@@ -59,30 +55,19 @@ InterferenceGraph buildInterferenceGraph(const vector<Web> &webs) {
     graph.webs = webs;
     int n = webs.size();
     graph.adj.assign(n, vector<bool>(n, false));
-    
+
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
-            // Two webs interfere if their life intervals overlap,
-            // with the exception that if one starts exactly where the other ends,
-            // they do NOT interfere (definition/use point).
             int a_start = webs[i].start;
             int a_end = webs[i].end;
             int b_start = webs[j].start;
             int b_end = webs[j].end;
-            
-            // Check overlap: they interfere if max(start) < min(end)
-            // but if max(start) == min(end), no interference (the point is a definion and last use).
+
             int maxStart = max(a_start, b_start);
             int minEnd = min(a_end, b_end);
-            
-            bool interfere = false;
+            // Interfere if maxStart < minEnd.
+            // Adjacent (maxStart == minEnd) means no interference.
             if (maxStart < minEnd) {
-                interfere = true;
-            }
-            // If they are exactly adjacent (one starts at the other's end), no interference.
-            // That case is already covered because maxStart == minEnd means maxStart < minEnd is false.
-            
-            if (interfere) {
                 graph.adj[i][j] = graph.adj[j][i] = true;
             }
         }
@@ -90,16 +75,13 @@ InterferenceGraph buildInterferenceGraph(const vector<Web> &webs) {
     return graph;
 }
 
-// ---------- greedy K-coloring (Figure 9) ----------
-// Returns true if the graph (with current webs) can be colored with K colors.
-// On success, colorMap[i] = color index 0..K-1.
+// ---------- tryColorWithK (greedy removal) ----------
 static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &colorMap) {
     int n = graph.webs.size();
     vector<int> degree(n, 0);
     vector<bool> removed(n, false);
     vector<vector<bool>> remainingAdj = graph.adj;
-    
-    // Calculate initial degrees using only non-removed nodes
+
     auto recalcDegrees = [&]() {
         for (int i = 0; i < n; ++i) {
             degree[i] = 0;
@@ -110,13 +92,12 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
             }
         }
     };
-    
+
     recalcDegrees();
-    vector<int> stack;  // removal order
-    
-    // Step 1: repeat until all nodes are removed
+    vector<int> stack;
+
+    // Remove nodes with degree < K iteratively
     while (true) {
-        // Find a node with degree < K that is still in the graph
         int node = -1;
         for (int i = 0; i < n; ++i) {
             if (!removed[i] && degree[i] < K) {
@@ -134,10 +115,8 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
             else
                 return false;   // cannot color with K
         } else {
-            // Remove node: mark, push to stack, update neighbors' degrees
             removed[node] = true;
             stack.push_back(node);
-            // decrease degree of all non-removed neighbors
             for (int u = 0; u < n; ++u) {
                 if (!removed[u] && remainingAdj[node][u]) {
                     degree[u]--;
@@ -145,12 +124,11 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
             }
         }
     }
-    
-    // Step 2: reconstruct colors by popping from stack
+
+    // Reconstruct colors
     vector<int> colors(n, -1);
     for (int i = stack.size() - 1; i >= 0; --i) {
         int node = stack[i];
-        // find the smallest color (0..K-1) not used by any already colored neighbor
         vector<bool> usedColors(K, false);
         for (int u = 0; u < n; ++u) {
             if (u != node && colors[u] != -1 && remainingAdj[node][u]) {
@@ -164,30 +142,27 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
                 break;
             }
         }
-        if (chosen == -1) return false; // should not happen
+        if (chosen == -1) return false;
         colors[node] = chosen;
     }
-    
     colorMap = colors;
     return true;
 }
 
-// ---------- basicRegisterAllocation ----------
+// ---------- basicRegisterAllocation (T2.1) ----------
 AllocationResult basicRegisterAllocation(const vector<Web> &webs, int maxRegisters) {
     AllocationResult result;
     result.success = false;
     result.usedRegisters = 0;
-    result.webToRegister.assign(webs.size(), -1);  // default to memory
-    
+    result.webToRegister.assign(webs.size(), -1);
+
     if (webs.empty()) {
         result.success = true;
-        return result;   // no webs, trivial success with 0 registers
+        return result;
     }
-    
-    // Build interference graph
+
     InterferenceGraph graph = buildInterferenceGraph(webs);
-    
-    // Try K from 1 up to maxRegisters
+
     for (int K = 1; K <= maxRegisters; ++K) {
         vector<int> colors;
         if (tryColorWithK(graph, K, colors)) {
@@ -197,9 +172,85 @@ AllocationResult basicRegisterAllocation(const vector<Web> &webs, int maxRegiste
             return result;
         }
     }
-    
-    // If no K worked up to maxRegisters, allocation fails
     return result;
+}
+
+// ---------- spillingRegisterAllocation (T2.2) ----------
+AllocationResult spillingRegisterAllocation(const vector<Web> &webs, int maxRegisters, int maxSpill) {
+    // Try without spilling first
+    AllocationResult res0 = basicRegisterAllocation(webs, maxRegisters);
+    if (res0.success) return res0;
+
+    int n = webs.size();
+    // Try 1..maxSpill spills
+    for (int spillCount = 1; spillCount <= maxSpill; ++spillCount) {
+        // Generate all combinations of spillCount webs to spill
+        vector<vector<int>> combos;
+        vector<int> indices(n);
+        iota(indices.begin(), indices.end(), 0);
+
+        function<void(int, int, vector<int>&)> backtrack = [&](int start, int left, vector<int>& current) {
+            if (left == 0) {
+                combos.push_back(current);
+                return;
+            }
+            for (int i = start; i <= n - left; ++i) {
+                current.push_back(indices[i]);
+                backtrack(i + 1, left - 1, current);
+                current.pop_back();
+            }
+        };
+
+        vector<int> current;
+        backtrack(0, spillCount, current);
+
+        for (auto &spillSet : combos) {
+            // Build sublist of non-spilled webs
+            vector<Web> subWebs;
+            vector<int> subToOrig;  // map sub index -> original index
+            for (int i = 0; i < n; ++i) {
+                if (find(spillSet.begin(), spillSet.end(), i) == spillSet.end()) {
+                    subWebs.push_back(webs[i]);
+                    subToOrig.push_back(i);
+                }
+            }
+            // Reassign temporary ids
+            for (size_t i = 0; i < subWebs.size(); ++i) {
+                subWebs[i].id = i;
+            }
+
+            AllocationResult subRes = basicRegisterAllocation(subWebs, maxRegisters);
+            if (subRes.success) {
+                AllocationResult result;
+                result.success = true;
+                result.usedRegisters = subRes.usedRegisters;
+                result.webToRegister.assign(n, -1);  // all M
+                for (size_t i = 0; i < subWebs.size(); ++i) {
+                    int origIdx = subToOrig[i];
+                    result.webToRegister[origIdx] = subRes.webToRegister[i];
+                }
+                return result;
+            }
+        }
+    }
+
+    // Failure
+    AllocationResult fail;
+    fail.success = false;
+    fail.usedRegisters = 0;
+    fail.webToRegister.assign(n, -1);
+    return fail;
+}
+
+// ---------- allocateWithAlgorithm (router) ----------
+AllocationResult allocateWithAlgorithm(const vector<Web> &webs, const RegisterSettings &settings) {
+    if (settings.algorithm == "basic") {
+        return basicRegisterAllocation(webs, settings.registers);
+    } else if (settings.algorithm == "spilling") {
+        return spillingRegisterAllocation(webs, settings.registers, settings.param);
+    }
+    cerr << "Algorithm " << settings.algorithm << " not implemented. Falling back to basic." << endl;
+    return basicRegisterAllocation(webs, settings.registers);
 }
 
 // ---------- writeAllocationOutput ----------
@@ -209,9 +260,8 @@ void writeAllocationOutput(const AllocationResult &result, const string &outputF
         cerr << "Could not open output file: " << outputFile << endl;
         return;
     }
-    
+
     if (!result.success) {
-        // Failure case: 0 registers, all webs to memory
         out << "Number of used registers: 0" << endl;
         for (size_t i = 0; i < result.webToRegister.size(); ++i) {
             out << "Web" << i << " -> M" << endl;

@@ -20,6 +20,7 @@ struct LiveRange {
 struct RegisterSettings {
     int registers;
     string algorithm;
+    int param;
 };
 
 struct InputData {
