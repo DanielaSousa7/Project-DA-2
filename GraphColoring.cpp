@@ -3,12 +3,12 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <set>
 #include <vector>
 #include <functional>
-#include <numeric>   // iota
+#include <numeric>
 using namespace std;
 
-// ---------- buildWebs (unchanged) ----------
 vector<Web> buildWebs(const vector<LiveRange> &liveRanges) {
     map< string, vector<pair<int,int>> > varIntervals;
     for (const auto &lr : liveRanges) {
@@ -47,7 +47,6 @@ vector<Web> buildWebs(const vector<LiveRange> &liveRanges) {
     return webs;
 }
 
-// ---------- buildInterferenceGraph (unchanged) ----------
 InterferenceGraph buildInterferenceGraph(const vector<Web> &webs) {
     InterferenceGraph graph;
     graph.webs = webs;
@@ -69,7 +68,6 @@ InterferenceGraph buildInterferenceGraph(const vector<Web> &webs) {
     return graph;
 }
 
-// ---------- tryColorWithK (unchanged) ----------
 static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &colorMap) {
     int n = graph.webs.size();
     vector<int> degree(n, 0);
@@ -88,6 +86,7 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
     };
     recalcDegrees();
     vector<int> stack;
+
     while (true) {
         int node = -1;
         for (int i = 0; i < n; ++i) {
@@ -111,6 +110,7 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
             }
         }
     }
+
     vector<int> colors(n, -1);
     for (int i = stack.size() - 1; i >= 0; --i) {
         int node = stack[i];
@@ -133,7 +133,6 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
     return true;
 }
 
-// ---------- basicRegisterAllocation (T2.1) ----------
 AllocationResult basicRegisterAllocation(const vector<Web> &webs, int maxRegisters) {
     AllocationResult result;
     result.success = false;
@@ -156,7 +155,6 @@ AllocationResult basicRegisterAllocation(const vector<Web> &webs, int maxRegiste
     return result;
 }
 
-// ---------- spillingRegisterAllocation (T2.2) ----------
 AllocationResult spillingRegisterAllocation(const vector<Web> &webs, int maxRegisters, int maxSpill) {
     AllocationResult res0 = basicRegisterAllocation(webs, maxRegisters);
     if (res0.success) return res0;
@@ -214,7 +212,6 @@ AllocationResult spillingRegisterAllocation(const vector<Web> &webs, int maxRegi
     return fail;
 }
 
-// ---------- cartesianProduct (helper for splitting) ----------
 static vector<vector<int>> cartesianProduct(const vector<vector<int>>& sets) {
     if (sets.empty()) return {{}};
     vector<vector<int>> result;
@@ -224,7 +221,6 @@ static vector<vector<int>> cartesianProduct(const vector<vector<int>>& sets) {
         for (size_t i = 0; i < sets.size(); ++i)
             tuple.push_back(sets[i][indices[i]]);
         result.push_back(tuple);
-        // Increment indices like an odometer
         int pos = sets.size() - 1;
         while (pos >= 0 && indices[pos] + 1 == (int)sets[pos].size()) {
             indices[pos] = 0;
@@ -236,17 +232,13 @@ static vector<vector<int>> cartesianProduct(const vector<vector<int>>& sets) {
     return result;
 }
 
-// ---------- splittingRegisterAllocation (T2.3) ----------
 AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxRegisters, int maxSplits) {
-    // Try without splitting
     AllocationResult res0 = basicRegisterAllocation(webs, maxRegisters);
     if (res0.success) return res0;
 
     int n = webs.size();
 
-    // Try split count from 1 to maxSplits
     for (int splitCount = 1; splitCount <= maxSplits; ++splitCount) {
-        // Generate all combinations of webs to split (indices)
         vector<vector<int>> combos;
         vector<int> indices(n);
         iota(indices.begin(), indices.end(), 0);
@@ -265,35 +257,27 @@ AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxReg
         backtrack(0, splitCount, current);
 
         for (auto &splitSet : combos) {
-            // For each web in splitSet, list possible split points (internal lines)
             vector<vector<int>> possiblePoints(splitSet.size());
             for (size_t i = 0; i < splitSet.size(); ++i) {
                 int idx = splitSet[i];
                 const Web &w = webs[idx];
-                // candidate split points: any line between start+1 and end (inclusive of end-1? we want two non-overlapping parts)
-                // We'll split at line p, creating [start, p-1] and [p, end]
                 for (int p = w.start + 1; p <= w.end; ++p) {
                     possiblePoints[i].push_back(p);
                 }
             }
 
-            // Cartesian product of all split points for the selected webs
             vector<vector<int>> pointCombos = cartesianProduct(possiblePoints);
             for (auto &points : pointCombos) {
-                // Build new web list
                 vector<Web> newWebs;
                 for (int i = 0; i < n; ++i) {
                     auto it = find(splitSet.begin(), splitSet.end(), i);
                     if (it == splitSet.end()) {
-                        // keep original web
                         Web w = webs[i];
                         w.id = newWebs.size();
                         newWebs.push_back(w);
                     } else {
-                        // split this web
                         int pos = distance(splitSet.begin(), it);
                         int splitPoint = points[pos];
-                        // Part 1: [start, splitPoint-1]
                         if (splitPoint - 1 >= webs[i].start) {
                             Web w1;
                             w1.variable = webs[i].variable;
@@ -302,7 +286,6 @@ AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxReg
                             w1.id = newWebs.size();
                             newWebs.push_back(w1);
                         }
-                        // Part 2: [splitPoint, end]
                         Web w2;
                         w2.variable = webs[i].variable;
                         w2.start = splitPoint;
@@ -312,19 +295,15 @@ AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxReg
                     }
                 }
 
-                // Try to color the new set
                 AllocationResult subRes = basicRegisterAllocation(newWebs, maxRegisters);
                 if (subRes.success) {
-                    // Map colors back to the new webs (which are the final webs after splitting)
-                    // We'll return the result for the newWebs, because that's what we will output.
-                    subRes.webToRegister.resize(newWebs.size()); // already correct
+                    subRes.webToRegister.resize(newWebs.size());
                     return subRes;
                 }
             }
         }
     }
 
-    // Failure
     AllocationResult fail;
     fail.success = false;
     fail.usedRegisters = 0;
@@ -332,7 +311,106 @@ AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxReg
     return fail;
 }
 
-// ---------- allocateWithAlgorithm ----------
+static bool tryDSATUR(const InterferenceGraph &graph, int K, vector<int> &colorMap) {
+    int n = graph.webs.size();
+    vector<int> colors(n, -1);
+    vector<int> degree(n, 0);
+    for (int i = 0; i < n; ++i)
+        for (int j = 0; j < n; ++j)
+            if (graph.adj[i][j]) degree[i]++;
+
+    vector<set<int>> adjColors(n);
+
+    for (int assigned = 0; assigned < n; ++assigned) {
+        int bestNode = -1;
+        int maxSat = -1;
+        int maxDeg = -1;
+        for (int i = 0; i < n; ++i) {
+            if (colors[i] != -1) continue;
+            int sat = (int)adjColors[i].size();
+            if (sat > maxSat || (sat == maxSat && degree[i] > maxDeg)) {
+                maxSat = sat;
+                maxDeg = degree[i];
+                bestNode = i;
+            }
+        }
+        if (bestNode == -1) break;
+
+        int chosenColor = -1;
+        for (int c = 0; c < K; ++c) {
+            if (adjColors[bestNode].find(c) == adjColors[bestNode].end()) {
+                chosenColor = c;
+                break;
+            }
+        }
+        if (chosenColor == -1) return false;
+
+        colors[bestNode] = chosenColor;
+        for (int u = 0; u < n; ++u) {
+            if (colors[u] == -1 && graph.adj[bestNode][u]) {
+                adjColors[u].insert(chosenColor);
+            }
+        }
+    }
+
+    colorMap = colors;
+    return true;
+}
+
+AllocationResult freeRegisterAllocation(const vector<Web> &webs, int maxRegisters) {
+    int n = webs.size();
+    vector<Web> currentWebs = webs;
+    vector<int> originalIdx(n);
+    iota(originalIdx.begin(), originalIdx.end(), 0);
+
+    while (true) {
+        vector<Web> subWebs = currentWebs;
+        vector<int> subToOrig = originalIdx;
+
+        if (!subWebs.empty()) {
+            InterferenceGraph graph = buildInterferenceGraph(subWebs);
+            vector<int> colors;
+            bool ok = tryDSATUR(graph, maxRegisters, colors);
+            if (ok) {
+                AllocationResult result;
+                result.success = true;
+                result.usedRegisters = maxRegisters;
+                result.webToRegister.assign(n, -1);
+                for (size_t i = 0; i < subWebs.size(); ++i) {
+                    int orig = subToOrig[i];
+                    result.webToRegister[orig] = colors[i];
+                }
+                return result;
+            }
+        }
+
+        InterferenceGraph currentGraph = buildInterferenceGraph(currentWebs);
+        int spillIdx = -1;
+        int maxDegree = -1;
+        for (size_t i = 0; i < currentWebs.size(); ++i) {
+            int d = 0;
+            for (size_t j = 0; j < currentWebs.size(); ++j)
+                if (currentGraph.adj[i][j]) d++;
+            if (d > maxDegree) {
+                maxDegree = d;
+                spillIdx = i;
+            }
+        }
+        if (spillIdx == -1) spillIdx = 0;
+
+        currentWebs.erase(currentWebs.begin() + spillIdx);
+        originalIdx.erase(originalIdx.begin() + spillIdx);
+
+        if (currentWebs.empty()) break;
+    }
+
+    AllocationResult fail;
+    fail.success = false;
+    fail.usedRegisters = 0;
+    fail.webToRegister.assign(n, -1);
+    return fail;
+}
+
 AllocationResult allocateWithAlgorithm(const vector<Web> &webs, const RegisterSettings &settings) {
     if (settings.algorithm == "basic") {
         return basicRegisterAllocation(webs, settings.registers);
@@ -340,12 +418,13 @@ AllocationResult allocateWithAlgorithm(const vector<Web> &webs, const RegisterSe
         return spillingRegisterAllocation(webs, settings.registers, settings.param);
     } else if (settings.algorithm == "splitting") {
         return splittingRegisterAllocation(webs, settings.registers, settings.param);
+    } else if (settings.algorithm == "free") {
+        return freeRegisterAllocation(webs, settings.registers);
     }
     cerr << "Algorithm " << settings.algorithm << " not implemented. Falling back to basic." << endl;
     return basicRegisterAllocation(webs, settings.registers);
 }
 
-// ---------- writeAllocationOutput ----------
 void writeAllocationOutput(const AllocationResult &result, const string &outputFile) {
     ofstream out(outputFile);
     if (!out.is_open()) {
