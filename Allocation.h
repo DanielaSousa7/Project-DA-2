@@ -5,14 +5,8 @@
 #include <vector>
 #include "structs.h"
 
-AllocationResult allocateWithAlgorithm(
-    const std::vector<Web> &webs,
-    const RegisterSettings &settings
-);
+AllocationResult allocateWithAlgorithm(const std::vector<Web> &webs, const RegisterSettings &settings);
 
-void writeAllocationOutput(
-    const AllocationResult &result,
-    const std::string &outputFile
-);
+void writeAllocationOutput(const AllocationResult &result, const std::string &outputFile);
 
 #endif
