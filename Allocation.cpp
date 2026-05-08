@@ -1,4 +1,5 @@
 #include "Allocation.h"
+#include "WebBuilder.h"
 
 #include "algorithms/basic/Basic.h"
 #include "algorithms/spilling/Spilling.h"
@@ -9,6 +10,12 @@
 #include <iostream>
 
 using namespace std;
+
+AllocationResult runRegisterAllocation(const InputData data) {
+    vector<Web> webs = buildWebs(data.liveRanges);
+    AllocationResult result = allocateWithAlgorithm(webs, data.settings);
+    return result;
+}
 
 AllocationResult allocateWithAlgorithm(const vector<Web> &webs, const RegisterSettings &settings) {
     if (settings.algorithm == "basic") {

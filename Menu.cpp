@@ -5,7 +5,8 @@
 
 #include "Menu.h"
 #include "Parser.h"
-#include "GraphColoring.h"   // para allocateWithAlgorithm e writeAllocationOutput
+#include "Allocation.h"
+#include "WebBuilder.h"
 #include "Output.h"
 #include <iostream>
 #include <limits>
@@ -166,7 +167,8 @@ int mainMenu() {
                     break;
                 }
                 case 4: {
-                    // Run code
+                    AllocationResult result = runRegisterAllocation(data);
+                    writeAllocationOutput(result, data.outputFile);
                     break;
                 }
                 case 0:

@@ -1,6 +1,8 @@
 #include "Batch.h"
 #include "Parser.h"
-#include "GraphColoring.h"
+#include "Allocation.h"
+#include "WebBuilder.h"
+#include "Output.h"
 #include <iostream>
 using namespace std;
 

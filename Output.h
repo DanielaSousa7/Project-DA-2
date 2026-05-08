@@ -2,10 +2,8 @@
 #define PROJECT_OUTPUT_H
 
 #include "Structs.h"
-#include <vector>
+#include <string>
 
-using namespace std;
-
-void writeAllocationOutput(const AllocationResult &result, const string &outputFile);
+void writeAllocationOutput(const AllocationResult &result, const std::string &outputFile);
 
 #endif

@@ -1,4 +1,3 @@
 Number of used registers: 2
-Web0 -> r0
-Web1 -> r1
-Web2 -> r0
+Web0 -> r1
+Web1 -> r0

@@ -7,6 +7,6 @@ using namespace std;
 
 vector<Web> buildWebs(vector<LiveRange> liveRanges);
 
-InterferenceGraph buildInterferenceGraph(vector<Web> webs);
+InterferenceGraph buildInterferenceGraph(const std::vector<Web>& webs);
 
 #endif
