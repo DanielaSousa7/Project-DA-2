@@ -5,7 +5,8 @@
 
 using namespace std;
 
-static bool tryColorWithK(InterferenceGraph graph, int K, vector<int> colorMap) {
+
+bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
     int n = graph.webs.size();
 
     vector<int> degree(n, 0);

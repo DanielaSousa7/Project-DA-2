@@ -31,7 +31,7 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
             }
             bool merged = false;
 
-            for (auto &w : tempWebs) {
+            for (auto w : tempWebs) {
                 if (minLine <= w.end && maxLine >= w.start) {
                     w.start = min(w.start, minLine);
                     w.end = max(w.end, maxLine);
@@ -39,7 +39,6 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
                     for (auto p : lr.points) {
                         w.points.push_back(p);
                     }
-
                     merged = true;
                     break;
                 }
@@ -56,7 +55,7 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
             }
         }
 
-        for (auto &w : tempWebs) {
+        for (auto w : tempWebs) {
             sort(w.points.begin(), w.points.end(), [](ProgramPoint a, ProgramPoint b) {
                 return a.code_line < b.code_line;
             });
@@ -65,7 +64,7 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
             for (auto p : w.points) {
                 bool exists = false;
 
-                for (auto &up : uniquePoints) {
+                for (auto up : uniquePoints) {
                     if (up.code_line == p.code_line) {
                         up.isDefinition = up.isDefinition || p.isDefinition;
                         up.isLastUse = up.isLastUse || p.isLastUse;

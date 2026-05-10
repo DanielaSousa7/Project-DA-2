@@ -5,6 +5,7 @@
 #include "../../structs.h"
 using namespace std;
 
+bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap);
 AllocationResult basicRegisterAllocation(vector<Web> webs, int maxRegisters);
 
 #endif

@@ -21,6 +21,16 @@ where `ranges.txt` is the input file containing the live ranges, `registers.txt`
 
 ## T2.1 Basic Register Allocation
 
+The basic register allocation was implemented using graph coloring.
+First, the program live ranges are merged into webs. Each web represents a value that may need a register. Then, an interference graph is created, where each node is a web and each edge means that two webs are alive at the same time. Therefore, connected webs cannot use the same register.
+The algorithm tries to color the graph with the smallest possible number of registers. It starts with 1 register and increases the number until the maximum allowed value.
+
+For each number of registers K, the algorithm:
+1. Removes nodes with degree smaller than K and stores them in a stack.
+2. Colors the nodes in reverse order, choosing the first available register not used by their neighbors.
+
+If the graph can be colored, the allocation succeeds and each web receives a register. If not, the allocation fails and the webs are assigned to memory (M).
+
 
 ## T2.2 Register Allocation with Web Spilling
 
