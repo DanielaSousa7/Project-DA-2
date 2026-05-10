@@ -11,13 +11,13 @@
 
 using namespace std;
 
-AllocationResult runRegisterAllocation(const InputData data) {
+AllocationResult runRegisterAllocation(InputData data) {
     vector<Web> webs = buildWebs(data.liveRanges);
     AllocationResult result = allocateWithAlgorithm(webs, data.settings);
     return result;
 }
 
-AllocationResult allocateWithAlgorithm(const vector<Web> &webs, const RegisterSettings &settings) {
+AllocationResult allocateWithAlgorithm(vector<Web> webs, RegisterSettings settings) {
     if (settings.algorithm == "basic") {
         return basicRegisterAllocation(webs, settings.registers);
     }
@@ -33,8 +33,6 @@ AllocationResult allocateWithAlgorithm(const vector<Web> &webs, const RegisterSe
     if (settings.algorithm == "free") {
         return freeRegisterAllocation(webs, settings.registers);
     }
-
-    cerr << "Algorithm " << settings.algorithm << " not implemented. Falling back to basic." << endl;
 
     return basicRegisterAllocation(webs, settings.registers);
 }

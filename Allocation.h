@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 #include "structs.h"
+using namespace  std;
 
-AllocationResult runRegisterAllocation(const InputData data);
-AllocationResult allocateWithAlgorithm(const std::vector<Web> &webs, const RegisterSettings &settings);
+AllocationResult runRegisterAllocation(InputData data);
+AllocationResult allocateWithAlgorithm(vector<Web> webs, RegisterSettings settings);
 
 #endif

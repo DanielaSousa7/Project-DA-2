@@ -7,14 +7,14 @@ using namespace std;
 vector<Web> buildWebs(vector<LiveRange> liveRanges) {
     map<string, vector<pair<int, int>>> varIntervals;
 
-    for (const auto &lr : liveRanges) {
+    for (auto lr : liveRanges) {
         if (lr.points.empty()) continue;
 
         string var = lr.variable;
         int minLine = lr.points[0].code_line;
         int maxLine = lr.points[0].code_line;
 
-        for (const auto &p : lr.points) {
+        for (auto p : lr.points) {
             minLine = min(minLine, p.code_line);
             maxLine = max(maxLine, p.code_line);
         }
@@ -30,15 +30,16 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
 
         vector<pair<int, int>> merged;
 
-        for (auto &iv : intervals) {
+        for (auto iv : intervals) {
             if (merged.empty() || iv.first > merged.back().second) {
                 merged.push_back(iv);
-            } else {
+            }
+            else {
                 merged.back().second = max(merged.back().second, iv.second);
             }
         }
 
-        for (auto &iv : merged) {
+        for (auto iv : merged) {
             Web w;
             w.variable = var;
             w.start = iv.first;
@@ -48,11 +49,10 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
             webs.push_back(w);
         }
     }
-
     return webs;
 }
 
-InterferenceGraph buildInterferenceGraph(const vector<Web> &webs) {
+InterferenceGraph buildInterferenceGraph(vector<Web> webs) {
     InterferenceGraph graph;
     graph.webs = webs;
 
