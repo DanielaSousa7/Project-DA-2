@@ -158,7 +158,7 @@ int mainMenu() {
                 }
                 case 4: {
                     AllocationResult result = runRegisterAllocation(data);
-                    writeAllocationOutput(result, data.outputFile);
+                    writeAllocationOutput(result, result.webs, data.outputFile);
                     cout << "Register allocation completed. Output written to: " << data.outputFile << "\n";
                     break;
                 }

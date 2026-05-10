@@ -3,7 +3,8 @@
 
 #include "Structs.h"
 #include <string>
+using namespace std;
 
-void writeAllocationOutput(const AllocationResult &result, const std::string &outputFile);
+void writeAllocationOutput(AllocationResult result, vector<Web> webs, string outputFile);
 
 #endif

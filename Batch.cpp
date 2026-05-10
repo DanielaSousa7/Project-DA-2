@@ -18,7 +18,7 @@ void batchMode(string rangesFile, string registersFile, string outputFile) {
     cout << endl;
 
     AllocationResult result = runRegisterAllocation(data);
-    writeAllocationOutput(result, data.outputFile);
+    writeAllocationOutput(result, result.webs, data.outputFile);
 
     cout << "[Output written to: " << outputFile << "]\n";
 }
