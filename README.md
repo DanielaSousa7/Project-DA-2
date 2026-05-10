@@ -34,8 +34,18 @@ If the graph can be colored, the allocation succeeds and each web receives a reg
 
 ## T2.2 Register Allocation with Web Spilling
 
+The web spilling algorithm is used only when it is selected in the `registers.txt` file and the basic register allocation fails.
 
-## T2.3 Register Allocation with Web Spilling
+First, the program tries to color the original interference graph using the basic graph coloring algorithm. If this succeeds, no spilling is performed.
+If the basic algorithm fails, the program tries to remove some webs from the graph, up to the limit given in the input parameter. It starts by trying to spill only one web. If no valid allocation is found, it then tries combinations of two webs, and so on, until the maximum number of allowed spilled webs is reached.
+
+For each attempt, the selected webs are removed from the interference graph and assigned to memory. The remaining webs are then allocated using the basic graph coloring algorithm.
+The rationale used for choosing the webs to spill is exhaustive search within the allowed limit. Instead of choosing only one web using a simple heuristic, the implementation tests different combinations of webs. This increases the chance of finding a valid allocation while still respecting the maximum value provided in the input file.
+
+If a valid coloring is found after spilling, the non-spilled webs are assigned to registers and the spilled webs are assigned to memory. If no valid allocation is possible within the allowed number of spills, the allocation fails.
+
+
+## T2.3 Register Allocation with Web Splitting
 
 
 ## T2.4 Register Allocation of Your Own

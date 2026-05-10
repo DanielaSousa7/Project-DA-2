@@ -20,7 +20,7 @@ AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, 
         vector<int> indices(n);
         iota(indices.begin(), indices.end(), 0);
 
-        function<void(int, int, vector<int>&)> backtrack =
+        function<void(int, int, vector<int>&)> generateCombinations =
             [&](int start, int left, vector<int> &current) {
                 if (left == 0) {
                     combos.push_back(current);
@@ -28,15 +28,15 @@ AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, 
                 }
                 for (int i = start; i <= n - left; ++i) {
                     current.push_back(indices[i]);
-                    backtrack(i + 1, left - 1, current);
+                    generateCombinations(i + 1, left - 1, current);
                     current.pop_back();
                 }
             };
 
         vector<int> current;
-        backtrack(0, spillCount, current);
+        generateCombinations(0, spillCount, current);
 
-        for (auto &spillSet : combos) {
+        for (auto spillSet : combos) {
             vector<Web> subWebs;
             vector<int> subToOrig;
 
@@ -63,7 +63,6 @@ AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, 
                     int originalIndex = subToOrig[i];
                     result.webToRegister[originalIndex] = subResult.webToRegister[i];
                 }
-
                 return result;
             }
         }
