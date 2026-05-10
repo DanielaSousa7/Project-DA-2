@@ -65,12 +65,6 @@ void printRegisterSettings(InputData data) {
     cout << "Output file: " << data.outputFile << "\n";
 }
 
-void printLoadedData(InputData data) {
-    printLiveRanges(data);
-    cout << "\n";
-    printRegisterSettings(data);
-}
-
 void dataMenu(InputData data) {
     int option = -1;
     while (option != 0) {
@@ -155,23 +149,17 @@ int mainMenu() {
                     string output_filename;
                     cout << "Enter the name of Output file: ";
                     cin >> output_filename;
-                    if (output_filename.size() < 4 | output_filename.substr(output_filename.size() - 4) != ".txt") {
+                    if (output_filename.size() < 4 || output_filename.substr(output_filename.size() - 4) != ".txt") {
                         output_filename += ".txt";
                     }
                     data.outputFile = output_filename;
-
-                    // Perform allocation
-                    vector<Web> webs = buildWebs(data.liveRanges);
-                    AllocationResult result = allocateWithAlgorithm(webs, data.settings);
-                    writeAllocationOutput(result, data.outputFile);
-
-                    cout << "Output file set to: " << data.outputFile
-                         << " and allocation performed.\n";
+                    cout << "Output file set to: " << data.outputFile << "\n";
                     break;
                 }
                 case 4: {
                     AllocationResult result = runRegisterAllocation(data);
                     writeAllocationOutput(result, data.outputFile);
+                    cout << "Register allocation completed. Output written to: " << data.outputFile << "\n";
                     break;
                 }
                 case 0:

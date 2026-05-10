@@ -120,12 +120,13 @@ RegisterSettings parseRegistersFile(string filename) {
             int algoParam = 0;
             if (commaPos == string::npos) {
                 algoName = trim(value);
-            } else {
+            }
+            else {
                 algoName = trim(value.substr(0, commaPos));
                 string paramStr = trim(value.substr(commaPos + 1));
                 algoParam = stoi(paramStr);
             }
-            if (algoName == "basic" || algoName == "splitting" || algoName == "spilling") {
+            if (algoName == "basic" || algoName == "splitting" || algoName == "spilling" || algoName == "free") {
                 settings.algorithm = algoName;
                 settings.param = algoParam;
             }

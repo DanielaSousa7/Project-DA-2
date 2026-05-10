@@ -1,7 +1,6 @@
 #include "Batch.h"
 #include "Parser.h"
 #include "Allocation.h"
-#include "WebBuilder.h"
 #include "Output.h"
 #include <iostream>
 using namespace std;
@@ -13,15 +12,12 @@ void batchMode(string rangesFile, string registersFile, string outputFile) {
         return;
     }
 
-    cout << "Loaded: " << data.liveRanges.size() << " live range(s), "
-         << data.settings.registers << " register(s), algorithm: "
-         << data.settings.algorithm;
+    cout << "Loaded: " << data.liveRanges.size() << " live range(s), "<< data.settings.registers << " register(s), algorithm: "<< data.settings.algorithm;
     if (!data.settings.algorithm.empty() && data.settings.param > 0)
         cout << ", " << data.settings.param;
     cout << endl;
 
-    vector<Web> webs = buildWebs(data.liveRanges);
-    AllocationResult result = allocateWithAlgorithm(webs, data.settings);
+    AllocationResult result = runRegisterAllocation(data);
     writeAllocationOutput(result, data.outputFile);
 
     cout << "[Output written to: " << outputFile << "]\n";
