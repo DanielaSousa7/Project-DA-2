@@ -4,6 +4,8 @@ This project develops a compiler register allocation tool based on graph colorin
 The live ranges provided in the input files are merged into webs and these webs are used to build an interference graph. In this graph, each node represents a web and each edge represents an interference between two webs.
 Register allocation is then performed using graph coloring heuristics, where each color represents a physical register. When allocation is not possible with the available registers, the project also supports web spilling, web splitting and a custom free allocation strategy.
 
+The only changes made to `graph.h` were the addition of Doxygen comments.
+
 
 ## Compilation and Execution of the Program
 
