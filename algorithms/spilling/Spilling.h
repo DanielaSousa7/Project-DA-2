@@ -3,11 +3,8 @@
 
 #include <vector>
 #include "../../structs.h"
+using namespace std;
 
-AllocationResult spillingRegisterAllocation(
-    const std::vector<Web> &webs,
-    int maxRegisters,
-    int maxSpill
-);
+AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, int maxSpill);
 
 #endif

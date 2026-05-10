@@ -3,7 +3,8 @@
 
 #include <vector>
 #include "../../structs.h"
+using namespace  std;
 
-AllocationResult freeRegisterAllocation(const std::vector<Web> &webs, int maxRegisters);
+AllocationResult freeRegisterAllocation(vector<Web> webs, int maxRegisters);
 
 #endif

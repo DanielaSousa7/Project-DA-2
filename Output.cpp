@@ -13,7 +13,6 @@ void writeAllocationOutput(AllocationResult result, vector<Web> webs, string out
         cerr << "Could not open output file: " << outputFile << endl;
         return;
     }
-
     out << "# Total number of webs followed by the listing of the program points of each one\n";
     out << "# program points in each web are sorted in ascending order\n";
     out << "webs: " << webs.size() << endl;
@@ -37,7 +36,6 @@ void writeAllocationOutput(AllocationResult result, vector<Web> webs, string out
                 out << ",";
             }
         }
-
         out << endl;
     }
 
@@ -49,7 +47,6 @@ void writeAllocationOutput(AllocationResult result, vector<Web> webs, string out
         for (size_t i = 0; i < webs.size(); ++i) {
             out << "M: web" << i << endl;
         }
-
         cerr << "Allocation failed: cannot color the graph with the given registers." << endl;
     }
     else {
@@ -66,7 +63,6 @@ void writeAllocationOutput(AllocationResult result, vector<Web> webs, string out
             }
         }
     }
-
     out.close();
     cout << "Allocation result written to " << outputFile << endl;
 }

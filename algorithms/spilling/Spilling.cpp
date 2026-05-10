@@ -8,13 +8,11 @@
 
 using namespace std;
 
-AllocationResult spillingRegisterAllocation(const vector<Web> &webs, int maxRegisters, int maxSpill) {
+AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, int maxSpill) {
     AllocationResult basicResult = basicRegisterAllocation(webs, maxRegisters);
-
     if (basicResult.success) {
         return basicResult;
     }
-
     int n = webs.size();
 
     for (int spillCount = 1; spillCount <= maxSpill; ++spillCount) {
@@ -28,7 +26,6 @@ AllocationResult spillingRegisterAllocation(const vector<Web> &webs, int maxRegi
                     combos.push_back(current);
                     return;
                 }
-
                 for (int i = start; i <= n - left; ++i) {
                     current.push_back(indices[i]);
                     backtrack(i + 1, left - 1, current);
@@ -76,6 +73,5 @@ AllocationResult spillingRegisterAllocation(const vector<Web> &webs, int maxRegi
     fail.success = false;
     fail.usedRegisters = 0;
     fail.webToRegister.assign(n, -1);
-
     return fail;
 }

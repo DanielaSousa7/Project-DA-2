@@ -5,7 +5,7 @@
 
 using namespace std;
 
-static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &colorMap) {
+static bool tryColorWithK(InterferenceGraph graph, int K, vector<int> colorMap) {
     int n = graph.webs.size();
 
     vector<int> degree(n, 0);
@@ -21,14 +21,12 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
 
     while (true) {
         int node = -1;
-
         for (int i = 0; i < n; ++i) {
             if (!removed[i] && degree[i] < K) {
                 node = i;
                 break;
             }
         }
-
         if (node == -1) {
             int remaining = 0;
 
@@ -39,10 +37,8 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
             if (remaining == 0) break;
             return false;
         }
-
         removed[node] = true;
         stack.push_back(node);
-
         for (int u = 0; u < n; ++u) {
             if (!removed[u] && remainingAdj[node][u]) {
                 degree[u]--;
@@ -51,7 +47,6 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
     }
 
     vector<int> colors(n, -1);
-
     for (int i = stack.size() - 1; i >= 0; --i) {
         int node = stack[i];
         vector<bool> usedColors(K, false);
@@ -63,29 +58,24 @@ static bool tryColorWithK(const InterferenceGraph &graph, int K, vector<int> &co
         }
 
         int chosen = -1;
-
         for (int c = 0; c < K; ++c) {
             if (!usedColors[c]) {
                 chosen = c;
                 break;
             }
         }
-
         if (chosen == -1) return false;
-
         colors[node] = chosen;
     }
-
     colorMap = colors;
     return true;
 }
 
-AllocationResult basicRegisterAllocation(const vector<Web> &webs, int maxRegisters) {
+AllocationResult basicRegisterAllocation(vector<Web> webs, int maxRegisters) {
     AllocationResult result;
     result.success = false;
     result.usedRegisters = 0;
     result.webToRegister.assign(webs.size(), -1);
-
     if (webs.empty()) {
         result.success = true;
         return result;
@@ -103,6 +93,5 @@ AllocationResult basicRegisterAllocation(const vector<Web> &webs, int maxRegiste
             return result;
         }
     }
-
     return result;
 }

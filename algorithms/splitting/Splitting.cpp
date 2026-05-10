@@ -8,9 +8,8 @@
 
 using namespace std;
 
-static vector<vector<int>> cartesianProduct(const vector<vector<int>> &sets) {
+static vector<vector<int>> cartesianProduct(vector<vector<int>> sets) {
     if (sets.empty()) return {{}};
-
     vector<vector<int>> result;
     vector<int> indices(sets.size(), 0);
 
@@ -22,7 +21,6 @@ static vector<vector<int>> cartesianProduct(const vector<vector<int>> &sets) {
         }
 
         result.push_back(tuple);
-
         int pos = sets.size() - 1;
 
         while (pos >= 0 && indices[pos] + 1 == (int)sets[pos].size()) {
@@ -31,20 +29,16 @@ static vector<vector<int>> cartesianProduct(const vector<vector<int>> &sets) {
         }
 
         if (pos < 0) break;
-
         indices[pos]++;
     }
-
     return result;
 }
 
-AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxRegisters, int maxSplits) {
+AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters, int maxSplits) {
     AllocationResult basicResult = basicRegisterAllocation(webs, maxRegisters);
-
     if (basicResult.success) {
         return basicResult;
     }
-
     int n = webs.size();
 
     for (int splitCount = 1; splitCount <= maxSplits; ++splitCount) {
@@ -71,7 +65,6 @@ AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxReg
 
         for (auto &splitSet : combos) {
             vector<vector<int>> possiblePoints(splitSet.size());
-
             for (size_t i = 0; i < splitSet.size(); ++i) {
                 int idx = splitSet[i];
                 const Web &w = webs[idx];
@@ -85,10 +78,8 @@ AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxReg
 
             for (auto &points : pointCombos) {
                 vector<Web> newWebs;
-
                 for (int i = 0; i < n; ++i) {
                     auto it = find(splitSet.begin(), splitSet.end(), i);
-
                     if (it == splitSet.end()) {
                         Web w = webs[i];
                         w.id = newWebs.size();
@@ -130,6 +121,5 @@ AllocationResult splittingRegisterAllocation(const vector<Web> &webs, int maxReg
     fail.success = false;
     fail.usedRegisters = 0;
     fail.webToRegister.assign(n, -1);
-
     return fail;
 }

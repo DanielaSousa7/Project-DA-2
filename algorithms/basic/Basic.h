@@ -3,7 +3,8 @@
 
 #include <vector>
 #include "../../structs.h"
+using namespace std;
 
-AllocationResult basicRegisterAllocation(const std::vector<Web> &webs, int maxRegisters);
+AllocationResult basicRegisterAllocation(vector<Web> webs, int maxRegisters);
 
 #endif

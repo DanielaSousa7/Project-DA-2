@@ -7,7 +7,7 @@
 
 using namespace std;
 
-static bool tryDSATUR(const InterferenceGraph &graph, int K, vector<int> &colorMap) {
+static bool tryDSATUR(InterferenceGraph graph, int K, vector<int> colorMap) {
     int n = graph.webs.size();
 
     vector<int> colors(n, -1);
@@ -21,12 +21,10 @@ static bool tryDSATUR(const InterferenceGraph &graph, int K, vector<int> &colorM
             }
         }
     }
-
     for (int assigned = 0; assigned < n; ++assigned) {
         int bestNode = -1;
         int maxSat = -1;
         int maxDeg = -1;
-
         for (int i = 0; i < n; ++i) {
             if (colors[i] != -1) continue;
 
@@ -40,7 +38,6 @@ static bool tryDSATUR(const InterferenceGraph &graph, int K, vector<int> &colorM
         }
 
         if (bestNode == -1) break;
-
         int chosenColor = -1;
 
         for (int c = 0; c < K; ++c) {
@@ -60,14 +57,12 @@ static bool tryDSATUR(const InterferenceGraph &graph, int K, vector<int> &colorM
             }
         }
     }
-
     colorMap = colors;
     return true;
 }
 
-AllocationResult freeRegisterAllocation(const vector<Web> &webs, int maxRegisters) {
+AllocationResult freeRegisterAllocation(vector<Web> webs, int maxRegisters) {
     int n = webs.size();
-
     vector<Web> currentWebs = webs;
     vector<int> originalIdx(n);
     iota(originalIdx.begin(), originalIdx.end(), 0);
@@ -87,16 +82,13 @@ AllocationResult freeRegisterAllocation(const vector<Web> &webs, int maxRegister
                     int original = originalIdx[i];
                     result.webToRegister[original] = colors[i];
                 }
-
                 return result;
             }
         }
 
         InterferenceGraph currentGraph = buildInterferenceGraph(currentWebs);
-
         int spillIdx = -1;
         int maxDegree = -1;
-
         for (size_t i = 0; i < currentWebs.size(); ++i) {
             int degree = 0;
 
@@ -105,7 +97,6 @@ AllocationResult freeRegisterAllocation(const vector<Web> &webs, int maxRegister
                     degree++;
                 }
             }
-
             if (degree > maxDegree) {
                 maxDegree = degree;
                 spillIdx = i;
@@ -113,10 +104,8 @@ AllocationResult freeRegisterAllocation(const vector<Web> &webs, int maxRegister
         }
 
         if (spillIdx == -1) break;
-
         currentWebs.erase(currentWebs.begin() + spillIdx);
         originalIdx.erase(originalIdx.begin() + spillIdx);
-
         if (currentWebs.empty()) break;
     }
 
@@ -124,6 +113,5 @@ AllocationResult freeRegisterAllocation(const vector<Web> &webs, int maxRegister
     fail.success = false;
     fail.usedRegisters = 0;
     fail.webToRegister.assign(n, -1);
-
     return fail;
 }

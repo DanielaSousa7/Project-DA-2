@@ -6,13 +6,11 @@ using namespace std;
 
 vector<Web> buildWebs(vector<LiveRange> liveRanges) {
     map<string, vector<LiveRange>> varRanges;
-
     for (auto lr : liveRanges) {
         if (!lr.points.empty()) {
             varRanges[lr.variable].push_back(lr);
         }
     }
-
     vector<Web> webs;
     int id = 0;
 
@@ -31,7 +29,6 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
                 minLine = min(minLine, p.code_line);
                 maxLine = max(maxLine, p.code_line);
             }
-
             bool merged = false;
 
             for (auto &w : tempWebs) {
@@ -47,7 +44,6 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
                     break;
                 }
             }
-
             if (!merged) {
                 Web w;
                 w.variable = var;
@@ -66,7 +62,6 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
             });
 
             vector<ProgramPoint> uniquePoints;
-
             for (auto p : w.points) {
                 bool exists = false;
 
@@ -78,34 +73,28 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
                         break;
                     }
                 }
-
                 if (!exists) {
                     uniquePoints.push_back(p);
                 }
             }
-
             w.points = uniquePoints;
             w.id = id++;
             webs.push_back(w);
         }
     }
-
     return webs;
 }
 
 InterferenceGraph buildInterferenceGraph(vector<Web> webs) {
     InterferenceGraph graph;
     graph.webs = webs;
-
     int n = webs.size();
-
     graph.adj.assign(n, vector<bool>(n, false));
 
     // Add vertices to the TP Graph structure
     for (Web w : webs) {
         graph.graph.addVertex(w.id);
     }
-
     // Add interference edges
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
@@ -115,11 +104,9 @@ InterferenceGraph buildInterferenceGraph(vector<Web> webs) {
             if (maxStart < minEnd) {
                 graph.adj[i][j] = true;
                 graph.adj[j][i] = true;
-
                 graph.graph.addBidirectionalEdge(webs[i].id, webs[j].id, 1);
             }
         }
     }
-
     return graph;
 }
