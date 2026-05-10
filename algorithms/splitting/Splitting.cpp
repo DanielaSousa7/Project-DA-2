@@ -8,7 +8,7 @@
 
 using namespace std;
 
-static vector<vector<int>> cartesianProduct(vector<vector<int>> sets) {
+vector<vector<int>> cartesianProduct(vector<vector<int>> sets) {
     if (sets.empty()) return {{}};
     vector<vector<int>> result;
     vector<int> indices(sets.size(), 0);
@@ -46,7 +46,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
         vector<int> indices(n);
         iota(indices.begin(), indices.end(), 0);
 
-        function<void(int, int, vector<int>&)> backtrack =
+        function<void(int, int, vector<int>&)> generateCombinations =
             [&](int start, int left, vector<int> &current) {
                 if (left == 0) {
                     combos.push_back(current);
@@ -55,15 +55,15 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
 
                 for (int i = start; i <= n - left; ++i) {
                     current.push_back(indices[i]);
-                    backtrack(i + 1, left - 1, current);
+                    generateCombinations(i + 1, left - 1, current);
                     current.pop_back();
                 }
             };
 
         vector<int> current;
-        backtrack(0, splitCount, current);
+        generateCombinations(0, splitCount, current);
 
-        for (auto &splitSet : combos) {
+        for (auto splitSet : combos) {
             vector<vector<int>> possiblePoints(splitSet.size());
             for (size_t i = 0; i < splitSet.size(); ++i) {
                 int idx = splitSet[i];
@@ -76,7 +76,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
 
             vector<vector<int>> pointCombos = cartesianProduct(possiblePoints);
 
-            for (auto &points : pointCombos) {
+            for (auto points : pointCombos) {
                 vector<Web> newWebs;
                 for (int i = 0; i < n; ++i) {
                     auto it = find(splitSet.begin(), splitSet.end(), i);
@@ -84,7 +84,8 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                         Web w = webs[i];
                         w.id = newWebs.size();
                         newWebs.push_back(w);
-                    } else {
+                    }
+                    else {
                         int pos = distance(splitSet.begin(), it);
                         int splitPoint = points[pos];
 
@@ -94,7 +95,6 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                             w1.start = webs[i].start;
                             w1.end = splitPoint - 1;
                             w1.id = newWebs.size();
-                            w1.spilled = false;
                             newWebs.push_back(w1);
                         }
 
@@ -103,7 +103,6 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                         w2.start = splitPoint;
                         w2.end = webs[i].end;
                         w2.id = newWebs.size();
-                        w2.spilled = false;
                         newWebs.push_back(w2);
                     }
                 }

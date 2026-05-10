@@ -47,6 +47,16 @@ If a valid coloring is found after spilling, the non-spilled webs are assigned t
 
 ## T2.3 Register Allocation with Web Splitting
 
+The web splitting algorithm is used only when it is selected in the `registers.txt` file and the basic register allocation fails.
+
+First, the program attempts to color the original interference graph using the basic graph coloring algorithm. If this succeeds, no splitting is performed.
+If the allocation fails, the program tries to split webs in order to reduce interference in the graph and make coloring possible. The algorithm starts by splitting only one web. If no valid allocation is found, it then tries combinations of two webs, and so on, up to the maximum number of splits allowed by the input parameter.
+
+The implementation uses an exhaustive search strategy within the allowed limit. Instead of selecting a single web using a fixed heuristic, the algorithm tests different combinations of webs to split. For each selected web, all possible split points between the beginning and the end of the web are tested.
+
+When a split point is chosen, the original web is replaced by two smaller webs. Although this increases the number of webs, each new web has a shorter live range and may interfere with fewer webs. This can reduce the number of edges in the interference graph, making graph coloring easier.
+
+After each splitting attempt, the basic graph coloring algorithm is executed again. If a valid coloring is found, the resulting webs are assigned to registers. Otherwise, the algorithm continues testing other splitting possibilities until the maximum allowed number of splits is reached.
 
 ## T2.4 Register Allocation of Your Own
 

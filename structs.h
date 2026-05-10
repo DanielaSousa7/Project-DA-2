@@ -36,7 +36,6 @@ struct Web {
     int start;            // first program line where this web is alive
     int end;              // last program line where this web is alive
     int id;               // unique identifier (0..n-1)
-    bool spilled;         // true if this web is sent to memory (for spilling algorithms)
     vector<ProgramPoint> points;
 };
 
