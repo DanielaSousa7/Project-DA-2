@@ -49,7 +49,6 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
                 w.start = minLine;
                 w.end = maxLine;
                 w.id = -1;
-                w.spilled = false;
                 w.points = lr.points;
                 tempWebs.push_back(w);
             }

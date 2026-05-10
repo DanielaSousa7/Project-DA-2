@@ -64,5 +64,4 @@ void writeAllocationOutput(AllocationResult result, vector<Web> webs, string out
         }
     }
     out.close();
-    cout << "Allocation result written to " << outputFile << endl;
 }

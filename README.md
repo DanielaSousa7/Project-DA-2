@@ -1,8 +1,8 @@
 # Programming Project II
 
-This project aims to develop a compiler register allocation tool using graph coloring. The goal is to assign live webs to a limited number of physical registers, ensuring that interfering webs are not assigned to the same register.
-The live ranges from the input are merged into webs, which are then used to build an interference graph. Register allocation is solved by applying a greedy graph coloring heuristic, where each color represents a physical register.
-When allocation is not possible with the available registers, the project also supports web spilling and web splitting strategies.
+This project develops a compiler register allocation tool based on graph coloring. The goal is to assign live webs to a limited number of physical registers while ensuring that interfering webs are never assigned to the same register.
+The live ranges provided in the input files are merged into webs and these webs are used to build an interference graph. In this graph, each node represents a web and each edge represents an interference between two webs.
+Register allocation is then performed using graph coloring heuristics, where each color represents a physical register. When allocation is not possible with the available registers, the project also supports web spilling, web splitting and a custom free allocation strategy.
 
 
 ## Compilation and Execution of the Program
