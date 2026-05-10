@@ -7,9 +7,8 @@
 
 using namespace std;
 
-static bool tryDSATUR(InterferenceGraph graph, int K, vector<int> colorMap) {
+bool tryDSATUR(InterferenceGraph graph, int K, vector<int>& colorMap) {
     int n = graph.webs.size();
-
     vector<int> colors(n, -1);
     vector<int> degree(n, 0);
     vector<set<int>> adjColors(n);
@@ -39,7 +38,6 @@ static bool tryDSATUR(InterferenceGraph graph, int K, vector<int> colorMap) {
 
         if (bestNode == -1) break;
         int chosenColor = -1;
-
         for (int c = 0; c < K; ++c) {
             if (adjColors[bestNode].find(c) == adjColors[bestNode].end()) {
                 chosenColor = c;
@@ -77,7 +75,6 @@ AllocationResult freeRegisterAllocation(vector<Web> webs, int maxRegisters) {
                 result.success = true;
                 result.usedRegisters = maxRegisters;
                 result.webToRegister.assign(n, -1);
-
                 for (size_t i = 0; i < currentWebs.size(); ++i) {
                     int original = originalIdx[i];
                     result.webToRegister[original] = colors[i];
@@ -102,13 +99,11 @@ AllocationResult freeRegisterAllocation(vector<Web> webs, int maxRegisters) {
                 spillIdx = i;
             }
         }
-
         if (spillIdx == -1) break;
         currentWebs.erase(currentWebs.begin() + spillIdx);
         originalIdx.erase(originalIdx.begin() + spillIdx);
         if (currentWebs.empty()) break;
     }
-
     AllocationResult fail;
     fail.success = false;
     fail.usedRegisters = 0;

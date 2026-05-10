@@ -60,6 +60,16 @@ After each splitting attempt, the basic graph coloring algorithm is executed aga
 
 ## T2.4 Register Allocation of Your Own
 
+The free algorithm implements a custom register allocation strategy based on the DSATUR graph coloring heuristic.
+
+First, the program builds the interference graph, where each web is represented as a node and each interference between two webs is represented as an edge.
+
+The DSATUR heuristic chooses the next web to color according to its saturation degree, meaning the number of different register colors already used by its neighbouring webs. The idea is to prioritize the webs with fewer register choices available. If there is a tie, the algorithm chooses the web with the highest degree in the interference graph, meaning the web that interferes with the largest number of other webs.
+If the graph can be successfully colored using the available registers, the allocation is completed.
+If coloring fails, the algorithm removes the web with the highest degree from the graph, since removing the web with the largest number of interferences is more likely to simplify the graph. The removed web is considered spilled to memory. The algorithm then rebuilds the reduced graph and tries to color it again.
+This process is repeated until a valid coloring is found or until no solution is possible.
+
+This approach respects the main restriction of the project: two webs that interfere are never assigned the same register.
 
 # Documentation
 
