@@ -4,7 +4,7 @@ This project develops a compiler register allocation tool based on graph colorin
 The live ranges provided in the input files are merged into webs and these webs are used to build an interference graph. In this graph, each node represents a web and each edge represents an interference between two webs.
 Register allocation is then performed using graph coloring heuristics, where each color represents a physical register. When allocation is not possible with the available registers, the project also supports web spilling, web splitting and a custom free allocation strategy.
 
-The only changes made to `graph.h` were the addition of Doxygen comments.
+The only changes made to `graph.h` were the addition of Doxygen comments and a small adjustment to the Edge constructor initialization order, so that the attributes are initialized in the same order in which they are declared in the class. This avoids compiler reorder warnings without changing the graph structure or its behaviour.
 
 
 ## Compilation and Execution of the Program
@@ -76,6 +76,12 @@ This approach respects the main restriction of the project: two webs that interf
 # Documentation
 
 The HTML documentation generated with Doxygen can be found in the html directory, in the index.html
+
+# Output File
+
+The output format was extended for the alternative algorithms by adding the line "algorithm used". This makes the output clearer and easier to process, especially when comparing the results of the different allocation strategies.
+
+For the splitting algorithm, the output also indicates which webs were divided, making it easier to understand how the interference graph was simplified before coloring.
 
 ## Contributions
 
