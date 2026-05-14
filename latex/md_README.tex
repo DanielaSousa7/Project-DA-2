@@ -4,7 +4,7 @@
 \Hypertarget{md_README_autotoc_md0}%
  This project develops a compiler register allocation tool based on graph coloring. The goal is to assign live webs to a limited number of physical registers while ensuring that interfering webs are never assigned to the same register. The live ranges provided in the input files are merged into webs and these webs are used to build an interference graph. In this graph, each node represents a web and each edge represents an interference between two webs. Register allocation is then performed using graph coloring heuristics, where each color represents a physical register. When allocation is not possible with the available registers, the project also supports web spilling, web splitting and a custom free allocation strategy.
 
-The only changes made to {\ttfamily graph.\+h} were the addition of Doxygen comments.\hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Compilation and Execution of the Program}{Compilation and Execution of the Program}}\label{md_README_autotoc_md1}
+The only changes made to {\ttfamily graph.\+h} were the addition of Doxygen comments and a small adjustment to the Edge constructor initialization order, so that the attributes are initialized in the same order in which they are declared in the class. This avoids compiler reorder warnings without changing the graph structure or its behaviour.\hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{Compilation and Execution of the Program}{Compilation and Execution of the Program}}\label{md_README_autotoc_md1}
 \hypertarget{md_README_autotoc_md2}{}\doxysubsection{\texorpdfstring{Compile using Makefile}{Compile using Makefile}}\label{md_README_autotoc_md2}
 
 \begin{DoxyItemize}
@@ -46,14 +46,17 @@ The implementation uses an exhaustive search strategy within the allowed limit. 
 When a split point is chosen, the original web is replaced by two smaller webs. Although this increases the number of webs, each new web has a shorter live range and may interfere with fewer webs. This can reduce the number of edges in the interference graph, making graph coloring easier.
 
 After each splitting attempt, the basic graph coloring algorithm is executed again. If a valid coloring is found, the resulting webs are assigned to registers. Otherwise, the algorithm continues testing other splitting possibilities until the maximum allowed number of splits is reached.\hypertarget{md_README_autotoc_md8}{}\doxysection{\texorpdfstring{T2.\+4 Register Allocation of Your Own}{T2.4 Register Allocation of Your Own}}\label{md_README_autotoc_md8}
-The free algorithm implements a custom register allocation strategy based on the DSATUR graph coloring heuristic.
+Our own algorithm implements a custom register allocation strategy based on the DSATUR graph coloring heuristic.
 
 First, the program builds the interference graph, where each web is represented as a node and each interference between two webs is represented as an edge.
 
 The DSATUR heuristic chooses the next web to color according to its saturation degree, meaning the number of different register colors already used by its neighbouring webs. The idea is to prioritize the webs with fewer register choices available. If there is a tie, the algorithm chooses the web with the highest degree in the interference graph, meaning the web that interferes with the largest number of other webs. If the graph can be successfully colored using the available registers, the allocation is completed. If coloring fails, the algorithm removes the web with the highest degree from the graph, since removing the web with the largest number of interferences is more likely to simplify the graph. The removed web is considered spilled to memory. The algorithm then rebuilds the reduced graph and tries to color it again. This process is repeated until a valid coloring is found or until no solution is possible.
 
 This approach respects the main restriction of the project\+: two webs that interfere are never assigned the same register.\hypertarget{md_README_autotoc_md9}{}\doxysection{\texorpdfstring{Documentation}{Documentation}}\label{md_README_autotoc_md9}
-The HTML documentation generated with Doxygen can be found in the html directory, in the index.\+html\hypertarget{md_README_autotoc_md10}{}\doxysubsection{\texorpdfstring{Contributions}{Contributions}}\label{md_README_autotoc_md10}
+The HTML documentation generated with Doxygen can be found in the html directory, in the index.\+html\hypertarget{md_README_autotoc_md10}{}\doxysection{\texorpdfstring{Output File}{Output File}}\label{md_README_autotoc_md10}
+The output format was extended for the alternative algorithms by adding the line "{}algorithm used"{}. This makes the output clearer and easier to process, especially when comparing the results of the different allocation strategies.
+
+For the splitting algorithm, the output also indicates which webs were divided, making it easier to understand how the interference graph was simplified before coloring.\hypertarget{md_README_autotoc_md11}{}\doxysubsection{\texorpdfstring{Contributions}{Contributions}}\label{md_README_autotoc_md11}
 This project was developed by\+:
 \begin{DoxyItemize}
 \item Daniela Sousa up202406448

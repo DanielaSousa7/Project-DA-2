@@ -8,7 +8,7 @@ digraph "WebBuilder.h"
   Node1 -> Node2 [id="edge6_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="vector",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node1 -> Node3 [id="edge7_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
-  Node3 [id="Node000003",label="structs.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structs_8h.html",tooltip="Data structures used by the register allocation tool."];
+  Node3 [id="Node000003",label="structs.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structs_8h_source.html",tooltip=" "];
   Node3 -> Node4 [id="edge8_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
   Node4 [id="Node000004",label="string",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node3 -> Node2 [id="edge9_Node000003_Node000002",color="steelblue1",style="solid",tooltip=" "];

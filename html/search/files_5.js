@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['structs_2eh_0',['structs.h',['../structs_8h.html',1,'']]]
+  ['webbuilder_2eh_0',['WebBuilder.h',['../WebBuilder_8h.html',1,'']]]
 ];

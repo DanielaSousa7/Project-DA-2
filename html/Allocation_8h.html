@@ -79,7 +79,7 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
-<code>#include &quot;<a class="el" href="structs_8h_source.html">structs.h</a>&quot;</code><br />
+<code>#include &quot;structs.h&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Allocation.h:</div>
 <div class="dyncontent">
@@ -146,7 +146,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structAllocationResult.html" title="Stores the result of the register allocation algorithm.">AllocationResult</a> with assignment and success status.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structAllocationResult.html">AllocationResult</a> with assignment and success status.</dd></dl>
 <p>@complexity Depends on the dispatched algorithm:</p><ul>
 <li>Basic: O(N^2) for greedy coloring on N nodes.</li>
 <li>Spilling: O(K * N^2) where K is the spilling limit.</li>
@@ -161,7 +161,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structAllocationResult.html" title="Stores the result of the register allocation algorithm.">AllocationResult</a> after running the algorithm.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structAllocationResult.html">AllocationResult</a> after running the algorithm.</dd></dl>
 <p>@complexity See <a class="el" href="Allocation_8h.html#a6aaaf483a032464f46658c2025ce03ad" title="Selects and executes the allocation algorithm according to settings.">allocateWithAlgorithm()</a> documentation in header. </p>
 
 </div>
@@ -190,7 +190,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structAllocationResult.html" title="Stores the result of the register allocation algorithm.">AllocationResult</a> structure containing the assignment of registers (or memory) to each web and a success flag.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structAllocationResult.html">AllocationResult</a> structure containing the assignment of registers (or memory) to each web and a success flag.</dd></dl>
 <p>@complexity O(V + E) for building webs + O(allocateWithAlgorithm). See allocateWithAlgorithm for detailed complexity.</p>
 <p>Runs the complete register allocation pipeline.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -199,7 +199,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structAllocationResult.html" title="Stores the result of the register allocation algorithm.">AllocationResult</a> with the final assignment.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structAllocationResult.html">AllocationResult</a> with the final assignment.</dd></dl>
 <p>@complexity Let R = number of live ranges, V = number of variables. Building webs: O(R) using union-find or interval merging. Allocation: see <a class="el" href="Allocation_8h.html#a6aaaf483a032464f46658c2025ce03ad" title="Selects and executes the allocation algorithm according to settings.">allocateWithAlgorithm()</a>. Overall: O(R + T) where T is complexity of the selected algorithm. </p>
 
 </div>
