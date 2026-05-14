@@ -41,7 +41,7 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
             }
             bool merged = false;
 
-            for (auto w : tempWebs) {
+            for (auto &w : tempWebs) {
                 if (minLine <= w.end && maxLine >= w.start) {
                     w.start = min(w.start, minLine);
                     w.end = max(w.end, maxLine);

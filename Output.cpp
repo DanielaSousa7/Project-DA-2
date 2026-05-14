@@ -25,9 +25,23 @@ void writeAllocationOutput(AllocationResult result, vector<Web> webs, string out
         cerr << "Could not open output file: " << outputFile << endl;
         return;
     }
-    out << "# Total number of webs followed by the listing of the program points of each one\n";
-    out << "# program points in each web are sorted in ascending order\n";
-    out << "webs: " << webs.size() << endl;
+    out << "# All webs followed by listing of the program points present in each one\n";
+    out << "# (program points in each web are sorted in ascending order)\n" << endl;
+    out << "Algorithm used: " << result.algorithm_used << endl;
+
+
+    if (result.splitInfo.size() != 0) out << "Web splitting:" << endl;
+    for (const auto& split : result.splitInfo) {
+        int origIdx = split.first;
+        const auto& newIds = split.second;
+        if (newIds.size() == 2) {
+            out << "- web" << origIdx << " was split into web" << newIds[0] << " and web" << newIds[1] << endl;
+        } else if (newIds.size() == 1) {
+            out << "- web" << origIdx << " was split into web" << newIds[0] << endl;
+        }
+    }
+
+    out << endl << "Total amount of webs: " << webs.size() << endl;
 
     for (size_t i = 0; i < webs.size(); ++i) {
         out << "web" << i << ": ";
@@ -51,10 +65,9 @@ void writeAllocationOutput(AllocationResult result, vector<Web> webs, string out
         out << endl;
     }
 
-    out << "# Total number of registers used, followed by assignment to webs\n";
-    out << "algorithm used: " << result.algorithm_used << "\n";
+    out << endl << "# Total number of registers used, followed by assignment to respective webs\n";
     if (!result.success) {
-        out << "registers: 0" << endl;
+        out << "Total amount of registers: 0" << endl;
 
         for (size_t i = 0; i < webs.size(); ++i) {
             out << "M: web" << i << endl;
@@ -62,7 +75,7 @@ void writeAllocationOutput(AllocationResult result, vector<Web> webs, string out
         cerr << "Allocation failed: cannot color the graph with the given registers." << endl;
     }
     else {
-        out << "registers: " << result.usedRegisters << endl;
+        out << "Total amount of registers: " << result.usedRegisters << endl;
 
         for (size_t i = 0; i < result.webToRegister.size(); ++i) {
             int reg = result.webToRegister[i];
