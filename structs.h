@@ -7,23 +7,35 @@
 
 using namespace std;
 
+/**
+ * @brief Represents one program point of a variable live range.
+ */
 struct ProgramPoint {
     int code_line;
     bool isDefinition;
     bool isLastUse;
 };
 
+/**
+ * @brief Represents the live range of a variable.
+ */
 struct LiveRange {
     string variable;
     vector<ProgramPoint> points;
 };
 
+/**
+ * @brief Stores the register allocation settings.
+ */
 struct RegisterSettings {
     int registers;
     string algorithm;
     int param;
 };
 
+/**
+ * @brief Stores all input data read from the input files.
+ */
 struct InputData {
     vector<LiveRange> liveRanges;
     RegisterSettings settings;
@@ -31,26 +43,35 @@ struct InputData {
     bool hasErrors = false;
 };
 
+/**
+ * @brief Represents a web created from live ranges.
+ */
 struct Web {
-    string variable;      // original variable name
-    int start;            // first program line where this web is alive
-    int end;              // last program line where this web is alive
-    int id;               // unique identifier (0..n-1)
+    string variable;
+    int start;
+    int end;
+    int id;
     vector<ProgramPoint> points;
 };
 
+/**
+ * @brief Represents the interference graph between webs.
+ */
 struct InterferenceGraph {
-    Graph<int> graph;              // main graph structure from TP classes
+    Graph<int> graph;
     vector<Web> webs;
-    vector<vector<bool>> adj;   // adjacency matrix: adj[i][j] true if web i and web j interfere
+    vector<vector<bool>> adj;
 };
 
+/**
+ * @brief Stores the result of the register allocation algorithm.
+ */
 struct AllocationResult {
-    int usedRegisters;           // number of physical registers successfully used (0 if failure)
-    vector<int> webToRegister;   // map web id -> register number (0..K-1), or -1 for memory
+    int usedRegisters;
+    vector<int> webToRegister;
     bool success;
     vector<Web> webs;
-    string algorithm = "basic";  // initialize as "basic"
+    string algorithm = "basic";
 };
 
 #endif

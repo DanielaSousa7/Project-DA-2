@@ -8,6 +8,14 @@
 using namespace std;
 static vector<string> errors;
 
+/**
+ * @brief Removes leading and trailing whitespace from a string.
+ *
+ * @param s Input string.
+ * @return Trimmed string.
+ *
+ * @complexity O(n), where n is the string length.
+ */
 string trim(string s) {
     size_t start = s.find_first_not_of(" \t\r\n");
     if (start == string::npos) {
@@ -17,6 +25,16 @@ string trim(string s) {
     return s.substr(start, end - start + 1);
 }
 
+/**
+ * @brief Parses a program point token.
+ *
+ * Detects if the point is a definition or last use and extracts the code line.
+ *
+ * @param token Token representing a program point.
+ * @return Parsed ProgramPoint structure.
+ *
+ * @complexity O(n), where n is the token length.
+ */
 ProgramPoint parseProgramPoint(string token) {
     ProgramPoint point;
     token = trim(token);
@@ -41,6 +59,16 @@ ProgramPoint parseProgramPoint(string token) {
     return point;
 }
 
+/**
+ * @brief Reads and parses the live ranges file.
+ *
+ * Each line represents one variable and its corresponding program points.
+ *
+ * @param filename Name of the live ranges file.
+ * @return Vector containing all parsed live ranges.
+ *
+ * @complexity O(l * p), where l is the number of lines and p is the number of program points.
+ */
 vector<LiveRange> parseLiveRangesFile(string filename) {
     vector<LiveRange> liveRanges;
     ifstream file(filename);
@@ -87,6 +115,16 @@ vector<LiveRange> parseLiveRangesFile(string filename) {
     return liveRanges;
 }
 
+/**
+ * @brief Reads and parses the register settings file.
+ *
+ * Reads the number of registers and the selected allocation algorithm.
+ *
+ * @param filename Name of the settings file.
+ * @return Parsed register settings.
+ *
+ * @complexity O(l), where l is the number of lines in the file.
+ */
 RegisterSettings parseRegistersFile(string filename) {
     RegisterSettings settings;
     settings.registers = 0;
@@ -114,7 +152,7 @@ RegisterSettings parseRegistersFile(string filename) {
             settings.registers = stoi(value);
         }
         else if (key == "algorithm") {
-            // Parse algorithm and optional numeric parameter separated by comma
+
             size_t commaPos = value.find(',');
             string algoName;
             int algoParam = 0;
@@ -148,6 +186,18 @@ RegisterSettings parseRegistersFile(string filename) {
     return settings;
 }
 
+/**
+ * @brief Parses all input files used by the program.
+ *
+ * Reads live ranges, register settings and output configuration.
+ *
+ * @param rangesFile Live ranges input file.
+ * @param registersFile Register settings input file.
+ * @param outputFile Output filename.
+ * @return Structure containing all parsed input data.
+ *
+ * @complexity O(l * p).
+ */
 InputData parseInputFiles(string rangesFile, string registersFile, string outputFile) {
     InputData data;
     errors.clear();

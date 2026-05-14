@@ -4,6 +4,16 @@
 
 using namespace std;
 
+/**
+ * @brief Creates webs from the live ranges.
+ *
+ * Groups live ranges by variable and merges overlapping ranges into the same web.
+ *
+ * @param liveRanges Vector containing the live ranges.
+ * @return Vector containing the created webs.
+ *
+ * @complexity O(n² * p), where n is the number of live ranges and p is the number of program points.
+ */
 vector<Web> buildWebs(vector<LiveRange> liveRanges) {
     map<string, vector<LiveRange>> varRanges;
     for (auto lr : liveRanges) {
@@ -83,17 +93,26 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
     return webs;
 }
 
+/**
+ * @brief Builds the interference graph from the webs.
+ *
+ * Each web is added as a vertex. If two webs overlap, an interference edge is created between them.
+ *
+ * @param webs Vector containing the webs.
+ * @return Interference graph with the webs and their conflicts.
+ *
+ * @complexity O(w²), where w is the number of webs.
+ */
 InterferenceGraph buildInterferenceGraph(vector<Web> webs) {
     InterferenceGraph graph;
     graph.webs = webs;
     int n = webs.size();
     graph.adj.assign(n, vector<bool>(n, false));
 
-    // Add vertices to the TP Graph structure
     for (Web w : webs) {
         graph.graph.addVertex(w.id);
     }
-    // Add interference edges
+
     for (int i = 0; i < n; ++i) {
         for (int j = i + 1; j < n; ++j) {
             int maxStart = max(webs[i].start, webs[j].start);
