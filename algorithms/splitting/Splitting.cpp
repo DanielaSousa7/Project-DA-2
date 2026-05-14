@@ -121,7 +121,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                 for (int i = 0; i < n; ++i) {
                     auto it = find(splitSet.begin(), splitSet.end(), i);
                     if (it == splitSet.end()) {
-                        // Unsplit web: copy whole web
+
                         Web w = webs[i];
                         w.id = newWebs.size();
                         newWebs.push_back(w);
