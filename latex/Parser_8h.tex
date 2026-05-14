@@ -1,0 +1,185 @@
+\doxysection{Parser.\+h File Reference}
+\hypertarget{Parser_8h}{}\label{Parser_8h}\index{Parser.h@{Parser.h}}
+
+
+Functions for parsing input files and program data.  
+
+
+{\ttfamily \#include "{}Structs.\+h"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for Parser.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{Parser_8h_af54deaac3f50b79226535f61f5822e56}{trim}} (string s)
+\begin{DoxyCompactList}\small\item\em Removes leading and trailing whitespace from a string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structProgramPoint}{Program\+Point}} \mbox{\hyperlink{Parser_8h_adc921e8ed1a1e2818336a5f18a52a201}{parse\+Program\+Point}} (string token)
+\begin{DoxyCompactList}\small\item\em Parses a program point token. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{structLiveRange}{Live\+Range}} $>$ \mbox{\hyperlink{Parser_8h_a4b7457e969991b7566202705e201565d}{parse\+Live\+Ranges\+File}} (string filename)
+\begin{DoxyCompactList}\small\item\em Reads and parses the live ranges file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structRegisterSettings}{Register\+Settings}} \mbox{\hyperlink{Parser_8h_abc22bdc04bbaac4bb75e95bc6a7fd595}{parse\+Registers\+File}} (string filename)
+\begin{DoxyCompactList}\small\item\em Reads and parses the register settings file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structInputData}{Input\+Data}} \mbox{\hyperlink{Parser_8h_a7de21d6f5b51e74e4760506bb52585bc}{parse\+Input\+Files}} (string ranges\+File, string registers\+File, string output\+File)
+\begin{DoxyCompactList}\small\item\em Parses all input files required by the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for parsing input files and program data. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Parser_8h_a7de21d6f5b51e74e4760506bb52585bc}\label{Parser_8h_a7de21d6f5b51e74e4760506bb52585bc} 
+\index{Parser.h@{Parser.h}!parseInputFiles@{parseInputFiles}}
+\index{parseInputFiles@{parseInputFiles}!Parser.h@{Parser.h}}
+\doxysubsubsection{\texorpdfstring{parseInputFiles()}{parseInputFiles()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structInputData}{Input\+Data}} parse\+Input\+Files (\begin{DoxyParamCaption}\item[{string}]{ranges\+File,  }\item[{string}]{registers\+File,  }\item[{string}]{output\+File }\end{DoxyParamCaption})}
+
+
+
+Parses all input files required by the program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ranges\+File} & Live ranges input file. \\
+\hline
+{\em registers\+File} & Register settings input file. \\
+\hline
+{\em output\+File} & Output filename. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Structure containing all parsed input data.
+\end{DoxyReturn}
+@complexity O(l \texorpdfstring{$\ast$}{*} p).
+
+Parses all input files required by the program.
+
+Reads live ranges, register settings and output configuration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ranges\+File} & Live ranges input file. \\
+\hline
+{\em registers\+File} & Register settings input file. \\
+\hline
+{\em output\+File} & Output filename. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Structure containing all parsed input data.
+\end{DoxyReturn}
+@complexity O(l \texorpdfstring{$\ast$}{*} p). \Hypertarget{Parser_8h_a4b7457e969991b7566202705e201565d}\label{Parser_8h_a4b7457e969991b7566202705e201565d} 
+\index{Parser.h@{Parser.h}!parseLiveRangesFile@{parseLiveRangesFile}}
+\index{parseLiveRangesFile@{parseLiveRangesFile}!Parser.h@{Parser.h}}
+\doxysubsubsection{\texorpdfstring{parseLiveRangesFile()}{parseLiveRangesFile()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structLiveRange}{Live\+Range}} $>$ parse\+Live\+Ranges\+File (\begin{DoxyParamCaption}\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Reads and parses the live ranges file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the live ranges input file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector containing all parsed live ranges.
+\end{DoxyReturn}
+@complexity O(l \texorpdfstring{$\ast$}{*} p), where l is the number of lines and p is the number of program points.
+
+Each line represents one variable and its corresponding program points.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the live ranges file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector containing all parsed live ranges.
+\end{DoxyReturn}
+@complexity O(l \texorpdfstring{$\ast$}{*} p), where l is the number of lines and p is the number of program points. \Hypertarget{Parser_8h_adc921e8ed1a1e2818336a5f18a52a201}\label{Parser_8h_adc921e8ed1a1e2818336a5f18a52a201} 
+\index{Parser.h@{Parser.h}!parseProgramPoint@{parseProgramPoint}}
+\index{parseProgramPoint@{parseProgramPoint}!Parser.h@{Parser.h}}
+\doxysubsubsection{\texorpdfstring{parseProgramPoint()}{parseProgramPoint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structProgramPoint}{Program\+Point}} parse\+Program\+Point (\begin{DoxyParamCaption}\item[{string}]{token }\end{DoxyParamCaption})}
+
+
+
+Parses a program point token. 
+
+Converts a token into a \doxylink{structProgramPoint}{Program\+Point} structure.
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & String token representing a program point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Parsed \doxylink{structProgramPoint}{Program\+Point}.
+\end{DoxyReturn}
+@complexity O(n), where n is the token length.
+
+Detects if the point is a definition or last use and extracts the code line.
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & Token representing a program point. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Parsed \doxylink{structProgramPoint}{Program\+Point} structure.
+\end{DoxyReturn}
+@complexity O(n), where n is the token length. \Hypertarget{Parser_8h_abc22bdc04bbaac4bb75e95bc6a7fd595}\label{Parser_8h_abc22bdc04bbaac4bb75e95bc6a7fd595} 
+\index{Parser.h@{Parser.h}!parseRegistersFile@{parseRegistersFile}}
+\index{parseRegistersFile@{parseRegistersFile}!Parser.h@{Parser.h}}
+\doxysubsubsection{\texorpdfstring{parseRegistersFile()}{parseRegistersFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRegisterSettings}{Register\+Settings}} parse\+Registers\+File (\begin{DoxyParamCaption}\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Reads and parses the register settings file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the registers input file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Parsed register settings.
+\end{DoxyReturn}
+@complexity O(l), where l is the number of lines in the file.
+
+Reads the number of registers and the selected allocation algorithm.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Name of the settings file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Parsed register settings.
+\end{DoxyReturn}
+@complexity O(l), where l is the number of lines in the file. \Hypertarget{Parser_8h_af54deaac3f50b79226535f61f5822e56}\label{Parser_8h_af54deaac3f50b79226535f61f5822e56} 
+\index{Parser.h@{Parser.h}!trim@{trim}}
+\index{trim@{trim}!Parser.h@{Parser.h}}
+\doxysubsubsection{\texorpdfstring{trim()}{trim()}}
+{\footnotesize\ttfamily string trim (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})}
+
+
+
+Removes leading and trailing whitespace from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & Input string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Trimmed string.
+\end{DoxyReturn}
+@complexity O(n), where n is the string length. 

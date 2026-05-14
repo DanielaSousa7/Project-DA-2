@@ -1,0 +1,62 @@
+\doxysection{structs.\+h}
+\hypertarget{structs_8h_source}{}\label{structs_8h_source}\mbox{\hyperlink{structs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ STRUCTS\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ STRUCTS\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}data\_structures/Graph.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structProgramPoint}{ProgramPoint}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ code\_line;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ isDefinition;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ isLastUse;}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structLiveRange}{LiveRange}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{string}\ variable;}
+\DoxyCodeLine{00029\ \ \ \ \ vector<ProgramPoint>\ points;}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structRegisterSettings}{RegisterSettings}}\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ registers;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{string}\ algorithm;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ param;}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structInputData}{InputData}}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ vector<LiveRange>\ liveRanges;}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{structRegisterSettings}{RegisterSettings}}\ settings;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{string}\ outputFile;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasErrors\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structWeb}{Web}}\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{string}\ variable;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{int}\ start;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{int}\ end;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ id;}
+\DoxyCodeLine{00059\ \ \ \ \ vector<ProgramPoint>\ points;}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structInterferenceGraph}{InterferenceGraph}}\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ Graph<int>\ graph;}
+\DoxyCodeLine{00067\ \ \ \ \ vector<Web>\ webs;}
+\DoxyCodeLine{00068\ \ \ \ \ vector<vector<bool>>\ adj;}
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAllocationResult}{AllocationResult}}\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{int}\ usedRegisters;}
+\DoxyCodeLine{00076\ \ \ \ \ vector<int>\ webToRegister;}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ success;}
+\DoxyCodeLine{00078\ \ \ \ \ vector<Web>\ webs;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{string}\ algorithm\ =\ \textcolor{stringliteral}{"{}basic"{}};}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

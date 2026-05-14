@@ -1,3 +1,8 @@
+/**
+ * @file Basic.cpp
+ * @brief Implementation of basic greedy register allocation (Chaitin-style).
+ */
+
 #include "Basic.h"
 #include "../../WebBuilder.h"
 
@@ -5,7 +10,16 @@
 
 using namespace std;
 
-
+/**
+ * @brief Attempt K-coloring using simplification and greedy assignment.
+ *
+ * @param graph Interference graph.
+ * @param K Number of colors.
+ * @param colorMap Output coloring.
+ * @return True if successful.
+ *
+ * @complexity O(N^2) as described in the header.
+ */
 bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
     int n = graph.webs.size();
 
@@ -30,16 +44,15 @@ bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
         }
         if (node == -1) {
             int remaining = 0;
-
             for (int i = 0; i < n; ++i) {
                 if (!removed[i]) remaining++;
             }
-
             if (remaining == 0) break;
             return false;
         }
         removed[node] = true;
         stack.push_back(node);
+
         for (int u = 0; u < n; ++u) {
             if (!removed[u] && remainingAdj[node][u]) {
                 degree[u]--;
@@ -51,13 +64,11 @@ bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
     for (int i = stack.size() - 1; i >= 0; --i) {
         int node = stack[i];
         vector<bool> usedColors(K, false);
-
         for (int u = 0; u < n; ++u) {
             if (u != node && colors[u] != -1 && graph.adj[node][u]) {
                 usedColors[colors[u]] = true;
             }
         }
-
         int chosen = -1;
         for (int c = 0; c < K; ++c) {
             if (!usedColors[c]) {
@@ -72,6 +83,15 @@ bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
     return true;
 }
 
+/**
+ * @brief Finds the minimal number of registers (up to maxRegisters) that works.
+ *
+ * @param webs List of webs.
+ * @param maxRegisters Upper bound on registers to try.
+ * @return AllocationResult.
+ *
+ * @complexity O(maxRegisters * N^2).
+ */
 AllocationResult basicRegisterAllocation(vector<Web> webs, int maxRegisters) {
     AllocationResult result;
     result.success = false;
@@ -86,7 +106,6 @@ AllocationResult basicRegisterAllocation(vector<Web> webs, int maxRegisters) {
 
     for (int K = 1; K <= maxRegisters; ++K) {
         vector<int> colors;
-
         if (tryColorWithK(graph, K, colors)) {
             result.success = true;
             result.usedRegisters = K;

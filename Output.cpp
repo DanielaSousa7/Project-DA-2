@@ -6,6 +6,18 @@
 
 using namespace std;
 
+/**
+ * @brief Writes the register allocation result to an output file.
+ *
+ * The file contains the list of webs, their program points and the register
+ * assigned to each web. If allocation fails, all webs are assigned to memory.
+ *
+ * @param result Allocation result produced by the algorithm.
+ * @param webs Vector containing the program webs.
+ * @param outputFile Name of the output file.
+ *
+ * @complexity O(w * p), where w is the number of webs and p is the number of program points per web.
+ */
 void writeAllocationOutput(AllocationResult result, vector<Web> webs, string outputFile) {
     ofstream out(outputFile);
 

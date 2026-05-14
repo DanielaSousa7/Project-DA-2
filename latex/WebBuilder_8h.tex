@@ -1,0 +1,93 @@
+\doxysection{Web\+Builder.\+h File Reference}
+\hypertarget{WebBuilder_8h}{}\label{WebBuilder_8h}\index{WebBuilder.h@{WebBuilder.h}}
+
+
+Functions for building webs and interference graphs.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include "{}structs.\+h"{}}\newline
+Include dependency graph for Web\+Builder.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$ \mbox{\hyperlink{WebBuilder_8h_a7b141884e50d030bb77e9d2dc9b252c6}{build\+Webs}} (vector$<$ \mbox{\hyperlink{structLiveRange}{Live\+Range}} $>$ live\+Ranges)
+\begin{DoxyCompactList}\small\item\em Builds webs from live ranges. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structInterferenceGraph}{Interference\+Graph}} \mbox{\hyperlink{WebBuilder_8h_aec97a1868f8851071cbb913091267eab}{build\+Interference\+Graph}} (vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$ webs)
+\begin{DoxyCompactList}\small\item\em Builds the interference graph from webs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for building webs and interference graphs. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{WebBuilder_8h_aec97a1868f8851071cbb913091267eab}\label{WebBuilder_8h_aec97a1868f8851071cbb913091267eab} 
+\index{WebBuilder.h@{WebBuilder.h}!buildInterferenceGraph@{buildInterferenceGraph}}
+\index{buildInterferenceGraph@{buildInterferenceGraph}!WebBuilder.h@{WebBuilder.h}}
+\doxysubsubsection{\texorpdfstring{buildInterferenceGraph()}{buildInterferenceGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structInterferenceGraph}{Interference\+Graph}} build\+Interference\+Graph (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$}]{webs }\end{DoxyParamCaption})}
+
+
+
+Builds the interference graph from webs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em webs} & Vector containing all webs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Interference graph.
+\end{DoxyReturn}
+@complexity O(w²).
+
+Builds the interference graph from webs.
+
+Each web is added as a vertex. If two webs overlap, an interference edge is created between them.
+
+
+\begin{DoxyParams}{Parameters}
+{\em webs} & Vector containing the webs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Interference graph with the webs and their conflicts.
+\end{DoxyReturn}
+@complexity O(w²), where w is the number of webs. \Hypertarget{WebBuilder_8h_a7b141884e50d030bb77e9d2dc9b252c6}\label{WebBuilder_8h_a7b141884e50d030bb77e9d2dc9b252c6} 
+\index{WebBuilder.h@{WebBuilder.h}!buildWebs@{buildWebs}}
+\index{buildWebs@{buildWebs}!WebBuilder.h@{WebBuilder.h}}
+\doxysubsubsection{\texorpdfstring{buildWebs()}{buildWebs()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$ build\+Webs (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structLiveRange}{Live\+Range}} $>$}]{live\+Ranges }\end{DoxyParamCaption})}
+
+
+
+Builds webs from live ranges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em live\+Ranges} & Vector containing all live ranges. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector of created webs.
+\end{DoxyReturn}
+@complexity O(n² \texorpdfstring{$\ast$}{*} p).
+
+Builds webs from live ranges.
+
+Groups live ranges by variable and merges overlapping ranges into the same web.
+
+
+\begin{DoxyParams}{Parameters}
+{\em live\+Ranges} & Vector containing the live ranges. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vector containing the created webs.
+\end{DoxyReturn}
+@complexity O(n² \texorpdfstring{$\ast$}{*} p), where n is the number of live ranges and p is the number of program points. 

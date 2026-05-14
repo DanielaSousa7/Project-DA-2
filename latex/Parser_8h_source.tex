@@ -1,0 +1,25 @@
+\doxysection{Parser.\+h}
+\hypertarget{Parser_8h_source}{}\label{Parser_8h_source}\mbox{\hyperlink{Parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ PARSER\_H}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ PARSER\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Structs.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{Parser_8h_af54deaac3f50b79226535f61f5822e56}{trim}}(\textcolor{keywordtype}{string}\ s);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00034\ \mbox{\hyperlink{structProgramPoint}{ProgramPoint}}\ \mbox{\hyperlink{Parser_8h_adc921e8ed1a1e2818336a5f18a52a201}{parseProgramPoint}}(\textcolor{keywordtype}{string}\ token);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00044\ vector<LiveRange>\ \mbox{\hyperlink{Parser_8h_a4b7457e969991b7566202705e201565d}{parseLiveRangesFile}}(\textcolor{keywordtype}{string}\ filename);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00054\ \mbox{\hyperlink{structRegisterSettings}{RegisterSettings}}\ \mbox{\hyperlink{Parser_8h_abc22bdc04bbaac4bb75e95bc6a7fd595}{parseRegistersFile}}(\textcolor{keywordtype}{string}\ filename);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00066\ \mbox{\hyperlink{structInputData}{InputData}}\ \mbox{\hyperlink{Parser_8h_a7de21d6f5b51e74e4760506bb52585bc}{parseInputFiles}}(\textcolor{keywordtype}{string}\ rangesFile,\ \textcolor{keywordtype}{string}\ registersFile,\ \textcolor{keywordtype}{string}\ outputFile);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

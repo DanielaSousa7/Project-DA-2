@@ -1,0 +1,69 @@
+\doxysection{Batch.\+h File Reference}
+\hypertarget{Batch_8h}{}\label{Batch_8h}\index{Batch.h@{Batch.h}}
+
+
+Interface for batch-\/mode execution.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for Batch.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Batch_8h_a66ec74828df6bc3fe981ce38e6f214f4}{batch\+Mode}} (string ranges\+File, string registers\+File, string output\+File)
+\begin{DoxyCompactList}\small\item\em Runs the allocation tool in batch mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for batch-\/mode execution. 
+
+Provides a function to run the register allocation tool in non-\/interactive batch mode, reading input files and writing the output to a specified file. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Batch_8h_a66ec74828df6bc3fe981ce38e6f214f4}\label{Batch_8h_a66ec74828df6bc3fe981ce38e6f214f4} 
+\index{Batch.h@{Batch.h}!batchMode@{batchMode}}
+\index{batchMode@{batchMode}!Batch.h@{Batch.h}}
+\doxysubsubsection{\texorpdfstring{batchMode()}{batchMode()}}
+{\footnotesize\ttfamily void batch\+Mode (\begin{DoxyParamCaption}\item[{string}]{ranges\+File,  }\item[{string}]{registers\+File,  }\item[{string}]{output\+File }\end{DoxyParamCaption})}
+
+
+
+Runs the allocation tool in batch mode. 
+
+Parses the live ranges file and registers file, performs register allocation according to the algorithm specified in the registers file, and writes the result to the given output file. Errors are printed to standard error.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ranges\+File} & Path to the file containing variable live ranges. \\
+\hline
+{\em registers\+File} & Path to the file containing register count and algorithm. \\
+\hline
+{\em output\+File} & Path where the allocation result will be written.\\
+\hline
+\end{DoxyParams}
+@complexity O(F + A) where F is the size of input files (parsing) and A is the complexity of the selected allocation algorithm. Parsing is linear in the number of lines.
+
+Runs the allocation tool in batch mode.
+
+Steps\+:
+\begin{DoxyEnumerate}
+\item Parse input files.
+\item If parsing errors occur, report and abort.
+\item Print summary of loaded data to console.
+\item Run register allocation.
+\item Write results to output file.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em ranges\+File} & Live ranges input file. \\
+\hline
+{\em registers\+File} & Register settings input file. \\
+\hline
+{\em output\+File} & Destination file for allocation mapping.\\
+\hline
+\end{DoxyParams}
+@complexity O(n + m + A) where\+: n = total lines in ranges file, m = lines in registers file, A = complexity of the allocation algorithm (see \doxylink{Allocation_8cpp}{Allocation.\+cpp}). All file I/O is linear in input size. 
