@@ -1,0 +1,59 @@
+\doxysection{Output.\+h File Reference}
+\hypertarget{Output_8h}{}\label{Output_8h}\index{Output.h@{Output.h}}
+
+
+Functions for writing allocation results to output files.  
+
+
+{\ttfamily \#include "{}Structs.\+h"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for Output.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Output_8h_adeb89a18e2593e02a8163e8e24876f5e}{write\+Allocation\+Output}} (\mbox{\hyperlink{structAllocationResult}{Allocation\+Result}} result, vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$ webs, string output\+File)
+\begin{DoxyCompactList}\small\item\em Writes the register allocation result to an output file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Functions for writing allocation results to output files. 
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Output_8h_adeb89a18e2593e02a8163e8e24876f5e}\label{Output_8h_adeb89a18e2593e02a8163e8e24876f5e} 
+\index{Output.h@{Output.h}!writeAllocationOutput@{writeAllocationOutput}}
+\index{writeAllocationOutput@{writeAllocationOutput}!Output.h@{Output.h}}
+\doxysubsubsection{\texorpdfstring{writeAllocationOutput()}{writeAllocationOutput()}}
+{\footnotesize\ttfamily void write\+Allocation\+Output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAllocationResult}{Allocation\+Result}}}]{result,  }\item[{vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$}]{webs,  }\item[{string}]{output\+File }\end{DoxyParamCaption})}
+
+
+
+Writes the register allocation result to an output file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Allocation result produced by the algorithm. \\
+\hline
+{\em webs} & Vector containing the program webs. \\
+\hline
+{\em output\+File} & Name of the output file.\\
+\hline
+\end{DoxyParams}
+@complexity O(w \texorpdfstring{$\ast$}{*} p), where w is the number of webs and p is the number of program points per web.
+
+The file contains the list of webs, their program points and the register assigned to each web. If allocation fails, all webs are assigned to memory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & Allocation result produced by the algorithm. \\
+\hline
+{\em webs} & Vector containing the program webs. \\
+\hline
+{\em output\+File} & Name of the output file.\\
+\hline
+\end{DoxyParams}
+@complexity O(w \texorpdfstring{$\ast$}{*} p), where w is the number of webs and p is the number of program points per web. 

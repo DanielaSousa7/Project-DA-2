@@ -10,7 +10,7 @@ digraph "Batch.cpp"
   Node2 -> Node3 [id="edge18_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="string",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node1 -> Node4 [id="edge19_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="Parser.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Parser_8h_source.html",tooltip=" "];
+  Node4 [id="Node000004",label="Parser.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Parser_8h.html",tooltip="Functions for parsing input files and program data."];
   Node4 -> Node5 [id="edge20_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
   Node5 [id="Node000005",label="Structs.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node4 -> Node3 [id="edge21_Node000004_Node000003",color="steelblue1",style="solid",tooltip=" "];
@@ -26,7 +26,7 @@ digraph "Batch.cpp"
   Node8 -> Node9 [id="edge28_Node000008_Node000009",color="steelblue1",style="solid",tooltip=" "];
   Node9 [id="Node000009",label="data_structures/Graph.h",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node1 -> Node10 [id="edge29_Node000001_Node000010",color="steelblue1",style="solid",tooltip=" "];
-  Node10 [id="Node000010",label="Output.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Output_8h_source.html",tooltip=" "];
+  Node10 [id="Node000010",label="Output.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$Output_8h.html",tooltip="Functions for writing allocation results to output files."];
   Node10 -> Node5 [id="edge30_Node000010_Node000005",color="steelblue1",style="solid",tooltip=" "];
   Node10 -> Node3 [id="edge31_Node000010_Node000003",color="steelblue1",style="solid",tooltip=" "];
   Node1 -> Node11 [id="edge32_Node000001_Node000011",color="steelblue1",style="solid",tooltip=" "];

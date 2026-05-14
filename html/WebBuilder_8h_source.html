@@ -77,19 +77,22 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">WebBuilder.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef WEBBUILDER_H</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define WEBBUILDER_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;structs.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using namespace </span>std;</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>vector&lt;Web&gt; buildWebs(vector&lt;LiveRange&gt; liveRanges);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><a class="code hl_struct" href="structInterferenceGraph.html">InterferenceGraph</a> buildInterferenceGraph(vector&lt;Web&gt; webs);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructInterferenceGraph_html"><div class="ttname"><a href="structInterferenceGraph.html">InterferenceGraph</a></div><div class="ttdoc">Represents the interference graph between webs.</div><div class="ttdef"><b>Definition</b> structs.h:60</div></div>
+<a href="WebBuilder_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef WEBBUILDER_H</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define WEBBUILDER_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;structs.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>vector&lt;Web&gt; <a class="code hl_function" href="WebBuilder_8h.html#a7b141884e50d030bb77e9d2dc9b252c6">buildWebs</a>(vector&lt;LiveRange&gt; liveRanges);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><a class="code hl_struct" href="structInterferenceGraph.html">InterferenceGraph</a> <a class="code hl_function" href="WebBuilder_8h.html#aec97a1868f8851071cbb913091267eab">buildInterferenceGraph</a>(vector&lt;Web&gt; webs);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aWebBuilder_8h_html_a7b141884e50d030bb77e9d2dc9b252c6"><div class="ttname"><a href="WebBuilder_8h.html#a7b141884e50d030bb77e9d2dc9b252c6">buildWebs</a></div><div class="ttdeci">vector&lt; Web &gt; buildWebs(vector&lt; LiveRange &gt; liveRanges)</div><div class="ttdoc">Builds webs from live ranges.</div><div class="ttdef"><b>Definition</b> WebBuilder.cpp:17</div></div>
+<div class="ttc" id="aWebBuilder_8h_html_aec97a1868f8851071cbb913091267eab"><div class="ttname"><a href="WebBuilder_8h.html#aec97a1868f8851071cbb913091267eab">buildInterferenceGraph</a></div><div class="ttdeci">InterferenceGraph buildInterferenceGraph(vector&lt; Web &gt; webs)</div><div class="ttdoc">Builds the interference graph from webs.</div><div class="ttdef"><b>Definition</b> WebBuilder.cpp:106</div></div>
+<div class="ttc" id="astructInterferenceGraph_html"><div class="ttname"><a href="structInterferenceGraph.html">InterferenceGraph</a></div><div class="ttdoc">Represents the interference graph between webs.</div><div class="ttdef"><b>Definition</b> structs.h:65</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

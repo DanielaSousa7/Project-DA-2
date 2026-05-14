@@ -2,8 +2,8 @@ var indexSectionsWithContent =
 {
   0: "1234abcdeilmoprstuwy",
   1: "ailprw",
-  2: "abm",
-  3: "abdmprs",
+  2: "abmopw",
+  3: "abdmprstw",
   4: "ip"
 };
 
