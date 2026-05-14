@@ -80,6 +80,7 @@ AllocationResult freeRegisterAllocation(vector<Web> webs, int maxRegisters) {
                     int original = originalIdx[i];
                     result.webToRegister[original] = colors[i];
                 }
+                result.webs = webs;
                 return result;
             }
         }

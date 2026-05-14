@@ -79,6 +79,7 @@ AllocationResult basicRegisterAllocation(vector<Web> webs, int maxRegisters) {
     result.webToRegister.assign(webs.size(), -1);
     if (webs.empty()) {
         result.success = true;
+        result.webs = webs;
         return result;
     }
 
@@ -91,6 +92,7 @@ AllocationResult basicRegisterAllocation(vector<Web> webs, int maxRegisters) {
             result.success = true;
             result.usedRegisters = K;
             result.webToRegister = colors;
+            result.webs = webs;
             return result;
         }
     }

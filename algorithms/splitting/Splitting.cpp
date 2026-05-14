@@ -78,39 +78,53 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
 
             for (auto points : pointCombos) {
                 vector<Web> newWebs;
+                auto filterPoints = [](const Web& orig, int start, int end) {
+                    vector<ProgramPoint> pts;
+                    for (const auto& p : orig.points) {
+                        if (p.code_line >= start && p.code_line <= end) {
+                            pts.push_back(p);
+                        }
+                    }
+                    return pts;
+                };
+
                 for (int i = 0; i < n; ++i) {
                     auto it = find(splitSet.begin(), splitSet.end(), i);
                     if (it == splitSet.end()) {
+                        // Unsplit web: copy whole web
                         Web w = webs[i];
                         w.id = newWebs.size();
                         newWebs.push_back(w);
-                    }
-                    else {
+                    } else {
                         int pos = distance(splitSet.begin(), it);
                         int splitPoint = points[pos];
 
+                        // First part (if non‑empty)
                         if (splitPoint - 1 >= webs[i].start) {
                             Web w1;
                             w1.variable = webs[i].variable;
                             w1.start = webs[i].start;
                             w1.end = splitPoint - 1;
+                            w1.points = filterPoints(webs[i], w1.start, w1.end);
                             w1.id = newWebs.size();
                             newWebs.push_back(w1);
                         }
 
+                        // Second part (always non‑empty because splitPoint ≤ webs[i].end)
                         Web w2;
                         w2.variable = webs[i].variable;
                         w2.start = splitPoint;
                         w2.end = webs[i].end;
+                        w2.points = filterPoints(webs[i], w2.start, w2.end);
                         w2.id = newWebs.size();
                         newWebs.push_back(w2);
                     }
                 }
 
                 AllocationResult subResult = basicRegisterAllocation(newWebs, maxRegisters);
-
                 if (subResult.success) {
                     subResult.algorithm_used = "splitting";
+                    subResult.webs = newWebs;
                     return subResult;
                 }
             }

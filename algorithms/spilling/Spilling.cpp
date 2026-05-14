@@ -64,6 +64,7 @@ AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, 
                     int originalIndex = subToOrig[i];
                     result.webToRegister[originalIndex] = subResult.webToRegister[i];
                 }
+                result.webs = webs;
                 return result;
             }
         }

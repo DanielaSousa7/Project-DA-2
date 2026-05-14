@@ -14,7 +14,9 @@ using namespace std;
 AllocationResult runRegisterAllocation(InputData data) {
     vector<Web> webs = buildWebs(data.liveRanges);
     AllocationResult result = allocateWithAlgorithm(webs, data.settings);
-    result.webs = webs;
+    if (result.webs.empty()) {
+        result.webs = webs;
+    }
     return result;
 }
 
