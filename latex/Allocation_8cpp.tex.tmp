@@ -1,0 +1,75 @@
+\doxysection{Allocation.\+cpp File Reference}
+\hypertarget{Allocation_8cpp}{}\label{Allocation_8cpp}\index{Allocation.cpp@{Allocation.cpp}}
+
+
+Implementation of the register allocation dispatcher.  
+
+
+{\ttfamily \#include "{}Allocation.\+h"{}}\newline
+{\ttfamily \#include "{}Web\+Builder.\+h"{}}\newline
+{\ttfamily \#include "{}algorithms/basic/\+Basic.\+h"{}}\newline
+{\ttfamily \#include "{}algorithms/spilling/\+Spilling.\+h"{}}\newline
+{\ttfamily \#include "{}algorithms/splitting/\+Splitting.\+h"{}}\newline
+{\ttfamily \#include "{}algorithms/free/\+Free.\+h"{}}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+Include dependency graph for Allocation.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structAllocationResult}{Allocation\+Result}} \mbox{\hyperlink{Allocation_8cpp_a4d9b5eaf5737c4e34f6250ecb8e27b3b}{run\+Register\+Allocation}} (\mbox{\hyperlink{structInputData}{Input\+Data}} data)
+\begin{DoxyCompactList}\small\item\em Constructs webs from live ranges and runs the chosen allocation algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structAllocationResult}{Allocation\+Result}} \mbox{\hyperlink{Allocation_8cpp_a6aaaf483a032464f46658c2025ce03ad}{allocate\+With\+Algorithm}} (vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$ webs, \mbox{\hyperlink{structRegisterSettings}{Register\+Settings}} settings)
+\begin{DoxyCompactList}\small\item\em Dispatches to the requested allocation algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the register allocation dispatcher. 
+
+Implements the functions declared in \doxylink{Allocation_8h}{Allocation.\+h}. Builds webs from live ranges and chooses the allocation algorithm based on the input settings. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Allocation_8cpp_a6aaaf483a032464f46658c2025ce03ad}\label{Allocation_8cpp_a6aaaf483a032464f46658c2025ce03ad} 
+\index{Allocation.cpp@{Allocation.cpp}!allocateWithAlgorithm@{allocateWithAlgorithm}}
+\index{allocateWithAlgorithm@{allocateWithAlgorithm}!Allocation.cpp@{Allocation.cpp}}
+\doxysubsubsection{\texorpdfstring{allocateWithAlgorithm()}{allocateWithAlgorithm()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAllocationResult}{Allocation\+Result}} allocate\+With\+Algorithm (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$}]{webs,  }\item[{\mbox{\hyperlink{structRegisterSettings}{Register\+Settings}}}]{settings }\end{DoxyParamCaption})}
+
+
+
+Dispatches to the requested allocation algorithm. 
+
+Selects and executes the allocation algorithm according to settings.
+
+
+\begin{DoxyParams}{Parameters}
+{\em webs} & Webs representing variables/intervals. \\
+\hline
+{\em settings} & Algorithm and register configuration. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structAllocationResult}{Allocation\+Result} after running the algorithm.
+\end{DoxyReturn}
+@complexity See \doxylink{Allocation_8h_a6aaaf483a032464f46658c2025ce03ad}{allocate\+With\+Algorithm()} documentation in header. \Hypertarget{Allocation_8cpp_a4d9b5eaf5737c4e34f6250ecb8e27b3b}\label{Allocation_8cpp_a4d9b5eaf5737c4e34f6250ecb8e27b3b} 
+\index{Allocation.cpp@{Allocation.cpp}!runRegisterAllocation@{runRegisterAllocation}}
+\index{runRegisterAllocation@{runRegisterAllocation}!Allocation.cpp@{Allocation.cpp}}
+\doxysubsubsection{\texorpdfstring{runRegisterAllocation()}{runRegisterAllocation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAllocationResult}{Allocation\+Result}} run\+Register\+Allocation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structInputData}{Input\+Data}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Constructs webs from live ranges and runs the chosen allocation algorithm. 
+
+Runs the complete register allocation pipeline.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Input data containing live ranges and allocation settings. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{structAllocationResult}{Allocation\+Result} with the final assignment.
+\end{DoxyReturn}
+@complexity Let R = number of live ranges, V = number of variables. Building webs\+: O(\+R) using union-\/find or interval merging. Allocation\+: see \doxylink{Allocation_8h_a6aaaf483a032464f46658c2025ce03ad}{allocate\+With\+Algorithm()}. Overall\+: O(R + T) where T is complexity of the selected algorithm. 

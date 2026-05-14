@@ -1,0 +1,152 @@
+\doxysection{Menu.\+cpp File Reference}
+\hypertarget{Menu_8cpp}{}\label{Menu_8cpp}\index{Menu.cpp@{Menu.cpp}}
+
+
+Implementation of the interactive menu for the register allocation tool.  
+
+
+{\ttfamily \#include "{}Menu.\+h"{}}\newline
+{\ttfamily \#include "{}Parser.\+h"{}}\newline
+{\ttfamily \#include "{}Allocation.\+h"{}}\newline
+{\ttfamily \#include "{}Web\+Builder.\+h"{}}\newline
+{\ttfamily \#include "{}Output.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for Menu.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{Menu_8cpp_a547646815560a705ed2ab461dbf46d04}{show\+Main\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Prints the main menu options. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Menu_8cpp_a43761e52ff1fecc2fc480507b6653247}{show\+Data\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Prints the data browsing sub‑menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Menu_8cpp_a1479d1deca550b657790773897fbbc87}{print\+Program\+Point}} (\mbox{\hyperlink{structProgramPoint}{Program\+Point}} point)
+\begin{DoxyCompactList}\small\item\em Prints a single program point with definition/use markers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Menu_8cpp_ac908301d990ce5656ebc70018b9ad419}{print\+Live\+Ranges}} (\mbox{\hyperlink{structInputData}{Input\+Data}} data)
+\begin{DoxyCompactList}\small\item\em Prints all live ranges. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Menu_8cpp_a80b0587b49e01ff209d4f6410670adfc}{print\+Register\+Settings}} (\mbox{\hyperlink{structInputData}{Input\+Data}} data)
+\begin{DoxyCompactList}\small\item\em Prints register settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{Menu_8cpp_a0d7e5a1dff41fb7984a7bd3dd3125e6a}{data\+Menu}} (\mbox{\hyperlink{structInputData}{Input\+Data}} data)
+\begin{DoxyCompactList}\small\item\em Interactive sub‑menu for browsing loaded data. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{Menu_8cpp_a8396c50bf544009fb2fc4907b00cbad3}{main\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Main interactive menu loop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the interactive menu for the register allocation tool. 
+
+Implements all menu display and interaction logic, including file loading, data browsing, output file configuration, and invoking the allocation pipeline. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{Menu_8cpp_a0d7e5a1dff41fb7984a7bd3dd3125e6a}\label{Menu_8cpp_a0d7e5a1dff41fb7984a7bd3dd3125e6a} 
+\index{Menu.cpp@{Menu.cpp}!dataMenu@{dataMenu}}
+\index{dataMenu@{dataMenu}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{dataMenu()}{dataMenu()}}
+{\footnotesize\ttfamily void data\+Menu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structInputData}{Input\+Data}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Interactive sub‑menu for browsing loaded data. 
+
+Handles the data browsing sub‑menu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The loaded input data.\\
+\hline
+\end{DoxyParams}
+@complexity User interaction loop; each print is O(\+L\texorpdfstring{$\ast$}{*}\+P) or O(1). \Hypertarget{Menu_8cpp_a8396c50bf544009fb2fc4907b00cbad3}\label{Menu_8cpp_a8396c50bf544009fb2fc4907b00cbad3} 
+\index{Menu.cpp@{Menu.cpp}!mainMenu@{mainMenu}}
+\index{mainMenu@{mainMenu}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{mainMenu()}{mainMenu()}}
+{\footnotesize\ttfamily int main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Main interactive menu loop. 
+
+The main interactive menu loop.
+
+Prompts for input files, then repeatedly presents the main menu until exit.
+
+\begin{DoxyReturn}{Returns}
+int Always returns 0.
+\end{DoxyReturn}
+@complexity File parsing O(input size), allocation O(algorithm complexity), user interaction loop overhead is minimal. \Hypertarget{Menu_8cpp_ac908301d990ce5656ebc70018b9ad419}\label{Menu_8cpp_ac908301d990ce5656ebc70018b9ad419} 
+\index{Menu.cpp@{Menu.cpp}!printLiveRanges@{printLiveRanges}}
+\index{printLiveRanges@{printLiveRanges}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{printLiveRanges()}{printLiveRanges()}}
+{\footnotesize\ttfamily void print\+Live\+Ranges (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structInputData}{Input\+Data}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Prints all live ranges. 
+
+Prints all live ranges stored in the \doxylink{structInputData}{Input\+Data} structure.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Input data.\\
+\hline
+\end{DoxyParams}
+@complexity O(\+L \texorpdfstring{$\ast$}{*} P) linear in total points. \Hypertarget{Menu_8cpp_a1479d1deca550b657790773897fbbc87}\label{Menu_8cpp_a1479d1deca550b657790773897fbbc87} 
+\index{Menu.cpp@{Menu.cpp}!printProgramPoint@{printProgramPoint}}
+\index{printProgramPoint@{printProgramPoint}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{printProgramPoint()}{printProgramPoint()}}
+{\footnotesize\ttfamily void print\+Program\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structProgramPoint}{Program\+Point}}}]{point }\end{DoxyParamCaption})}
+
+
+
+Prints a single program point with definition/use markers. 
+
+Prints a single program point (line number with +/-\/ markers).
+
+
+\begin{DoxyParams}{Parameters}
+{\em point} & The program point.\\
+\hline
+\end{DoxyParams}
+@complexity O(1). \Hypertarget{Menu_8cpp_a80b0587b49e01ff209d4f6410670adfc}\label{Menu_8cpp_a80b0587b49e01ff209d4f6410670adfc} 
+\index{Menu.cpp@{Menu.cpp}!printRegisterSettings@{printRegisterSettings}}
+\index{printRegisterSettings@{printRegisterSettings}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{printRegisterSettings()}{printRegisterSettings()}}
+{\footnotesize\ttfamily void print\+Register\+Settings (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structInputData}{Input\+Data}}}]{data }\end{DoxyParamCaption})}
+
+
+
+Prints register settings. 
+
+Prints the register settings (number of registers, algorithm, parameter).
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Input data.\\
+\hline
+\end{DoxyParams}
+@complexity O(1). \Hypertarget{Menu_8cpp_a43761e52ff1fecc2fc480507b6653247}\label{Menu_8cpp_a43761e52ff1fecc2fc480507b6653247} 
+\index{Menu.cpp@{Menu.cpp}!showDataMenu@{showDataMenu}}
+\index{showDataMenu@{showDataMenu}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{showDataMenu()}{showDataMenu()}}
+{\footnotesize\ttfamily void show\+Data\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints the data browsing sub‑menu. 
+
+Displays the data browsing sub‑menu.
+
+@complexity O(1). \Hypertarget{Menu_8cpp_a547646815560a705ed2ab461dbf46d04}\label{Menu_8cpp_a547646815560a705ed2ab461dbf46d04} 
+\index{Menu.cpp@{Menu.cpp}!showMainMenu@{showMainMenu}}
+\index{showMainMenu@{showMainMenu}!Menu.cpp@{Menu.cpp}}
+\doxysubsubsection{\texorpdfstring{showMainMenu()}{showMainMenu()}}
+{\footnotesize\ttfamily void show\+Main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints the main menu options. 
+
+Displays the main menu options.
+
+@complexity O(1). 

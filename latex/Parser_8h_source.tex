@@ -1,0 +1,24 @@
+\doxysection{Parser.\+h}
+\hypertarget{Parser_8h_source}{}\label{Parser_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PARSER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PARSER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Structs.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{string}\ trim(\textcolor{keywordtype}{string}\ s);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00029\ \mbox{\hyperlink{structProgramPoint}{ProgramPoint}}\ parseProgramPoint(\textcolor{keywordtype}{string}\ token);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00039\ vector<LiveRange>\ parseLiveRangesFile(\textcolor{keywordtype}{string}\ filename);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00049\ \mbox{\hyperlink{structRegisterSettings}{RegisterSettings}}\ parseRegistersFile(\textcolor{keywordtype}{string}\ filename);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00061\ \mbox{\hyperlink{structInputData}{InputData}}\ parseInputFiles(\textcolor{keywordtype}{string}\ rangesFile,\ \textcolor{keywordtype}{string}\ registersFile,\ \textcolor{keywordtype}{string}\ outputFile);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

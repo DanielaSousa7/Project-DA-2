@@ -1,0 +1,51 @@
+\doxysection{main.\+cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+
+
+Entry point of the register allocation tool.  
+
+
+{\ttfamily \#include "{}Menu.\+h"{}}\newline
+{\ttfamily \#include "{}Batch.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for main.\+cpp\+:
+% FIG 0
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function – entry point. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Entry point of the register allocation tool. 
+
+Decides between batch mode and interactive mode based on command line arguments.
+\begin{DoxyItemize}
+\item If called with "{}-\/b ranges.\+txt registers.\+txt output.\+txt"{}, runs batch mode.
+\item Otherwise, launches the interactive menu. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function – entry point. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command line arguments. \\
+\hline
+{\em argv} & Argument vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Exit code (0 for success).
+\end{DoxyReturn}
+@complexity Depends on the selected mode\+: \doxylink{Batch_8cpp_a66ec74828df6bc3fe981ce38e6f214f4}{batch\+Mode()} in batch mode or \doxylink{Menu_8cpp_a8396c50bf544009fb2fc4907b00cbad3}{main\+Menu()} in interactive mode. 
