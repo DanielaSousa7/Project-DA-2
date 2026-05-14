@@ -20,8 +20,7 @@ using namespace std;
  *             for a particular web.
  * @return All combinations of split points, one from each set.
  *
- * @complexity O(P * S) where P is the total number of combinations
- *             (product of sizes of input sets) and S is the number of sets.
+ * @complexity O(P * S), where P is the total number of combinations and S is the number of sets.
  */
 vector<vector<int>> cartesianProduct(vector<vector<int>> sets);
 
@@ -38,10 +37,7 @@ vector<vector<int>> cartesianProduct(vector<vector<int>> sets);
  * @param maxSplits Maximum number of webs allowed to be split.
  * @return AllocationResult indicating success/failure and register assignment.
  *
- * @complexity Let N = number of webs, S = maxSplits, K = maxRegisters.
- *             In worst case, O( N^S * (range)^S * C(N*2) ) where C(m) is the
- *             complexity of basic allocation on m nodes (O(m^2) greedy).
- *             Very high combinatorial cost; practical only for small S.
+ * @complexity O( sum_{s=1..maxSplits} C(N,s) * R^s * (N+s)^2 ), where N is the number of webs and R is the average number of possible split points per web.
  */
 AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters, int maxSplits);
 

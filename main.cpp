@@ -20,9 +20,7 @@ using namespace std;
  * @param argv Argument vector.
  * @return int Exit code (0 for success).
  *
- * @complexity If batch mode, complexity depends on batchMode() which includes
- *             file parsing (O(file size)) and allocation (O(algorithm complexity)).
- *             If interactive, mainMenu() runs until user exits.
+ * @complexity Depends on the selected mode: batchMode() in batch mode or mainMenu() in interactive mode.
  */
 int main(int argc, char* argv[]) {
     if (argc == 5 && string(argv[1]) == "-b") {

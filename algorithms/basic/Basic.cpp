@@ -28,17 +28,14 @@ bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
     vector<vector<bool>> remainingAdj = graph.adj;
     vector<int> stack;
 
-    // Initialize degrees
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             if (remainingAdj[i][j]) degree[i]++;
         }
     }
 
-    // Simplification phase
     while (true) {
         int node = -1;
-        // Find a node with degree < K
         for (int i = 0; i < n; ++i) {
             if (!removed[i] && degree[i] < K) {
                 node = i;
@@ -46,17 +43,16 @@ bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
             }
         }
         if (node == -1) {
-            // No low-degree node found
             int remaining = 0;
             for (int i = 0; i < n; ++i) {
                 if (!removed[i]) remaining++;
             }
-            if (remaining == 0) break;   // Graph empty -> success
-            return false;                // All remaining nodes have degree >= K -> not K-colorable
+            if (remaining == 0) break;
+            return false;
         }
         removed[node] = true;
         stack.push_back(node);
-        // Decrease degree of neighbors
+
         for (int u = 0; u < n; ++u) {
             if (!removed[u] && remainingAdj[node][u]) {
                 degree[u]--;
@@ -64,12 +60,10 @@ bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
         }
     }
 
-    // Assignment phase (reverse order)
     vector<int> colors(n, -1);
     for (int i = stack.size() - 1; i >= 0; --i) {
         int node = stack[i];
         vector<bool> usedColors(K, false);
-        // Mark colors already used by colored neighbors
         for (int u = 0; u < n; ++u) {
             if (u != node && colors[u] != -1 && graph.adj[node][u]) {
                 usedColors[colors[u]] = true;
@@ -82,7 +76,7 @@ bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
                 break;
             }
         }
-        if (chosen == -1) return false; // Should not happen if simplification succeeded
+        if (chosen == -1) return false;
         colors[node] = chosen;
     }
     colorMap = colors;

@@ -22,7 +22,7 @@ using namespace std;
  * @param sets Sets of possible split points for each chosen web.
  * @return All combinations.
  *
- * @complexity O(product of sizes of sets).
+ * @complexity O(P * S), where P is the total number of combinations and S is the number of sets.
  */
 vector<vector<int>> cartesianProduct(vector<vector<int>> sets) {
     if (sets.empty()) return {{}};
@@ -54,9 +54,7 @@ vector<vector<int>> cartesianProduct(vector<vector<int>> sets) {
  * @param maxSplits Max webs to split.
  * @return AllocationResult.
  *
- * @complexity O( sum_{s=1..maxSplits} C(N,s) * (range^s) * C_basic( (N+s) ) )
- *             where range is average web length (start-end). Exponential in
- *             maxSplits. Falls back to basic allocation if splitting fails.
+ * @complexity O( sum_{s=1..maxSplits} C(N,s) * R^s * (N+s)^2 ), where N is the number of webs and R is the average number of possible split points per web.
  */
 AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters, int maxSplits) {
     AllocationResult basicResult = basicRegisterAllocation(webs, maxRegisters);

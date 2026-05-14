@@ -23,8 +23,7 @@ using namespace std;
  * @param maxSpill Max number of webs to spill.
  * @return AllocationResult with mapping (spilled webs: -1).
  *
- * @complexity O( sum_{s=1..maxSpill} C(N,s) * C_basic(N-s) ) where C_basic is
- *             the complexity of basic allocation (O((N-s)^2) in greedy).
+ * @complexity O( sum_{s=1..maxSpill} C(N,s) * N^2 ), where N is the number of webs.
  */
 AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, int maxSpill) {
     AllocationResult basicResult = basicRegisterAllocation(webs, maxRegisters);
