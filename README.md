@@ -62,7 +62,7 @@ After each splitting attempt, the basic graph coloring algorithm is executed aga
 
 ## T2.4 Register Allocation of Your Own
 
-The free algorithm implements a custom register allocation strategy based on the DSATUR graph coloring heuristic.
+Our own algorithm implements a custom register allocation strategy based on the DSATUR graph coloring heuristic.
 
 First, the program builds the interference graph, where each web is represented as a node and each interference between two webs is represented as an edge.
 

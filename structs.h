@@ -50,7 +50,7 @@ struct AllocationResult {
     vector<int> webToRegister;   // map web id -> register number (0..K-1), or -1 for memory
     bool success;
     vector<Web> webs;
-    string algorithm = "basic";  // initialize as "basic"
+    string algorithm_used = "basic";  // initialize as "basic"
 };
 
 #endif

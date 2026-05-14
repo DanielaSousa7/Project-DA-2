@@ -55,6 +55,7 @@ AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, 
 
             if (subResult.success) {
                 AllocationResult result;
+                result.algorithm_used = "spilling";
                 result.success = true;
                 result.usedRegisters = subResult.usedRegisters;
                 result.webToRegister.assign(n, -1);

@@ -110,6 +110,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                 AllocationResult subResult = basicRegisterAllocation(newWebs, maxRegisters);
 
                 if (subResult.success) {
+                    subResult.algorithm_used = "splitting";
                     return subResult;
                 }
             }

@@ -40,7 +40,7 @@ void writeAllocationOutput(AllocationResult result, vector<Web> webs, string out
     }
 
     out << "# Total number of registers used, followed by assignment to webs\n";
-
+    out << "algorithm used: " << result.algorithm_used << "\n";
     if (!result.success) {
         out << "registers: 0" << endl;
 
