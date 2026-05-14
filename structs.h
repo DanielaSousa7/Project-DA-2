@@ -51,6 +51,7 @@ struct AllocationResult {
     bool success;
     vector<Web> webs;
     string algorithm_used = "basic";  // initialize as "basic"
+    vector<pair<int, vector<int>>> splitInfo; // original web index -> list of new web indices (split parts)
 };
 
 #endif

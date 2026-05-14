@@ -72,7 +72,7 @@ AllocationResult freeRegisterAllocation(vector<Web> webs, int maxRegisters) {
 
             if (tryDSATUR(graph, maxRegisters, colors)) {
                 AllocationResult result;
-                result.algorithm_used = "Our own algorithm";
+                result.algorithm_used = "free";
                 result.success = true;
                 result.usedRegisters = maxRegisters;
                 result.webToRegister.assign(n, -1);

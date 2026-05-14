@@ -78,6 +78,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
 
             for (auto points : pointCombos) {
                 vector<Web> newWebs;
+                vector<pair<int, vector<int>>> splitInfo;
                 auto filterPoints = [](const Web& orig, int start, int end) {
                     vector<ProgramPoint> pts;
                     for (const auto& p : orig.points) {
@@ -98,6 +99,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                     } else {
                         int pos = distance(splitSet.begin(), it);
                         int splitPoint = points[pos];
+                        vector<int> newIds;
 
                         // First part (if non‑empty)
                         if (splitPoint - 1 >= webs[i].start) {
@@ -108,6 +110,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                             w1.points = filterPoints(webs[i], w1.start, w1.end);
                             w1.id = newWebs.size();
                             newWebs.push_back(w1);
+                            newIds.push_back(w1.id);
                         }
 
                         // Second part (always non‑empty because splitPoint ≤ webs[i].end)
@@ -118,6 +121,9 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                         w2.points = filterPoints(webs[i], w2.start, w2.end);
                         w2.id = newWebs.size();
                         newWebs.push_back(w2);
+                        newIds.push_back(w2.id);
+
+                        splitInfo.push_back({i, newIds});
                     }
                 }
 
@@ -125,6 +131,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                 if (subResult.success) {
                     subResult.algorithm_used = "splitting";
                     subResult.webs = newWebs;
+                    subResult.splitInfo = splitInfo;
                     return subResult;
                 }
             }
