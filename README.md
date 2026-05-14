@@ -1,6 +1,6 @@
 # Programming Project II
 
-This project develops a compiler register allocation tool based on graph coloring. The goal is to assign live webs to a limited number of physical registers while ensuring that interfering webs are never assigned to the same register.
+This project implements a compiler register allocation tool based on graph coloring. The goal is to assign live webs to a limited number of physical registers while ensuring that interfering webs are never assigned to the same register.
 The live ranges provided in the input files are merged into webs and these webs are used to build an interference graph. In this graph, each node represents a web and each edge represents an interference between two webs.
 Register allocation is then performed using graph coloring heuristics, where each color represents a physical register. When allocation is not possible with the available registers, the project also supports web spilling, web splitting and a custom free allocation strategy.
 
@@ -25,10 +25,10 @@ where `ranges.txt` is the input file containing the live ranges, `registers.txt`
 
 The basic register allocation was implemented using graph coloring.
 First, the program live ranges are merged into webs. Each web represents a value that may need a register. Then, an interference graph is created, where each node is a web and each edge means that two webs are alive at the same time. Therefore, connected webs cannot use the same register.
-The algorithm tries to color the graph with the smallest possible number of registers. It starts with 1 register and increases the number until the maximum allowed value.
+The algorithm incrementally attempts to color the graph using an increasing number of registers, starting from 1 up to the maximum allowed value.
 
 For each number of registers K, the algorithm:
-1. Removes nodes with degree smaller than K and stores them in a stack.
+1. Repeatedly removes nodes whose degree is smaller than K.
 2. Colors the nodes in reverse order, choosing the first available register not used by their neighbors.
 
 If the graph can be colored, the allocation succeeds and each web receives a register. If not, the allocation fails and the webs are assigned to memory (M).
@@ -56,7 +56,7 @@ If the allocation fails, the program tries to split webs in order to reduce inte
 
 The implementation uses an exhaustive search strategy within the allowed limit. Instead of selecting a single web using a fixed heuristic, the algorithm tests different combinations of webs to split. For each selected web, all possible split points between the beginning and the end of the web are tested.
 
-When a split point is chosen, the original web is replaced by two smaller webs. Although this increases the number of webs, each new web has a shorter live range and may interfere with fewer webs. This can reduce the number of edges in the interference graph, making graph coloring easier.
+When a split point is chosen, the original web is replaced by two smaller webs. Although this may increase the number of webs, each new web has a shorter live range and may interfere with fewer webs. This can reduce the number of edges in the interference graph, making graph coloring easier.
 
 After each splitting attempt, the basic graph coloring algorithm is executed again. If a valid coloring is found, the resulting webs are assigned to registers. Otherwise, the algorithm continues testing other splitting possibilities until the maximum allowed number of splits is reached.
 
@@ -68,7 +68,7 @@ First, the program builds the interference graph, where each web is represented 
 
 The DSATUR heuristic chooses the next web to color according to its saturation degree, meaning the number of different register colors already used by its neighbouring webs. The idea is to prioritize the webs with fewer register choices available. If there is a tie, the algorithm chooses the web with the highest degree in the interference graph, meaning the web that interferes with the largest number of other webs.
 If the graph can be successfully colored using the available registers, the allocation is completed.
-If coloring fails, the algorithm removes the web with the highest degree from the graph, since removing the web with the largest number of interferences is more likely to simplify the graph. The removed web is considered spilled to memory. The algorithm then rebuilds the reduced graph and tries to color it again.
+If coloring fails, the algorithm removes the web with the highest degree from the graph, since removing the web with the largest number of interferences is more likely to simplify the graph. The removed web is effectively spilled to memory and excluded from the next coloring attempt. The algorithm then rebuilds the reduced graph and tries to color it again.
 This process is repeated until a valid coloring is found or until no solution is possible.
 
 This approach respects the main restriction of the project: two webs that interfere are never assigned the same register.
@@ -82,6 +82,8 @@ The HTML documentation generated with Doxygen can be found in the html directory
 The output format was extended for the alternative algorithms by adding the line "algorithm used". This makes the output clearer and easier to process, especially when comparing the results of the different allocation strategies.
 
 For the splitting algorithm, the output also indicates which webs were divided, making it easier to understand how the interference graph was simplified before coloring.
+
+For the free algorithm, webs removed during the spilling phase are represented with the symbol M.
 
 ## Contributions
 
