@@ -1,6 +1,9 @@
 /**
  * @file Menu.cpp
- * @brief Implementation of the interactive menu.
+ * @brief Implementation of the interactive menu for the register allocation tool.
+ *
+ * Implements all menu display and interaction logic, including file loading,
+ * data browsing, output file configuration, and invoking the allocation pipeline.
  */
 
 #include "Menu.h"
@@ -13,6 +16,11 @@
 #include <string>
 using namespace std;
 
+/**
+ * @brief Prints the main menu options.
+ *
+ * @complexity O(1).
+ */
 void showMainMenu() {
     cout << "=== Assignment Tool ===\n";
     cout << "1. Read new files\n";
@@ -23,6 +31,11 @@ void showMainMenu() {
     cout << "Select an option: ";
 }
 
+/**
+ * @brief Prints the data browsing sub‑menu.
+ *
+ * @complexity O(1).
+ */
 void showDataMenu() {
     cout << "=== File Data ===\n";
     cout << "1. Show Live Ranges\n";
@@ -31,6 +44,13 @@ void showDataMenu() {
     cout << "Select an option: ";
 }
 
+/**
+ * @brief Prints a single program point with definition/use markers.
+ *
+ * @param point The program point.
+ *
+ * @complexity O(1).
+ */
 void printProgramPoint(ProgramPoint point) {
     cout << point.code_line;
     if (point.isDefinition) {
@@ -41,6 +61,13 @@ void printProgramPoint(ProgramPoint point) {
     }
 }
 
+/**
+ * @brief Prints all live ranges.
+ *
+ * @param data Input data.
+ *
+ * @complexity O(L * P) linear in total points.
+ */
 void printLiveRanges(InputData data) {
     cout << "--- Live Ranges ---\n";
     for (LiveRange range : data.liveRanges) {
@@ -55,6 +82,13 @@ void printLiveRanges(InputData data) {
     }
 }
 
+/**
+ * @brief Prints register settings.
+ *
+ * @param data Input data.
+ *
+ * @complexity O(1).
+ */
 void printRegisterSettings(InputData data) {
     cout << "--- Register Settings ---\n";
     cout << "Registers: " << data.settings.registers << "\n";
@@ -65,6 +99,13 @@ void printRegisterSettings(InputData data) {
     cout << "Output file: " << data.outputFile << "\n";
 }
 
+/**
+ * @brief Interactive sub‑menu for browsing loaded data.
+ *
+ * @param data The loaded input data.
+ *
+ * @complexity User interaction loop; each print is O(L*P) or O(1).
+ */
 void dataMenu(InputData data) {
     int option = -1;
     while (option != 0) {
@@ -98,6 +139,16 @@ void dataMenu(InputData data) {
     }
 }
 
+/**
+ * @brief Main interactive menu loop.
+ *
+ * Prompts for input files, then repeatedly presents the main menu until exit.
+ *
+ * @return int Always returns 0.
+ *
+ * @complexity File parsing O(input size), allocation O(algorithm complexity),
+ *             user interaction loop overhead is minimal.
+ */
 int mainMenu() {
     InputData data;
     bool filesLoaded = false;
