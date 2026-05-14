@@ -10,7 +10,7 @@ digraph "Allocation.h"
   Node1 -> Node3 [id="edge8_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
   Node3 [id="Node000003",label="vector",height=0.2,width=0.4,color="grey60", fillcolor="#E0E0E0", style="filled",tooltip=" "];
   Node1 -> Node4 [id="edge9_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
-  Node4 [id="Node000004",label="structs.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structs_8h_source.html",tooltip=" "];
+  Node4 [id="Node000004",label="structs.h",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$structs_8h.html",tooltip="Data structures used by the register allocation tool."];
   Node4 -> Node2 [id="edge10_Node000004_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node4 -> Node3 [id="edge11_Node000004_Node000003",color="steelblue1",style="solid",tooltip=" "];
   Node4 -> Node5 [id="edge12_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
