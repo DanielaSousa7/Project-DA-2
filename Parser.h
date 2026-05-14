@@ -1,3 +1,8 @@
+/**
+* @file Parser.h
+ * @brief Functions for parsing input files and program data.
+ */
+
 #ifndef PARSER_H
 #define PARSER_H
 

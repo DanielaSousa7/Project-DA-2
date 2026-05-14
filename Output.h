@@ -1,3 +1,8 @@
+/**
+* @file Output.h
+ * @brief Functions for writing allocation results to output files.
+ */
+
 #ifndef PROJECT_OUTPUT_H
 #define PROJECT_OUTPUT_H
 

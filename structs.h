@@ -1,3 +1,8 @@
+/**
+* @file Structs.h
+ * @brief Data structures used by the register allocation tool.
+ */
+
 #ifndef STRUCTS_H
 #define STRUCTS_H
 

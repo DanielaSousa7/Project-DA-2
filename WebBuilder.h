@@ -1,3 +1,8 @@
+/**
+* @file WebBuilder.h
+ * @brief Functions for building webs and interference graphs.
+ */
+
 #ifndef WEBBUILDER_H
 #define WEBBUILDER_H
 
