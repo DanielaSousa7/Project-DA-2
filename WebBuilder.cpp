@@ -73,7 +73,7 @@ vector<Web> buildWebs(vector<LiveRange> liveRanges) {
             for (auto p : w.points) {
                 bool exists = false;
 
-                for (auto up : uniquePoints) {
+                for (auto &up : uniquePoints) {
                     if (up.code_line == p.code_line) {
                         up.isDefinition = up.isDefinition || p.isDefinition;
                         up.isLastUse = up.isLastUse || p.isLastUse;

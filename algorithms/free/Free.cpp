@@ -11,6 +11,7 @@
 #include <numeric>
 #include <set>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -93,7 +94,7 @@ AllocationResult freeRegisterAllocation(vector<Web> webs, int maxRegisters) {
                 AllocationResult result;
                 result.algorithm_used = "free";
                 result.success = true;
-                result.usedRegisters = maxRegisters;
+                result.usedRegisters = 1 + *max_element(colors.begin(), colors.end());
                 result.webToRegister.assign(n, -1);
                 for (size_t i = 0; i < currentWebs.size(); ++i) {
                     int original = originalIdx[i];
