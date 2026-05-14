@@ -1,3 +1,11 @@
+/**
+ * @file Splitting.cpp
+ * @brief Implementation of web splitting for register allocation.
+ *
+ * Implements a brute-force search over subsets of webs to split and possible
+ * split points, then attempts basic allocation on the expanded web set.
+ */
+
 #include "Splitting.h"
 #include "../basic/Basic.h"
 
@@ -8,6 +16,14 @@
 
 using namespace std;
 
+/**
+ * @brief Generates Cartesian product of given integer sets.
+ *
+ * @param sets Sets of possible split points for each chosen web.
+ * @return All combinations.
+ *
+ * @complexity O(product of sizes of sets).
+ */
 vector<vector<int>> cartesianProduct(vector<vector<int>> sets) {
     if (sets.empty()) return {{}};
     vector<vector<int>> result;
@@ -15,25 +31,33 @@ vector<vector<int>> cartesianProduct(vector<vector<int>> sets) {
 
     while (true) {
         vector<int> tuple;
-
         for (size_t i = 0; i < sets.size(); ++i) {
             tuple.push_back(sets[i][indices[i]]);
         }
-
         result.push_back(tuple);
         int pos = sets.size() - 1;
-
         while (pos >= 0 && indices[pos] + 1 == (int)sets[pos].size()) {
             indices[pos] = 0;
             --pos;
         }
-
         if (pos < 0) break;
         indices[pos]++;
     }
     return result;
 }
 
+/**
+ * @brief Attempts allocation with web splitting.
+ *
+ * @param webs Original webs.
+ * @param maxRegisters Number of registers.
+ * @param maxSplits Max webs to split.
+ * @return AllocationResult.
+ *
+ * @complexity O( sum_{s=1..maxSplits} C(N,s) * (range^s) * C_basic( (N+s) ) )
+ *             where range is average web length (start-end). Exponential in
+ *             maxSplits. Falls back to basic allocation if splitting fails.
+ */
 AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters, int maxSplits) {
     AllocationResult basicResult = basicRegisterAllocation(webs, maxRegisters);
     if (basicResult.success) {
@@ -52,7 +76,6 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                     combos.push_back(current);
                     return;
                 }
-
                 for (int i = start; i <= n - left; ++i) {
                     current.push_back(indices[i]);
                     generateCombinations(i + 1, left - 1, current);
@@ -68,7 +91,6 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
             for (size_t i = 0; i < splitSet.size(); ++i) {
                 int idx = splitSet[i];
                 const Web &w = webs[idx];
-
                 for (int p = w.start + 1; p <= w.end; ++p) {
                     possiblePoints[i].push_back(p);
                 }
@@ -88,7 +110,6 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                     else {
                         int pos = distance(splitSet.begin(), it);
                         int splitPoint = points[pos];
-
                         if (splitPoint - 1 >= webs[i].start) {
                             Web w1;
                             w1.variable = webs[i].variable;
@@ -97,7 +118,6 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                             w1.id = newWebs.size();
                             newWebs.push_back(w1);
                         }
-
                         Web w2;
                         w2.variable = webs[i].variable;
                         w2.start = splitPoint;
@@ -106,9 +126,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                         newWebs.push_back(w2);
                     }
                 }
-
                 AllocationResult subResult = basicRegisterAllocation(newWebs, maxRegisters);
-
                 if (subResult.success) {
                     return subResult;
                 }

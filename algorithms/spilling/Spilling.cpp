@@ -1,3 +1,10 @@
+/**
+ * @file Spilling.cpp
+ * @brief Implementation of web spilling register allocation.
+ *
+ * Uses brute-force search over subsets of webs to spill.
+ */
+
 #include "Spilling.h"
 #include "../basic/Basic.h"
 
@@ -8,6 +15,17 @@
 
 using namespace std;
 
+/**
+ * @brief Attempts allocation by spilling webs.
+ *
+ * @param webs Original webs.
+ * @param maxRegisters Number of registers.
+ * @param maxSpill Max number of webs to spill.
+ * @return AllocationResult with mapping (spilled webs: -1).
+ *
+ * @complexity O( sum_{s=1..maxSpill} C(N,s) * C_basic(N-s) ) where C_basic is
+ *             the complexity of basic allocation (O((N-s)^2) in greedy).
+ */
 AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, int maxSpill) {
     AllocationResult basicResult = basicRegisterAllocation(webs, maxRegisters);
     if (basicResult.success) {
@@ -39,26 +57,22 @@ AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, 
         for (auto spillSet : combos) {
             vector<Web> subWebs;
             vector<int> subToOrig;
-
             for (int i = 0; i < n; ++i) {
                 if (find(spillSet.begin(), spillSet.end(), i) == spillSet.end()) {
                     subWebs.push_back(webs[i]);
                     subToOrig.push_back(i);
                 }
             }
-
             for (size_t i = 0; i < subWebs.size(); ++i) {
                 subWebs[i].id = i;
             }
 
             AllocationResult subResult = basicRegisterAllocation(subWebs, maxRegisters);
-
             if (subResult.success) {
                 AllocationResult result;
                 result.success = true;
                 result.usedRegisters = subResult.usedRegisters;
                 result.webToRegister.assign(n, -1);
-
                 for (size_t i = 0; i < subWebs.size(); ++i) {
                     int originalIndex = subToOrig[i];
                     result.webToRegister[originalIndex] = subResult.webToRegister[i];
