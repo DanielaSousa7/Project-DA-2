@@ -1,19 +1,49 @@
 \doxysection{Interference\+Graph Struct Reference}
 \hypertarget{structInterferenceGraph}{}\label{structInterferenceGraph}\index{InterferenceGraph@{InterferenceGraph}}
+
+
+Represents the interference graph between webs.  
+
+
+
+
+{\ttfamily \#include $<$structs.\+h$>$}
+
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structInterferenceGraph_aaebc25312db96fd3f9a06e4f1c0c7eb6}\label{structInterferenceGraph_aaebc25312db96fd3f9a06e4f1c0c7eb6} 
-Graph$<$ int $>$ {\bfseries graph}
+Graph$<$ int $>$ \mbox{\hyperlink{structInterferenceGraph_aaebc25312db96fd3f9a06e4f1c0c7eb6}{graph}}
 \item 
-\Hypertarget{structInterferenceGraph_aee0fd070b4fa7ccd8acbd13fe112f7b0}\label{structInterferenceGraph_aee0fd070b4fa7ccd8acbd13fe112f7b0} 
-vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$ {\bfseries webs}
+vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$ \mbox{\hyperlink{structInterferenceGraph_aee0fd070b4fa7ccd8acbd13fe112f7b0}{webs}}
 \item 
-\Hypertarget{structInterferenceGraph_a7e406c2b862c7df5dbbab84dda0224f8}\label{structInterferenceGraph_a7e406c2b862c7df5dbbab84dda0224f8} 
-vector$<$ vector$<$ bool $>$ $>$ {\bfseries adj}
+vector$<$ vector$<$ bool $>$ $>$ \mbox{\hyperlink{structInterferenceGraph_a7e406c2b862c7df5dbbab84dda0224f8}{adj}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Represents the interference graph between webs. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structInterferenceGraph_a7e406c2b862c7df5dbbab84dda0224f8}\label{structInterferenceGraph_a7e406c2b862c7df5dbbab84dda0224f8} 
+\index{InterferenceGraph@{InterferenceGraph}!adj@{adj}}
+\index{adj@{adj}!InterferenceGraph@{InterferenceGraph}}
+\doxysubsubsection{\texorpdfstring{adj}{adj}}
+{\footnotesize\ttfamily vector$<$vector$<$bool$>$ $>$ Interference\+Graph\+::adj}
+
+Adjacency matrix for quick interference checks. \Hypertarget{structInterferenceGraph_aaebc25312db96fd3f9a06e4f1c0c7eb6}\label{structInterferenceGraph_aaebc25312db96fd3f9a06e4f1c0c7eb6} 
+\index{InterferenceGraph@{InterferenceGraph}!graph@{graph}}
+\index{graph@{graph}!InterferenceGraph@{InterferenceGraph}}
+\doxysubsubsection{\texorpdfstring{graph}{graph}}
+{\footnotesize\ttfamily Graph$<$int$>$ Interference\+Graph\+::graph}
+
+Graph structure from the TP classes. \Hypertarget{structInterferenceGraph_aee0fd070b4fa7ccd8acbd13fe112f7b0}\label{structInterferenceGraph_aee0fd070b4fa7ccd8acbd13fe112f7b0} 
+\index{InterferenceGraph@{InterferenceGraph}!webs@{webs}}
+\index{webs@{webs}!InterferenceGraph@{InterferenceGraph}}
+\doxysubsubsection{\texorpdfstring{webs}{webs}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{structWeb}{Web}}$>$ Interference\+Graph\+::webs}
+
+Webs represented as graph vertices. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-structs.\+h\end{DoxyCompactItemize}
+\mbox{\hyperlink{structs_8h}{structs.\+h}}\end{DoxyCompactItemize}

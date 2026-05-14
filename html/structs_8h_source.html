@@ -77,83 +77,110 @@ $(document).ready(function() { init_codefold(0); });
   <div class="headertitle"><div class="title">structs.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STRUCTS_H</span></div>
+<a href="structs_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef STRUCTS_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define STRUCTS_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;data_structures/Graph.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">using namespace </span>std;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="foldopen" id="foldopen00010" data-start="{" data-end="};">
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structProgramPoint.html">   10</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structProgramPoint.html">ProgramPoint</a> {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="keywordtype">int</span> code_line;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordtype">bool</span> isDefinition;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">bool</span> isLastUse;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>};</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;data_structures/Graph.h&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">using namespace </span>std;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00018" data-start="{" data-end="};">
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structProgramPoint.html">   18</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structProgramPoint.html">ProgramPoint</a> {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structProgramPoint.html#a7859a70336ed2f26c039da6f9a7f69ce">   19</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structProgramPoint.html#a7859a70336ed2f26c039da6f9a7f69ce">code_line</a>;          </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structProgramPoint.html#a0b11199278b78096e38e36fb00a99048">   20</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structProgramPoint.html#a0b11199278b78096e38e36fb00a99048">isDefinition</a>;      </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structProgramPoint.html#a8b30f39fbe490665154717e4ef546362">   21</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structProgramPoint.html#a8b30f39fbe490665154717e4ef546362">isLastUse</a>;         </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
 </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="};">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structLiveRange.html">   16</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structLiveRange.html">LiveRange</a> {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">string</span> variable;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    vector&lt;ProgramPoint&gt; points;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>};</div>
-</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structRegisterSettings.html">   21</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structRegisterSettings.html">RegisterSettings</a> {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">int</span> registers;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">string</span> algorithm;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">int</span> param;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
-</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="foldopen" id="foldopen00027" data-start="{" data-end="};">
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structInputData.html">   27</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structInputData.html">InputData</a> {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    vector&lt;LiveRange&gt; liveRanges;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_struct" href="structRegisterSettings.html">RegisterSettings</a> settings;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">string</span> outputFile;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">bool</span> hasErrors = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structLiveRange.html">   27</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structLiveRange.html">LiveRange</a> {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structLiveRange.html#a233a59ed5946783c46f8bf954fb967a3">   28</a></span>    <span class="keywordtype">string</span> <a class="code hl_variable" href="structLiveRange.html#a233a59ed5946783c46f8bf954fb967a3">variable</a>;              </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structLiveRange.html#a6fe88473ec682a654ae1233e66b80496">   29</a></span>    vector&lt;ProgramPoint&gt; <a class="code hl_variable" href="structLiveRange.html#a6fe88473ec682a654ae1233e66b80496">points</a>;  </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
 </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structWeb.html">   34</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structWeb.html">Web</a> {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">string</span> variable;      <span class="comment">// original variable name</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">int</span> start;            <span class="comment">// first program line where this web is alive</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">int</span> end;              <span class="comment">// last program line where this web is alive</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">int</span> id;               <span class="comment">// unique identifier (0..n-1)</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    vector&lt;ProgramPoint&gt; points;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="foldopen" id="foldopen00035" data-start="{" data-end="};">
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structRegisterSettings.html">   35</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structRegisterSettings.html">RegisterSettings</a> {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structRegisterSettings.html#a082c35bb41b8ab6deb69acc4708733f6">   36</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structRegisterSettings.html#a082c35bb41b8ab6deb69acc4708733f6">registers</a>;       </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structRegisterSettings.html#a3a96002d63905eb4a96ec8775f8ca542">   37</a></span>    <span class="keywordtype">string</span> <a class="code hl_variable" href="structRegisterSettings.html#a3a96002d63905eb4a96ec8775f8ca542">algorithm</a>;    </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structRegisterSettings.html#a51344178d767cbfce50712c7cade2e0e">   38</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structRegisterSettings.html#a51344178d767cbfce50712c7cade2e0e">param</a>;           </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>};</div>
 </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structInterferenceGraph.html">   42</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structInterferenceGraph.html">InterferenceGraph</a> {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    Graph&lt;int&gt; graph;              <span class="comment">// main graph structure from TP classes</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    vector&lt;Web&gt; webs;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    vector&lt;vector&lt;bool&gt;&gt; adj;   <span class="comment">// adjacency matrix: adj[i][j] true if web i and web j interfere</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="};">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structInputData.html">   44</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structInputData.html">InputData</a> {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structInputData.html#abde50180bcabf2404a6f2b8e241fb08e">   45</a></span>    vector&lt;LiveRange&gt; <a class="code hl_variable" href="structInputData.html#abde50180bcabf2404a6f2b8e241fb08e">liveRanges</a>; </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structInputData.html#a276e7c79d5a69775a284fc6a590d7f19">   46</a></span>    <a class="code hl_struct" href="structRegisterSettings.html">RegisterSettings</a> <a class="code hl_variable" href="structInputData.html#a276e7c79d5a69775a284fc6a590d7f19">settings</a>;    </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structInputData.html#a0bd04f1e4e29c0d08e3d4933ea28fa1e">   47</a></span>    <span class="keywordtype">string</span> <a class="code hl_variable" href="structInputData.html#a0bd04f1e4e29c0d08e3d4933ea28fa1e">outputFile</a>;            </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structInputData.html#a98aa7e7aec86188d70460f24e2cc709e">   48</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structInputData.html#a98aa7e7aec86188d70460f24e2cc709e">hasErrors</a> = <span class="keyword">false</span>;       </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="foldopen" id="foldopen00048" data-start="{" data-end="};">
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structAllocationResult.html">   48</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structAllocationResult.html">AllocationResult</a> {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">int</span> usedRegisters;           <span class="comment">// number of physical registers successfully used (0 if failure)</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    vector&lt;int&gt; webToRegister;   <span class="comment">// map web id -&gt; register number (0..K-1), or -1 for memory</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">bool</span> success;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    vector&lt;Web&gt; webs;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">string</span> algorithm_used = <span class="stringliteral">&quot;basic&quot;</span>;  <span class="comment">// initialize as &quot;basic&quot;</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structWeb.html">   54</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structWeb.html">Web</a> {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structWeb.html#a7e0577f815783927ed47ddc88e7980b1">   55</a></span>    <span class="keywordtype">string</span> <a class="code hl_variable" href="structWeb.html#a7e0577f815783927ed47ddc88e7980b1">variable</a>;              </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structWeb.html#a9974d17ef2bfae5330130eba1ac48d3a">   56</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structWeb.html#a9974d17ef2bfae5330130eba1ac48d3a">start</a>;                    </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structWeb.html#a12149d186c153cbc8a8f0868a78bccea">   57</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structWeb.html#a12149d186c153cbc8a8f0868a78bccea">end</a>;                      </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structWeb.html#af59e2bcb1907d91a75a5d2598e0eb1b6">   58</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structWeb.html#af59e2bcb1907d91a75a5d2598e0eb1b6">id</a>;                       </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structWeb.html#ac3f59cf14bf7bdad9b2118af7a947ff7">   59</a></span>    vector&lt;ProgramPoint&gt; <a class="code hl_variable" href="structWeb.html#ac3f59cf14bf7bdad9b2118af7a947ff7">points</a>;  </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
 </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructAllocationResult_html"><div class="ttname"><a href="structAllocationResult.html">AllocationResult</a></div><div class="ttdef"><b>Definition</b> structs.h:48</div></div>
-<div class="ttc" id="astructInputData_html"><div class="ttname"><a href="structInputData.html">InputData</a></div><div class="ttdef"><b>Definition</b> structs.h:27</div></div>
-<div class="ttc" id="astructInterferenceGraph_html"><div class="ttname"><a href="structInterferenceGraph.html">InterferenceGraph</a></div><div class="ttdef"><b>Definition</b> structs.h:42</div></div>
-<div class="ttc" id="astructLiveRange_html"><div class="ttname"><a href="structLiveRange.html">LiveRange</a></div><div class="ttdef"><b>Definition</b> structs.h:16</div></div>
-<div class="ttc" id="astructProgramPoint_html"><div class="ttname"><a href="structProgramPoint.html">ProgramPoint</a></div><div class="ttdef"><b>Definition</b> structs.h:10</div></div>
-<div class="ttc" id="astructRegisterSettings_html"><div class="ttname"><a href="structRegisterSettings.html">RegisterSettings</a></div><div class="ttdef"><b>Definition</b> structs.h:21</div></div>
-<div class="ttc" id="astructWeb_html"><div class="ttname"><a href="structWeb.html">Web</a></div><div class="ttdef"><b>Definition</b> structs.h:34</div></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="foldopen" id="foldopen00065" data-start="{" data-end="};">
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structInterferenceGraph.html">   65</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structInterferenceGraph.html">InterferenceGraph</a> {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structInterferenceGraph.html#aaebc25312db96fd3f9a06e4f1c0c7eb6">   66</a></span>    Graph&lt;int&gt; <a class="code hl_variable" href="structInterferenceGraph.html#aaebc25312db96fd3f9a06e4f1c0c7eb6">graph</a>;             </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structInterferenceGraph.html#aee0fd070b4fa7ccd8acbd13fe112f7b0">   67</a></span>    vector&lt;Web&gt; <a class="code hl_variable" href="structInterferenceGraph.html#aee0fd070b4fa7ccd8acbd13fe112f7b0">webs</a>;             </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structInterferenceGraph.html#a7e406c2b862c7df5dbbab84dda0224f8">   68</a></span>    vector&lt;vector&lt;bool&gt;&gt; <a class="code hl_variable" href="structInterferenceGraph.html#a7e406c2b862c7df5dbbab84dda0224f8">adj</a>;     </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>};</div>
+</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="foldopen" id="foldopen00074" data-start="{" data-end="};">
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structAllocationResult.html">   74</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structAllocationResult.html">AllocationResult</a> {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="structAllocationResult.html#a0b04f0f7c52a7b321278f5fd896e704d">   75</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structAllocationResult.html#a0b04f0f7c52a7b321278f5fd896e704d">usedRegisters</a>;                         </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="structAllocationResult.html#a42b83fe4430a30fe32bd18e07c60f485">   76</a></span>    vector&lt;int&gt; <a class="code hl_variable" href="structAllocationResult.html#a42b83fe4430a30fe32bd18e07c60f485">webToRegister</a>;                 </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structAllocationResult.html#a936eb75c39932bf369325a842c007bc0">   77</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structAllocationResult.html#a936eb75c39932bf369325a842c007bc0">success</a>;                              </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structAllocationResult.html#a16529ff1e096de8e86ca7aa1ad0cf4f7">   78</a></span>    vector&lt;Web&gt; <a class="code hl_variable" href="structAllocationResult.html#a16529ff1e096de8e86ca7aa1ad0cf4f7">webs</a>;                          </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structAllocationResult.html#a9d6a3d00c2b45a2643f90bff22ab6132">   79</a></span>    <span class="keywordtype">string</span> <a class="code hl_variable" href="structAllocationResult.html#a9d6a3d00c2b45a2643f90bff22ab6132">algorithm_used</a> = <span class="stringliteral">&quot;basic&quot;</span>;           </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structAllocationResult.html#addf1af000246c116911299fc5170ead5">   80</a></span>    vector&lt;pair&lt;int, vector&lt;int&gt;&gt;&gt; <a class="code hl_variable" href="structAllocationResult.html#addf1af000246c116911299fc5170ead5">splitInfo</a>;  </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>};</div>
+</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructAllocationResult_html"><div class="ttname"><a href="structAllocationResult.html">AllocationResult</a></div><div class="ttdoc">Stores the result of a register allocation algorithm.</div><div class="ttdef"><b>Definition</b> structs.h:74</div></div>
+<div class="ttc" id="astructAllocationResult_html_a0b04f0f7c52a7b321278f5fd896e704d"><div class="ttname"><a href="structAllocationResult.html#a0b04f0f7c52a7b321278f5fd896e704d">AllocationResult::usedRegisters</a></div><div class="ttdeci">int usedRegisters</div><div class="ttdef"><b>Definition</b> structs.h:75</div></div>
+<div class="ttc" id="astructAllocationResult_html_a16529ff1e096de8e86ca7aa1ad0cf4f7"><div class="ttname"><a href="structAllocationResult.html#a16529ff1e096de8e86ca7aa1ad0cf4f7">AllocationResult::webs</a></div><div class="ttdeci">vector&lt; Web &gt; webs</div><div class="ttdef"><b>Definition</b> structs.h:78</div></div>
+<div class="ttc" id="astructAllocationResult_html_a42b83fe4430a30fe32bd18e07c60f485"><div class="ttname"><a href="structAllocationResult.html#a42b83fe4430a30fe32bd18e07c60f485">AllocationResult::webToRegister</a></div><div class="ttdeci">vector&lt; int &gt; webToRegister</div><div class="ttdef"><b>Definition</b> structs.h:76</div></div>
+<div class="ttc" id="astructAllocationResult_html_a936eb75c39932bf369325a842c007bc0"><div class="ttname"><a href="structAllocationResult.html#a936eb75c39932bf369325a842c007bc0">AllocationResult::success</a></div><div class="ttdeci">bool success</div><div class="ttdef"><b>Definition</b> structs.h:77</div></div>
+<div class="ttc" id="astructAllocationResult_html_a9d6a3d00c2b45a2643f90bff22ab6132"><div class="ttname"><a href="structAllocationResult.html#a9d6a3d00c2b45a2643f90bff22ab6132">AllocationResult::algorithm_used</a></div><div class="ttdeci">string algorithm_used</div><div class="ttdef"><b>Definition</b> structs.h:79</div></div>
+<div class="ttc" id="astructAllocationResult_html_addf1af000246c116911299fc5170ead5"><div class="ttname"><a href="structAllocationResult.html#addf1af000246c116911299fc5170ead5">AllocationResult::splitInfo</a></div><div class="ttdeci">vector&lt; pair&lt; int, vector&lt; int &gt; &gt; &gt; splitInfo</div><div class="ttdef"><b>Definition</b> structs.h:80</div></div>
+<div class="ttc" id="astructInputData_html"><div class="ttname"><a href="structInputData.html">InputData</a></div><div class="ttdoc">Stores all input data.</div><div class="ttdef"><b>Definition</b> structs.h:44</div></div>
+<div class="ttc" id="astructInputData_html_a0bd04f1e4e29c0d08e3d4933ea28fa1e"><div class="ttname"><a href="structInputData.html#a0bd04f1e4e29c0d08e3d4933ea28fa1e">InputData::outputFile</a></div><div class="ttdeci">string outputFile</div><div class="ttdef"><b>Definition</b> structs.h:47</div></div>
+<div class="ttc" id="astructInputData_html_a276e7c79d5a69775a284fc6a590d7f19"><div class="ttname"><a href="structInputData.html#a276e7c79d5a69775a284fc6a590d7f19">InputData::settings</a></div><div class="ttdeci">RegisterSettings settings</div><div class="ttdef"><b>Definition</b> structs.h:46</div></div>
+<div class="ttc" id="astructInputData_html_a98aa7e7aec86188d70460f24e2cc709e"><div class="ttname"><a href="structInputData.html#a98aa7e7aec86188d70460f24e2cc709e">InputData::hasErrors</a></div><div class="ttdeci">bool hasErrors</div><div class="ttdef"><b>Definition</b> structs.h:48</div></div>
+<div class="ttc" id="astructInputData_html_abde50180bcabf2404a6f2b8e241fb08e"><div class="ttname"><a href="structInputData.html#abde50180bcabf2404a6f2b8e241fb08e">InputData::liveRanges</a></div><div class="ttdeci">vector&lt; LiveRange &gt; liveRanges</div><div class="ttdef"><b>Definition</b> structs.h:45</div></div>
+<div class="ttc" id="astructInterferenceGraph_html"><div class="ttname"><a href="structInterferenceGraph.html">InterferenceGraph</a></div><div class="ttdoc">Represents the interference graph between webs.</div><div class="ttdef"><b>Definition</b> structs.h:65</div></div>
+<div class="ttc" id="astructInterferenceGraph_html_a7e406c2b862c7df5dbbab84dda0224f8"><div class="ttname"><a href="structInterferenceGraph.html#a7e406c2b862c7df5dbbab84dda0224f8">InterferenceGraph::adj</a></div><div class="ttdeci">vector&lt; vector&lt; bool &gt; &gt; adj</div><div class="ttdef"><b>Definition</b> structs.h:68</div></div>
+<div class="ttc" id="astructInterferenceGraph_html_aaebc25312db96fd3f9a06e4f1c0c7eb6"><div class="ttname"><a href="structInterferenceGraph.html#aaebc25312db96fd3f9a06e4f1c0c7eb6">InterferenceGraph::graph</a></div><div class="ttdeci">Graph&lt; int &gt; graph</div><div class="ttdef"><b>Definition</b> structs.h:66</div></div>
+<div class="ttc" id="astructInterferenceGraph_html_aee0fd070b4fa7ccd8acbd13fe112f7b0"><div class="ttname"><a href="structInterferenceGraph.html#aee0fd070b4fa7ccd8acbd13fe112f7b0">InterferenceGraph::webs</a></div><div class="ttdeci">vector&lt; Web &gt; webs</div><div class="ttdef"><b>Definition</b> structs.h:67</div></div>
+<div class="ttc" id="astructLiveRange_html"><div class="ttname"><a href="structLiveRange.html">LiveRange</a></div><div class="ttdoc">Represents one live range of a variable.</div><div class="ttdef"><b>Definition</b> structs.h:27</div></div>
+<div class="ttc" id="astructLiveRange_html_a233a59ed5946783c46f8bf954fb967a3"><div class="ttname"><a href="structLiveRange.html#a233a59ed5946783c46f8bf954fb967a3">LiveRange::variable</a></div><div class="ttdeci">string variable</div><div class="ttdef"><b>Definition</b> structs.h:28</div></div>
+<div class="ttc" id="astructLiveRange_html_a6fe88473ec682a654ae1233e66b80496"><div class="ttname"><a href="structLiveRange.html#a6fe88473ec682a654ae1233e66b80496">LiveRange::points</a></div><div class="ttdeci">vector&lt; ProgramPoint &gt; points</div><div class="ttdef"><b>Definition</b> structs.h:29</div></div>
+<div class="ttc" id="astructProgramPoint_html"><div class="ttname"><a href="structProgramPoint.html">ProgramPoint</a></div><div class="ttdoc">Represents one program point in a live range.</div><div class="ttdef"><b>Definition</b> structs.h:18</div></div>
+<div class="ttc" id="astructProgramPoint_html_a0b11199278b78096e38e36fb00a99048"><div class="ttname"><a href="structProgramPoint.html#a0b11199278b78096e38e36fb00a99048">ProgramPoint::isDefinition</a></div><div class="ttdeci">bool isDefinition</div><div class="ttdef"><b>Definition</b> structs.h:20</div></div>
+<div class="ttc" id="astructProgramPoint_html_a7859a70336ed2f26c039da6f9a7f69ce"><div class="ttname"><a href="structProgramPoint.html#a7859a70336ed2f26c039da6f9a7f69ce">ProgramPoint::code_line</a></div><div class="ttdeci">int code_line</div><div class="ttdef"><b>Definition</b> structs.h:19</div></div>
+<div class="ttc" id="astructProgramPoint_html_a8b30f39fbe490665154717e4ef546362"><div class="ttname"><a href="structProgramPoint.html#a8b30f39fbe490665154717e4ef546362">ProgramPoint::isLastUse</a></div><div class="ttdeci">bool isLastUse</div><div class="ttdef"><b>Definition</b> structs.h:21</div></div>
+<div class="ttc" id="astructRegisterSettings_html"><div class="ttname"><a href="structRegisterSettings.html">RegisterSettings</a></div><div class="ttdoc">Stores the register allocation settings.</div><div class="ttdef"><b>Definition</b> structs.h:35</div></div>
+<div class="ttc" id="astructRegisterSettings_html_a082c35bb41b8ab6deb69acc4708733f6"><div class="ttname"><a href="structRegisterSettings.html#a082c35bb41b8ab6deb69acc4708733f6">RegisterSettings::registers</a></div><div class="ttdeci">int registers</div><div class="ttdef"><b>Definition</b> structs.h:36</div></div>
+<div class="ttc" id="astructRegisterSettings_html_a3a96002d63905eb4a96ec8775f8ca542"><div class="ttname"><a href="structRegisterSettings.html#a3a96002d63905eb4a96ec8775f8ca542">RegisterSettings::algorithm</a></div><div class="ttdeci">string algorithm</div><div class="ttdef"><b>Definition</b> structs.h:37</div></div>
+<div class="ttc" id="astructRegisterSettings_html_a51344178d767cbfce50712c7cade2e0e"><div class="ttname"><a href="structRegisterSettings.html#a51344178d767cbfce50712c7cade2e0e">RegisterSettings::param</a></div><div class="ttdeci">int param</div><div class="ttdef"><b>Definition</b> structs.h:38</div></div>
+<div class="ttc" id="astructWeb_html"><div class="ttname"><a href="structWeb.html">Web</a></div><div class="ttdoc">Represents a live web.</div><div class="ttdef"><b>Definition</b> structs.h:54</div></div>
+<div class="ttc" id="astructWeb_html_a12149d186c153cbc8a8f0868a78bccea"><div class="ttname"><a href="structWeb.html#a12149d186c153cbc8a8f0868a78bccea">Web::end</a></div><div class="ttdeci">int end</div><div class="ttdef"><b>Definition</b> structs.h:57</div></div>
+<div class="ttc" id="astructWeb_html_a7e0577f815783927ed47ddc88e7980b1"><div class="ttname"><a href="structWeb.html#a7e0577f815783927ed47ddc88e7980b1">Web::variable</a></div><div class="ttdeci">string variable</div><div class="ttdef"><b>Definition</b> structs.h:55</div></div>
+<div class="ttc" id="astructWeb_html_a9974d17ef2bfae5330130eba1ac48d3a"><div class="ttname"><a href="structWeb.html#a9974d17ef2bfae5330130eba1ac48d3a">Web::start</a></div><div class="ttdeci">int start</div><div class="ttdef"><b>Definition</b> structs.h:56</div></div>
+<div class="ttc" id="astructWeb_html_ac3f59cf14bf7bdad9b2118af7a947ff7"><div class="ttname"><a href="structWeb.html#ac3f59cf14bf7bdad9b2118af7a947ff7">Web::points</a></div><div class="ttdeci">vector&lt; ProgramPoint &gt; points</div><div class="ttdef"><b>Definition</b> structs.h:59</div></div>
+<div class="ttc" id="astructWeb_html_af59e2bcb1907d91a75a5d2598e0eb1b6"><div class="ttname"><a href="structWeb.html#af59e2bcb1907d91a75a5d2598e0eb1b6">Web::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition</b> structs.h:58</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

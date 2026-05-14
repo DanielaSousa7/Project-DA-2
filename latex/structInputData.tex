@@ -2,25 +2,60 @@
 \hypertarget{structInputData}{}\label{structInputData}\index{InputData@{InputData}}
 
 
+Stores all input data.  
+
+
+
+
+{\ttfamily \#include $<$structs.\+h$>$}
+
+
+
 Collaboration diagram for Input\+Data\+:
 % FIG 0
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structInputData_abde50180bcabf2404a6f2b8e241fb08e}\label{structInputData_abde50180bcabf2404a6f2b8e241fb08e} 
-vector$<$ \mbox{\hyperlink{structLiveRange}{Live\+Range}} $>$ {\bfseries live\+Ranges}
+vector$<$ \mbox{\hyperlink{structLiveRange}{Live\+Range}} $>$ \mbox{\hyperlink{structInputData_abde50180bcabf2404a6f2b8e241fb08e}{live\+Ranges}}
 \item 
-\Hypertarget{structInputData_a276e7c79d5a69775a284fc6a590d7f19}\label{structInputData_a276e7c79d5a69775a284fc6a590d7f19} 
-\mbox{\hyperlink{structRegisterSettings}{Register\+Settings}} {\bfseries settings}
+\mbox{\hyperlink{structRegisterSettings}{Register\+Settings}} \mbox{\hyperlink{structInputData_a276e7c79d5a69775a284fc6a590d7f19}{settings}}
 \item 
-\Hypertarget{structInputData_a0bd04f1e4e29c0d08e3d4933ea28fa1e}\label{structInputData_a0bd04f1e4e29c0d08e3d4933ea28fa1e} 
-string {\bfseries output\+File}
+string \mbox{\hyperlink{structInputData_a0bd04f1e4e29c0d08e3d4933ea28fa1e}{output\+File}}
 \item 
-\Hypertarget{structInputData_a98aa7e7aec86188d70460f24e2cc709e}\label{structInputData_a98aa7e7aec86188d70460f24e2cc709e} 
-bool {\bfseries has\+Errors} = false
+bool \mbox{\hyperlink{structInputData_a98aa7e7aec86188d70460f24e2cc709e}{has\+Errors}} = false
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Stores all input data. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structInputData_a98aa7e7aec86188d70460f24e2cc709e}\label{structInputData_a98aa7e7aec86188d70460f24e2cc709e} 
+\index{InputData@{InputData}!hasErrors@{hasErrors}}
+\index{hasErrors@{hasErrors}!InputData@{InputData}}
+\doxysubsubsection{\texorpdfstring{hasErrors}{hasErrors}}
+{\footnotesize\ttfamily bool Input\+Data\+::has\+Errors = false}
+
+True if input parsing found errors. \Hypertarget{structInputData_abde50180bcabf2404a6f2b8e241fb08e}\label{structInputData_abde50180bcabf2404a6f2b8e241fb08e} 
+\index{InputData@{InputData}!liveRanges@{liveRanges}}
+\index{liveRanges@{liveRanges}!InputData@{InputData}}
+\doxysubsubsection{\texorpdfstring{liveRanges}{liveRanges}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{structLiveRange}{Live\+Range}}$>$ Input\+Data\+::live\+Ranges}
+
+Parsed live ranges. \Hypertarget{structInputData_a0bd04f1e4e29c0d08e3d4933ea28fa1e}\label{structInputData_a0bd04f1e4e29c0d08e3d4933ea28fa1e} 
+\index{InputData@{InputData}!outputFile@{outputFile}}
+\index{outputFile@{outputFile}!InputData@{InputData}}
+\doxysubsubsection{\texorpdfstring{outputFile}{outputFile}}
+{\footnotesize\ttfamily string Input\+Data\+::output\+File}
+
+Output file path. \Hypertarget{structInputData_a276e7c79d5a69775a284fc6a590d7f19}\label{structInputData_a276e7c79d5a69775a284fc6a590d7f19} 
+\index{InputData@{InputData}!settings@{settings}}
+\index{settings@{settings}!InputData@{InputData}}
+\doxysubsubsection{\texorpdfstring{settings}{settings}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structRegisterSettings}{Register\+Settings}} Input\+Data\+::settings}
+
+Parsed register settings. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-structs.\+h\end{DoxyCompactItemize}
+\mbox{\hyperlink{structs_8h}{structs.\+h}}\end{DoxyCompactItemize}

@@ -1,57 +1,83 @@
 #ifndef STRUCTS_H
 #define STRUCTS_H
 
+/**
+ * @file structs.h
+ * @brief Main data structures used in the register allocation project.
+ */
+
 #include <string>
 #include <vector>
 #include "data_structures/Graph.h"
 
 using namespace std;
 
+/**
+ * @brief Represents one program point in a live range.
+ */
 struct ProgramPoint {
-    int code_line;
-    bool isDefinition;
-    bool isLastUse;
+    int code_line;          /**< Program line number. */
+    bool isDefinition;      /**< True if the point is a definition. */
+    bool isLastUse;         /**< True if the point is the last use. */
 };
 
+/**
+ * @brief Represents one live range of a variable.
+ */
 struct LiveRange {
-    string variable;
-    vector<ProgramPoint> points;
+    string variable;              /**< Variable name. */
+    vector<ProgramPoint> points;  /**< Program points where the variable is live. */
 };
 
+/**
+ * @brief Stores the register allocation settings.
+ */
 struct RegisterSettings {
-    int registers;
-    string algorithm;
-    int param;
+    int registers;       /**< Maximum number of available registers. */
+    string algorithm;    /**< Algorithm name: basic, spilling, splitting or free. */
+    int param;           /**< Optional parameter used by spilling or splitting. */
 };
 
+/**
+ * @brief Stores all input data.
+ */
 struct InputData {
-    vector<LiveRange> liveRanges;
-    RegisterSettings settings;
-    string outputFile;
-    bool hasErrors = false;
+    vector<LiveRange> liveRanges; /**< Parsed live ranges. */
+    RegisterSettings settings;    /**< Parsed register settings. */
+    string outputFile;            /**< Output file path. */
+    bool hasErrors = false;       /**< True if input parsing found errors. */
 };
 
+/**
+ * @brief Represents a live web.
+ */
 struct Web {
-    string variable;      // original variable name
-    int start;            // first program line where this web is alive
-    int end;              // last program line where this web is alive
-    int id;               // unique identifier (0..n-1)
-    vector<ProgramPoint> points;
+    string variable;              /**< Variable associated with the web. */
+    int start;                    /**< First program line of the web. */
+    int end;                      /**< Last program line of the web. */
+    int id;                       /**< Web identifier. */
+    vector<ProgramPoint> points;  /**< Program points included in the web. */
 };
 
+/**
+ * @brief Represents the interference graph between webs.
+ */
 struct InterferenceGraph {
-    Graph<int> graph;              // main graph structure from TP classes
-    vector<Web> webs;
-    vector<vector<bool>> adj;   // adjacency matrix: adj[i][j] true if web i and web j interfere
+    Graph<int> graph;             /**< Graph structure from the TP classes. */
+    vector<Web> webs;             /**< Webs represented as graph vertices. */
+    vector<vector<bool>> adj;     /**< Adjacency matrix for quick interference checks. */
 };
 
+/**
+ * @brief Stores the result of a register allocation algorithm.
+ */
 struct AllocationResult {
-    int usedRegisters;           // number of physical registers successfully used (0 if failure)
-    vector<int> webToRegister;   // map web id -> register number (0..K-1), or -1 for memory
-    bool success;
-    vector<Web> webs;
-    string algorithm_used = "basic";  // initialize as "basic"
-    vector<pair<int, vector<int>>> splitInfo; // original web index -> list of new web indices (split parts)
+    int usedRegisters;                         /**< Number of registers used. */
+    vector<int> webToRegister;                 /**< Register assigned to each web, or -1 for memory. */
+    bool success;                              /**< True if allocation was successful. */
+    vector<Web> webs;                          /**< Final webs after allocation. */
+    string algorithm_used = "basic";           /**< Algorithm used to produce the result. */
+    vector<pair<int, vector<int>>> splitInfo;  /**< Information about split webs. */
 };
 
 #endif

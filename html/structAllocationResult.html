@@ -75,25 +75,120 @@ $(function() {
   <div class="headertitle"><div class="title">AllocationResult Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Stores the result of a register allocation algorithm.  
+ <a href="structAllocationResult.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="structs_8h_source.html">structs.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a0b04f0f7c52a7b321278f5fd896e704d" id="r_a0b04f0f7c52a7b321278f5fd896e704d"><td class="memItemLeft" align="right" valign="top"><a id="a0b04f0f7c52a7b321278f5fd896e704d" name="a0b04f0f7c52a7b321278f5fd896e704d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>usedRegisters</b></td></tr>
+<tr class="memitem:a0b04f0f7c52a7b321278f5fd896e704d" id="r_a0b04f0f7c52a7b321278f5fd896e704d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAllocationResult.html#a0b04f0f7c52a7b321278f5fd896e704d">usedRegisters</a></td></tr>
 <tr class="separator:a0b04f0f7c52a7b321278f5fd896e704d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42b83fe4430a30fe32bd18e07c60f485" id="r_a42b83fe4430a30fe32bd18e07c60f485"><td class="memItemLeft" align="right" valign="top"><a id="a42b83fe4430a30fe32bd18e07c60f485" name="a42b83fe4430a30fe32bd18e07c60f485"></a>
-vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>webToRegister</b></td></tr>
+<tr class="memitem:a42b83fe4430a30fe32bd18e07c60f485" id="r_a42b83fe4430a30fe32bd18e07c60f485"><td class="memItemLeft" align="right" valign="top">vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAllocationResult.html#a42b83fe4430a30fe32bd18e07c60f485">webToRegister</a></td></tr>
 <tr class="separator:a42b83fe4430a30fe32bd18e07c60f485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a936eb75c39932bf369325a842c007bc0" id="r_a936eb75c39932bf369325a842c007bc0"><td class="memItemLeft" align="right" valign="top"><a id="a936eb75c39932bf369325a842c007bc0" name="a936eb75c39932bf369325a842c007bc0"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>success</b></td></tr>
+<tr class="memitem:a936eb75c39932bf369325a842c007bc0" id="r_a936eb75c39932bf369325a842c007bc0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAllocationResult.html#a936eb75c39932bf369325a842c007bc0">success</a></td></tr>
 <tr class="separator:a936eb75c39932bf369325a842c007bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16529ff1e096de8e86ca7aa1ad0cf4f7" id="r_a16529ff1e096de8e86ca7aa1ad0cf4f7"><td class="memItemLeft" align="right" valign="top"><a id="a16529ff1e096de8e86ca7aa1ad0cf4f7" name="a16529ff1e096de8e86ca7aa1ad0cf4f7"></a>
-vector&lt; <a class="el" href="structWeb.html">Web</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>webs</b></td></tr>
+<tr class="memitem:a16529ff1e096de8e86ca7aa1ad0cf4f7" id="r_a16529ff1e096de8e86ca7aa1ad0cf4f7"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="structWeb.html">Web</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAllocationResult.html#a16529ff1e096de8e86ca7aa1ad0cf4f7">webs</a></td></tr>
 <tr class="separator:a16529ff1e096de8e86ca7aa1ad0cf4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d6a3d00c2b45a2643f90bff22ab6132" id="r_a9d6a3d00c2b45a2643f90bff22ab6132"><td class="memItemLeft" align="right" valign="top"><a id="a9d6a3d00c2b45a2643f90bff22ab6132" name="a9d6a3d00c2b45a2643f90bff22ab6132"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>algorithm_used</b> = &quot;basic&quot;</td></tr>
+<tr class="memitem:a9d6a3d00c2b45a2643f90bff22ab6132" id="r_a9d6a3d00c2b45a2643f90bff22ab6132"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAllocationResult.html#a9d6a3d00c2b45a2643f90bff22ab6132">algorithm_used</a> = &quot;basic&quot;</td></tr>
 <tr class="separator:a9d6a3d00c2b45a2643f90bff22ab6132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addf1af000246c116911299fc5170ead5" id="r_addf1af000246c116911299fc5170ead5"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; int, vector&lt; int &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structAllocationResult.html#addf1af000246c116911299fc5170ead5">splitInfo</a></td></tr>
+<tr class="separator:addf1af000246c116911299fc5170ead5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Stores the result of a register allocation algorithm. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9d6a3d00c2b45a2643f90bff22ab6132" name="a9d6a3d00c2b45a2643f90bff22ab6132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d6a3d00c2b45a2643f90bff22ab6132">&#9670;&#160;</a></span>algorithm_used</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string AllocationResult::algorithm_used = &quot;basic&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Algorithm used to produce the result. </p>
+
+</div>
+</div>
+<a id="addf1af000246c116911299fc5170ead5" name="addf1af000246c116911299fc5170ead5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addf1af000246c116911299fc5170ead5">&#9670;&#160;</a></span>splitInfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;pair&lt;int, vector&lt;int&gt; &gt; &gt; AllocationResult::splitInfo</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Information about split webs. </p>
+
+</div>
+</div>
+<a id="a936eb75c39932bf369325a842c007bc0" name="a936eb75c39932bf369325a842c007bc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936eb75c39932bf369325a842c007bc0">&#9670;&#160;</a></span>success</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AllocationResult::success</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>True if allocation was successful. </p>
+
+</div>
+</div>
+<a id="a0b04f0f7c52a7b321278f5fd896e704d" name="a0b04f0f7c52a7b321278f5fd896e704d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b04f0f7c52a7b321278f5fd896e704d">&#9670;&#160;</a></span>usedRegisters</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AllocationResult::usedRegisters</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Number of registers used. </p>
+
+</div>
+</div>
+<a id="a16529ff1e096de8e86ca7aa1ad0cf4f7" name="a16529ff1e096de8e86ca7aa1ad0cf4f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16529ff1e096de8e86ca7aa1ad0cf4f7">&#9670;&#160;</a></span>webs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="structWeb.html">Web</a>&gt; AllocationResult::webs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Final webs after allocation. </p>
+
+</div>
+</div>
+<a id="a42b83fe4430a30fe32bd18e07c60f485" name="a42b83fe4430a30fe32bd18e07c60f485"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42b83fe4430a30fe32bd18e07c60f485">&#9670;&#160;</a></span>webToRegister</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;int&gt; AllocationResult::webToRegister</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Register assigned to each web, or -1 for memory. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="structs_8h_source.html">structs.h</a></li>
 </ul>

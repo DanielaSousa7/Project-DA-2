@@ -1,19 +1,49 @@
 \doxysection{Register\+Settings Struct Reference}
 \hypertarget{structRegisterSettings}{}\label{structRegisterSettings}\index{RegisterSettings@{RegisterSettings}}
+
+
+Stores the register allocation settings.  
+
+
+
+
+{\ttfamily \#include $<$structs.\+h$>$}
+
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structRegisterSettings_a082c35bb41b8ab6deb69acc4708733f6}\label{structRegisterSettings_a082c35bb41b8ab6deb69acc4708733f6} 
-int {\bfseries registers}
+int \mbox{\hyperlink{structRegisterSettings_a082c35bb41b8ab6deb69acc4708733f6}{registers}}
 \item 
-\Hypertarget{structRegisterSettings_a3a96002d63905eb4a96ec8775f8ca542}\label{structRegisterSettings_a3a96002d63905eb4a96ec8775f8ca542} 
-string {\bfseries algorithm}
+string \mbox{\hyperlink{structRegisterSettings_a3a96002d63905eb4a96ec8775f8ca542}{algorithm}}
 \item 
-\Hypertarget{structRegisterSettings_a51344178d767cbfce50712c7cade2e0e}\label{structRegisterSettings_a51344178d767cbfce50712c7cade2e0e} 
-int {\bfseries param}
+int \mbox{\hyperlink{structRegisterSettings_a51344178d767cbfce50712c7cade2e0e}{param}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Stores the register allocation settings. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structRegisterSettings_a3a96002d63905eb4a96ec8775f8ca542}\label{structRegisterSettings_a3a96002d63905eb4a96ec8775f8ca542} 
+\index{RegisterSettings@{RegisterSettings}!algorithm@{algorithm}}
+\index{algorithm@{algorithm}!RegisterSettings@{RegisterSettings}}
+\doxysubsubsection{\texorpdfstring{algorithm}{algorithm}}
+{\footnotesize\ttfamily string Register\+Settings\+::algorithm}
+
+Algorithm name\+: basic, spilling, splitting or free. \Hypertarget{structRegisterSettings_a51344178d767cbfce50712c7cade2e0e}\label{structRegisterSettings_a51344178d767cbfce50712c7cade2e0e} 
+\index{RegisterSettings@{RegisterSettings}!param@{param}}
+\index{param@{param}!RegisterSettings@{RegisterSettings}}
+\doxysubsubsection{\texorpdfstring{param}{param}}
+{\footnotesize\ttfamily int Register\+Settings\+::param}
+
+Optional parameter used by spilling or splitting. \Hypertarget{structRegisterSettings_a082c35bb41b8ab6deb69acc4708733f6}\label{structRegisterSettings_a082c35bb41b8ab6deb69acc4708733f6} 
+\index{RegisterSettings@{RegisterSettings}!registers@{registers}}
+\index{registers@{registers}!RegisterSettings@{RegisterSettings}}
+\doxysubsubsection{\texorpdfstring{registers}{registers}}
+{\footnotesize\ttfamily int Register\+Settings\+::registers}
+
+Maximum number of available registers. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-structs.\+h\end{DoxyCompactItemize}
+\mbox{\hyperlink{structs_8h}{structs.\+h}}\end{DoxyCompactItemize}

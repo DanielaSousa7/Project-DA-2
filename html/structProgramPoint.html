@@ -75,19 +75,69 @@ $(function() {
   <div class="headertitle"><div class="title">ProgramPoint Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents one program point in a live range.  
+ <a href="structProgramPoint.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="structs_8h_source.html">structs.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7859a70336ed2f26c039da6f9a7f69ce" id="r_a7859a70336ed2f26c039da6f9a7f69ce"><td class="memItemLeft" align="right" valign="top"><a id="a7859a70336ed2f26c039da6f9a7f69ce" name="a7859a70336ed2f26c039da6f9a7f69ce"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>code_line</b></td></tr>
+<tr class="memitem:a7859a70336ed2f26c039da6f9a7f69ce" id="r_a7859a70336ed2f26c039da6f9a7f69ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structProgramPoint.html#a7859a70336ed2f26c039da6f9a7f69ce">code_line</a></td></tr>
 <tr class="separator:a7859a70336ed2f26c039da6f9a7f69ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b11199278b78096e38e36fb00a99048" id="r_a0b11199278b78096e38e36fb00a99048"><td class="memItemLeft" align="right" valign="top"><a id="a0b11199278b78096e38e36fb00a99048" name="a0b11199278b78096e38e36fb00a99048"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDefinition</b></td></tr>
+<tr class="memitem:a0b11199278b78096e38e36fb00a99048" id="r_a0b11199278b78096e38e36fb00a99048"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structProgramPoint.html#a0b11199278b78096e38e36fb00a99048">isDefinition</a></td></tr>
 <tr class="separator:a0b11199278b78096e38e36fb00a99048"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b30f39fbe490665154717e4ef546362" id="r_a8b30f39fbe490665154717e4ef546362"><td class="memItemLeft" align="right" valign="top"><a id="a8b30f39fbe490665154717e4ef546362" name="a8b30f39fbe490665154717e4ef546362"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isLastUse</b></td></tr>
+<tr class="memitem:a8b30f39fbe490665154717e4ef546362" id="r_a8b30f39fbe490665154717e4ef546362"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structProgramPoint.html#a8b30f39fbe490665154717e4ef546362">isLastUse</a></td></tr>
 <tr class="separator:a8b30f39fbe490665154717e4ef546362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents one program point in a live range. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7859a70336ed2f26c039da6f9a7f69ce" name="a7859a70336ed2f26c039da6f9a7f69ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7859a70336ed2f26c039da6f9a7f69ce">&#9670;&#160;</a></span>code_line</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ProgramPoint::code_line</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Program line number. </p>
+
+</div>
+</div>
+<a id="a0b11199278b78096e38e36fb00a99048" name="a0b11199278b78096e38e36fb00a99048"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b11199278b78096e38e36fb00a99048">&#9670;&#160;</a></span>isDefinition</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ProgramPoint::isDefinition</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>True if the point is a definition. </p>
+
+</div>
+</div>
+<a id="a8b30f39fbe490665154717e4ef546362" name="a8b30f39fbe490665154717e4ef546362"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b30f39fbe490665154717e4ef546362">&#9670;&#160;</a></span>isLastUse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ProgramPoint::isLastUse</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>True if the point is the last use. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="structs_8h_source.html">structs.h</a></li>
 </ul>

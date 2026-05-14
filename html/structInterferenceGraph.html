@@ -75,19 +75,69 @@ $(function() {
   <div class="headertitle"><div class="title">InterferenceGraph Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents the interference graph between webs.  
+ <a href="structInterferenceGraph.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="structs_8h_source.html">structs.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aaebc25312db96fd3f9a06e4f1c0c7eb6" id="r_aaebc25312db96fd3f9a06e4f1c0c7eb6"><td class="memItemLeft" align="right" valign="top"><a id="aaebc25312db96fd3f9a06e4f1c0c7eb6" name="aaebc25312db96fd3f9a06e4f1c0c7eb6"></a>
-Graph&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>graph</b></td></tr>
+<tr class="memitem:aaebc25312db96fd3f9a06e4f1c0c7eb6" id="r_aaebc25312db96fd3f9a06e4f1c0c7eb6"><td class="memItemLeft" align="right" valign="top">Graph&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInterferenceGraph.html#aaebc25312db96fd3f9a06e4f1c0c7eb6">graph</a></td></tr>
 <tr class="separator:aaebc25312db96fd3f9a06e4f1c0c7eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee0fd070b4fa7ccd8acbd13fe112f7b0" id="r_aee0fd070b4fa7ccd8acbd13fe112f7b0"><td class="memItemLeft" align="right" valign="top"><a id="aee0fd070b4fa7ccd8acbd13fe112f7b0" name="aee0fd070b4fa7ccd8acbd13fe112f7b0"></a>
-vector&lt; <a class="el" href="structWeb.html">Web</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>webs</b></td></tr>
+<tr class="memitem:aee0fd070b4fa7ccd8acbd13fe112f7b0" id="r_aee0fd070b4fa7ccd8acbd13fe112f7b0"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="structWeb.html">Web</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInterferenceGraph.html#aee0fd070b4fa7ccd8acbd13fe112f7b0">webs</a></td></tr>
 <tr class="separator:aee0fd070b4fa7ccd8acbd13fe112f7b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e406c2b862c7df5dbbab84dda0224f8" id="r_a7e406c2b862c7df5dbbab84dda0224f8"><td class="memItemLeft" align="right" valign="top"><a id="a7e406c2b862c7df5dbbab84dda0224f8" name="a7e406c2b862c7df5dbbab84dda0224f8"></a>
-vector&lt; vector&lt; bool &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>adj</b></td></tr>
+<tr class="memitem:a7e406c2b862c7df5dbbab84dda0224f8" id="r_a7e406c2b862c7df5dbbab84dda0224f8"><td class="memItemLeft" align="right" valign="top">vector&lt; vector&lt; bool &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structInterferenceGraph.html#a7e406c2b862c7df5dbbab84dda0224f8">adj</a></td></tr>
 <tr class="separator:a7e406c2b862c7df5dbbab84dda0224f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents the interference graph between webs. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7e406c2b862c7df5dbbab84dda0224f8" name="a7e406c2b862c7df5dbbab84dda0224f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e406c2b862c7df5dbbab84dda0224f8">&#9670;&#160;</a></span>adj</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;vector&lt;bool&gt; &gt; InterferenceGraph::adj</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Adjacency matrix for quick interference checks. </p>
+
+</div>
+</div>
+<a id="aaebc25312db96fd3f9a06e4f1c0c7eb6" name="aaebc25312db96fd3f9a06e4f1c0c7eb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaebc25312db96fd3f9a06e4f1c0c7eb6">&#9670;&#160;</a></span>graph</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Graph&lt;int&gt; InterferenceGraph::graph</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Graph structure from the TP classes. </p>
+
+</div>
+</div>
+<a id="aee0fd070b4fa7ccd8acbd13fe112f7b0" name="aee0fd070b4fa7ccd8acbd13fe112f7b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee0fd070b4fa7ccd8acbd13fe112f7b0">&#9670;&#160;</a></span>webs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="structWeb.html">Web</a>&gt; InterferenceGraph::webs</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Webs represented as graph vertices. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li><a class="el" href="structs_8h_source.html">structs.h</a></li>
 </ul>

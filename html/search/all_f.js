@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['register_20allocation_0',['T2.1 Basic Register Allocation',['../md_README.html#autotoc_md5',1,'']]],
-  ['register_20allocation_20of_20your_20own_1',['T2.4 Register Allocation of Your Own',['../md_README.html#autotoc_md8',1,'']]],
-  ['register_20allocation_20with_20web_20spilling_2',['T2.2 Register Allocation with Web Spilling',['../md_README.html#autotoc_md6',1,'']]],
-  ['register_20allocation_20with_20web_20splitting_3',['T2.3 Register Allocation with Web Splitting',['../md_README.html#autotoc_md7',1,'']]],
-  ['registersettings_4',['RegisterSettings',['../structRegisterSettings.html',1,'']]],
-  ['run_20in_20batch_20mode_5',['Run in Batch Mode',['../md_README.html#autotoc_md4',1,'']]],
-  ['run_20in_20interactive_20mode_6',['Run in Interactive Mode',['../md_README.html#autotoc_md3',1,'']]],
-  ['runregisterallocation_7',['runregisterallocation',['../Allocation_8cpp.html#a4d9b5eaf5737c4e34f6250ecb8e27b3b',1,'runRegisterAllocation(InputData data):&#160;Allocation.cpp'],['../Allocation_8h.html#a4d9b5eaf5737c4e34f6250ecb8e27b3b',1,'runRegisterAllocation(InputData data):&#160;Allocation.cpp']]]
+  ['of_20the_20program_0',['Compilation and Execution of the Program',['../md_README.html#autotoc_md1',1,'']]],
+  ['of_20your_20own_1',['T2.4 Register Allocation of Your Own',['../md_README.html#autotoc_md8',1,'']]],
+  ['output_20file_2',['Output File',['../md_README.html#autotoc_md10',1,'']]],
+  ['output_2eh_3',['Output.h',['../Output_8h.html',1,'']]],
+  ['outputfile_4',['outputFile',['../structInputData.html#a0bd04f1e4e29c0d08e3d4933ea28fa1e',1,'InputData']]],
+  ['own_5',['T2.4 Register Allocation of Your Own',['../md_README.html#autotoc_md8',1,'']]]
 ];

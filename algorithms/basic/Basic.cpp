@@ -16,9 +16,9 @@ using namespace std;
  * @param graph Interference graph.
  * @param K Number of colors.
  * @param colorMap Output coloring.
- * @return True if successful.
+ * @return True if the graph was colored successfully, false otherwise.
  *
- * @complexity O(N^2) as described in the header.
+ * @complexity O(N^2)
  */
 bool tryColorWithK(InterferenceGraph graph, int K, vector<int>& colorMap) {
     int n = graph.webs.size();

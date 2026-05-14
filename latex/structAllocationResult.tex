@@ -1,25 +1,73 @@
 \doxysection{Allocation\+Result Struct Reference}
 \hypertarget{structAllocationResult}{}\label{structAllocationResult}\index{AllocationResult@{AllocationResult}}
+
+
+Stores the result of a register allocation algorithm.  
+
+
+
+
+{\ttfamily \#include $<$structs.\+h$>$}
+
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{structAllocationResult_a0b04f0f7c52a7b321278f5fd896e704d}\label{structAllocationResult_a0b04f0f7c52a7b321278f5fd896e704d} 
-int {\bfseries used\+Registers}
+int \mbox{\hyperlink{structAllocationResult_a0b04f0f7c52a7b321278f5fd896e704d}{used\+Registers}}
 \item 
-\Hypertarget{structAllocationResult_a42b83fe4430a30fe32bd18e07c60f485}\label{structAllocationResult_a42b83fe4430a30fe32bd18e07c60f485} 
-vector$<$ int $>$ {\bfseries web\+To\+Register}
+vector$<$ int $>$ \mbox{\hyperlink{structAllocationResult_a42b83fe4430a30fe32bd18e07c60f485}{web\+To\+Register}}
 \item 
-\Hypertarget{structAllocationResult_a936eb75c39932bf369325a842c007bc0}\label{structAllocationResult_a936eb75c39932bf369325a842c007bc0} 
-bool {\bfseries success}
+bool \mbox{\hyperlink{structAllocationResult_a936eb75c39932bf369325a842c007bc0}{success}}
 \item 
-\Hypertarget{structAllocationResult_a16529ff1e096de8e86ca7aa1ad0cf4f7}\label{structAllocationResult_a16529ff1e096de8e86ca7aa1ad0cf4f7} 
-vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$ {\bfseries webs}
+vector$<$ \mbox{\hyperlink{structWeb}{Web}} $>$ \mbox{\hyperlink{structAllocationResult_a16529ff1e096de8e86ca7aa1ad0cf4f7}{webs}}
 \item 
-\Hypertarget{structAllocationResult_a9d6a3d00c2b45a2643f90bff22ab6132}\label{structAllocationResult_a9d6a3d00c2b45a2643f90bff22ab6132} 
-string {\bfseries algorithm\+\_\+used} = "{}basic"{}
+string \mbox{\hyperlink{structAllocationResult_a9d6a3d00c2b45a2643f90bff22ab6132}{algorithm\+\_\+used}} = "{}basic"{}
+\item 
+vector$<$ pair$<$ int, vector$<$ int $>$ $>$ $>$ \mbox{\hyperlink{structAllocationResult_addf1af000246c116911299fc5170ead5}{split\+Info}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Stores the result of a register allocation algorithm. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structAllocationResult_a9d6a3d00c2b45a2643f90bff22ab6132}\label{structAllocationResult_a9d6a3d00c2b45a2643f90bff22ab6132} 
+\index{AllocationResult@{AllocationResult}!algorithm\_used@{algorithm\_used}}
+\index{algorithm\_used@{algorithm\_used}!AllocationResult@{AllocationResult}}
+\doxysubsubsection{\texorpdfstring{algorithm\_used}{algorithm\_used}}
+{\footnotesize\ttfamily string Allocation\+Result\+::algorithm\+\_\+used = "{}basic"{}}
+
+Algorithm used to produce the result. \Hypertarget{structAllocationResult_addf1af000246c116911299fc5170ead5}\label{structAllocationResult_addf1af000246c116911299fc5170ead5} 
+\index{AllocationResult@{AllocationResult}!splitInfo@{splitInfo}}
+\index{splitInfo@{splitInfo}!AllocationResult@{AllocationResult}}
+\doxysubsubsection{\texorpdfstring{splitInfo}{splitInfo}}
+{\footnotesize\ttfamily vector$<$pair$<$int, vector$<$int$>$ $>$ $>$ Allocation\+Result\+::split\+Info}
+
+Information about split webs. \Hypertarget{structAllocationResult_a936eb75c39932bf369325a842c007bc0}\label{structAllocationResult_a936eb75c39932bf369325a842c007bc0} 
+\index{AllocationResult@{AllocationResult}!success@{success}}
+\index{success@{success}!AllocationResult@{AllocationResult}}
+\doxysubsubsection{\texorpdfstring{success}{success}}
+{\footnotesize\ttfamily bool Allocation\+Result\+::success}
+
+True if allocation was successful. \Hypertarget{structAllocationResult_a0b04f0f7c52a7b321278f5fd896e704d}\label{structAllocationResult_a0b04f0f7c52a7b321278f5fd896e704d} 
+\index{AllocationResult@{AllocationResult}!usedRegisters@{usedRegisters}}
+\index{usedRegisters@{usedRegisters}!AllocationResult@{AllocationResult}}
+\doxysubsubsection{\texorpdfstring{usedRegisters}{usedRegisters}}
+{\footnotesize\ttfamily int Allocation\+Result\+::used\+Registers}
+
+Number of registers used. \Hypertarget{structAllocationResult_a16529ff1e096de8e86ca7aa1ad0cf4f7}\label{structAllocationResult_a16529ff1e096de8e86ca7aa1ad0cf4f7} 
+\index{AllocationResult@{AllocationResult}!webs@{webs}}
+\index{webs@{webs}!AllocationResult@{AllocationResult}}
+\doxysubsubsection{\texorpdfstring{webs}{webs}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{structWeb}{Web}}$>$ Allocation\+Result\+::webs}
+
+Final webs after allocation. \Hypertarget{structAllocationResult_a42b83fe4430a30fe32bd18e07c60f485}\label{structAllocationResult_a42b83fe4430a30fe32bd18e07c60f485} 
+\index{AllocationResult@{AllocationResult}!webToRegister@{webToRegister}}
+\index{webToRegister@{webToRegister}!AllocationResult@{AllocationResult}}
+\doxysubsubsection{\texorpdfstring{webToRegister}{webToRegister}}
+{\footnotesize\ttfamily vector$<$int$>$ Allocation\+Result\+::web\+To\+Register}
+
+Register assigned to each web, or -\/1 for memory. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-structs.\+h\end{DoxyCompactItemize}
+\mbox{\hyperlink{structs_8h}{structs.\+h}}\end{DoxyCompactItemize}

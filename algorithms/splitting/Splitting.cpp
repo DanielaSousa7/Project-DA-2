@@ -53,9 +53,12 @@ vector<vector<int>> cartesianProduct(vector<vector<int>> sets) {
 /**
  * @brief Attempts allocation with web splitting.
  *
+ * Tries the basic allocation first. If it fails, it tests possible web splits
+ * and runs the basic allocation again on the new web set.
+ *
  * @param webs Original webs.
  * @param maxRegisters Number of registers.
- * @param maxSplits Max webs to split.
+ * @param maxSplits Maximum number of webs that can be split.
  * @return AllocationResult.
  *
  * @complexity O( sum_{s=1..maxSplits} C(N,s) * R^s * (N+s)^2 ), where N is the number of webs and R is the average number of possible split points per web.
@@ -122,12 +125,12 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                         Web w = webs[i];
                         w.id = newWebs.size();
                         newWebs.push_back(w);
-                    } else {
+                    }
+                    else {
                         int pos = distance(splitSet.begin(), it);
                         int splitPoint = points[pos];
                         vector<int> newIds;
 
-                        // First part (if non‑empty)
                         if (splitPoint - 1 >= webs[i].start) {
                             Web w1;
                             w1.variable = webs[i].variable;
@@ -139,7 +142,6 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
                             newIds.push_back(w1.id);
                         }
 
-                        // Second part (always non‑empty because splitPoint ≤ webs[i].end)
                         Web w2;
                         w2.variable = webs[i].variable;
                         w2.start = splitPoint;

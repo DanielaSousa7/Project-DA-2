@@ -20,9 +20,9 @@ using namespace std;
  * @param graph Interference graph.
  * @param K Number of colors.
  * @param colorMap Output color assignment.
- * @return true if successful.
+ * @return True if the graph was colored successfully, false otherwise.
  *
- * @complexity O(N^2) as described.
+ * @complexity O(N^2)
  */
 bool tryDSATUR(InterferenceGraph graph, int K, vector<int>& colorMap) {
     int n = graph.webs.size();
