@@ -170,5 +170,7 @@ AllocationResult splittingRegisterAllocation(vector<Web> webs, int maxRegisters,
     fail.success = false;
     fail.usedRegisters = 0;
     fail.webToRegister.assign(n, -1);
+    fail.webs = webs;
+    fail.algorithm_used = "splitting";
     return fail;
 }

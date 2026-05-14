@@ -87,5 +87,7 @@ AllocationResult spillingRegisterAllocation(vector<Web> webs, int maxRegisters, 
     fail.success = false;
     fail.usedRegisters = 0;
     fail.webToRegister.assign(n, -1);
+    fail.webs = webs;
+    fail.algorithm_used = "spilling";
     return fail;
 }
