@@ -1,5 +1,5 @@
 /**
-* @file Structs.h
+* @file structs.h
  * @brief Data structures used by the register allocation tool.
  */
 
