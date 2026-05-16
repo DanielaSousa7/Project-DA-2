@@ -81,6 +81,8 @@ The HTML documentation generated with Doxygen can be found in the html directory
 
 The output format was extended for the alternative algorithms by adding the line "algorithm used". This makes the output clearer and easier to process, especially when comparing the results of the different allocation strategies.
 
+The output also includes a parameter indicating whether the allocation was successful or not. This allows the user to quickly understand if the selected strategy was able to assign registers correctly.
+
 For the splitting algorithm, the output also indicates which webs were divided, making it easier to understand how the interference graph was simplified before coloring.
 
 For the free algorithm, webs removed during the spilling phase are represented with the symbol M.
